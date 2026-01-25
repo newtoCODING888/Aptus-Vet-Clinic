@@ -1,0 +1,211 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box; 
+}
+body {
+    background-color: rgb(229, 216, 199);
+    font-family: "Montserrat", sans-serif;
+    color: black;
+    line-height:1.6;
+}
+nav {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    padding: 15px 50px;
+    background-color: #f9ecd8;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-radius: 20px;
+    max-width: 1350px; 
+    margin: 20px auto; 
+    padding: 18px 40px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+nav h1 {
+    font-family: "Playfair", serif;
+    padding-left: 70px;
+    font-size: 35px;
+    font-weight:400;
+}
+nav img {
+    width:60px;
+    height: 50px;
+}
+.nav-links a{
+    justify-content: right;
+    color: black;
+    margin-left: 40px;
+    text-decoration: none;
+    display: inline-block;
+    font-size:17;
+    transition: transform 0.2s ease;
+    font-weight: 450;
+}
+.nav-links a:hover { 
+    transform: scale(1.05); 
+    text-decoration:underline; 
+}
+.pic {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; 
+  align-items: center;
+
+  gap: 40px;
+  max-width: 1350px;
+  margin: 20px auto;
+  padding: 50px;
+
+  background-color: #f9ecd8;
+  border-radius: 30px;
+}
+
+/* LEFT TEXT */
+.pictext {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.pictext button {
+    background-color: #B0883C; 
+    font-family: "Montserrat", sans-serif; 
+    width: 150px; height: 30px; 
+    border-radius: 15px; 
+    box-shadow: 0 6px 15px rgba(176, 136, 60, 0.35);
+    margin-top: 20px; 
+    color: white; 
+    font-weight: bold; 
+    border: 1px #B0883C;
+}
+.pictext button:hover { 
+    background-color: #c9a65f; 
+    cursor: pointer; 
+}
+/* CENTER IMAGE */
+.pic-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pic-image img {
+  height: 28em;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* RIGHT CHECKLIST */
+.pic-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  padding-right: 40px;
+
+}
+
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.check-item img {
+  width: 22px;
+  height: 22px;
+  
+}
+
+/* ABOUT US*/
+.about-us {
+
+    
+    padding-left: 6rem;
+    line-height: 1.8;
+}
+
+.about-us h2 {
+    font-family: "Playfair", serif;
+    font-weight: 500;
+    font-size: 35px;
+    align-items: center;
+    display: flex;
+    gap: 5px;
+}
+.about-us img {
+    width: 90px;
+    height: 100px;
+   
+}
+
+.nav-links a:nth-child(4) {
+  color: #B0883C;
+  font-weight: 600;
+}
+.pic-image img {
+  transition: transform 0.4s ease;
+}
+
+.pic-image img:hover {
+  transform: translateY(-6px);
+}
+.pictext h2 {
+  letter-spacing: 1px;
+}
+/* CARE OVERVIEW SECTION */
+.care-overview {
+  max-width: 1350px;
+  margin: 80px auto;
+  padding: 60px;
+  background-color: #f9ecd8;
+  border-radius: 30px;
+  text-align: center;
+}
+
+.care-overview h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 36px;
+  font-weight: 500;
+  margin-bottom: 50px;
+}
+
+/* CARDS GRID */
+.care-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+/* INDIVIDUAL CARD */
+.care-card {
+  background-color: #fff3e6;
+  border-radius: 24px;
+  padding: 40px 25px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+  transition: transform 0.25s ease;
+}
+
+.care-card:hover {
+  transform: translateY(-6px);
+}
+
+.care-card img {
+  width: 48px;
+  margin-bottom: 20px;
+}
+
+.care-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.care-card p {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.5;
+}
