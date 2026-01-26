@@ -1,108 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head> 
-        <meta charset ="UTF-8">
-        <meta name ="viewport" content="width=device-width", initial-scale="1.0">
-        <meta name="'descpription" content="Aptus Veterinary Clinic">
-        <title>Aptus Vet Clinic</title>
-        <link rel="stylesheet" href="style.css">
-        
-        
-        <link href="https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-    </head>
-        <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aptus Veterinary Clinic">
+    <title>Aptus Vet Clinic</title>
 
-            <nav>
-                <h1><img src="images/Group 1.png">APTUS VET</h1>
-                
-                <div class="nav-links">
-                <a href="#">Care</a>
-                <a href="#">Grooming</a>
-                <a href="#">Shop</a> 
-                <a href="#">Emergency</a>
-                <a href="#">Account</a>
-                </div>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
 
-            </nav>
-            
-            <main>
-                
-                <section class="pic">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-                <!-- LEFT TEXT -->
-                <div class="pictext">
-                    <h2>24 hrs</h2>
-                    <p>Emergency care when it matters most</p>
-                    <button>Call a night vet</button>
-                </div>
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="logo">
+        <img src="images/paws1.png" alt="Paw logo">
+        APTUS VET
+    </div>
 
-                <!-- CENTER IMAGE -->
-                <div class="pic-image">
-                    <img src="images/banner.png"alt="Cat and dog picture">
-                </div>
+    <nav>
+        <a href="#">Care</a>
+        <a href="#">Grooming</a>
+        <a href="#">Shop</a>
+        <a href="#">Emergency</a>
+        <a href="#">Account</a>
+    </nav>
+</header>
 
-                <!-- RIGHT CHECKLIST -->
-                <div class="pic-right">
-                    <div class="check-item">
-                    <img src="images/check-mark.png" alt="check">
-                    <p>Licensed veterinarians</p>
-                    </div>
-                    <div class="check-item">
-                    <img src="images/check-mark.png" alt="check">
-                    <p>Open 24/7</p>
-                    </div>
-                    <div class="check-item">
-                    <img src="images/check-mark.png" alt="check">
-                    <p>Emergency & critical care</p>
-                    </div>
-                </div>
-                </section>
-            </main>
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>
+            <span class="line-one">Expert Veterinary</span>
+            <span class="line-two">Care for Every Pet</span>
+        </h1>
+        <p>
+            Our dedicated team is here to provide outstanding,
+            compassionate care for your pet’s health and wellbeing.
+        </p>
+        <button class="cta">Our Services</button>
+    </div>
+</section>
 
-            <!-- ABOUT US SECTION -->
-           <!--
-            <div>
-                <section class ="about-us">
-                    <h2>Where <span class ="happy">Happy Pets</span> Begin<img src="images/Group 1.png"></h2>
-                    <article>
-                        At Aptus Vet, every pet is treated like family, with gentle care, warm hearts, and lots of love. 
-                        <br>We believe a visit to the vet should feel safe, comforting, and stress-free for both pets and their owners.</br>
-                        <span class ="last-about">Our team is passionate about keeping tails wagging and whiskers healthy through compassionate, reliable care you can trust. </span>
-                    </article>
+<!-- DOG CARD -->
+<section class="care-section">
+    <div class="care-image-card dog-card">
+        <img src="images/c1dog.png" alt="Happy dog">
 
-                </section>  
-            </div>
-        -->
-  <h2>Here for You — Day or Night</h2>
-
-    <div class="care-cards">
-        <div class="care-card">
-        <img src="images/icon-vet.png" alt="Veterinary care">
-        <h3>Veterinary Care</h3>
-        <p>Checkups, diagnostics,<br>& treatment</p>
-        </div>
-
-        <div class="care-card">
-        <img src="images/icon-emergency.png" alt="Emergency care">
-        <h3>Emergency Care</h3>
-        <p>24/7 critical care<br>when it matters</p>
-        </div>
-
-        <div class="care-card">
-        <img src="images/icon-grooming.png" alt="Grooming">
-        <h3>Grooming</h3>
-        <p>Clean, calm, stress-<br>free grooming</p>
-        </div>
-
-        <div class="care-card">
-        <img src="images/icon-supplies.png" alt="Pet supplies">
-        <h3>Pet Supplies</h3>
-        <p>Food, toys, accessories,<br>& essentials</p>
+        <div class="care-overlay">
+            <h3>Quality Care<br>Tailored to Your Pet</h3>
+            <ul class="care-list">
+                <li>24/7 care services provided</li>
+                <li>Expert health tailored plans</li>
+                <li>Modern treatment technology</li>
+                <li>Comfortable clinic experience</li>
+            </ul>
         </div>
     </div>
-    </section>
-    
-    </body>
-</html><!-- SERVICES OVERVIEW -->
+</section>
 
+<!-- CAT CARD (NO GAP BELOW) -->
+<section class="care-section no-gap">
+    <div class="care-image-card cat-card">
+        <img src="images/cat.png" alt="Cat care" class="cat">
+
+        <div class="care-overlay">
+            <ul class="care-list no-checks">
+                <h3>Contact Us</h3>
+                <li>📞 (503) 123-4567</li>
+                <li>✉️ care@aptusvet.com</li>
+                <li>🕘 Mon – Fri, 9am – 6pm</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- WELLNESS CARD (FLUSH TO CAT) -->
+<section class="care-section no-gap">
+    <div class="info-card wellness-card">
+        <div class="info-text">
+            <h3>Wellness Plans</h3>
+            <p>
+                Our curated grooming and health plans keep your pets
+                relaxed and protected.
+            </p>
+
+            <div class="pill-buttons">
+                <span>🐾 Basic Care</span>
+                <span>🩺 Appointment</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>
