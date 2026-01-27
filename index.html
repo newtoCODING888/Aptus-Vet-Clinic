@@ -17,6 +17,10 @@
             background-color: #f7f2ee;
             padding: 40px 0;
         }
+        
+        .shop-section {
+        font-family: 'Montserrat', serif;
+        }
 
         .shop-section .container {
             width: 90%;
@@ -484,42 +488,64 @@
 
 <!-- SCRIPTS -->
 <script>
-    // NAVIGATION TOGGLE
-    const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('section[data-section]');
+ // NAVIGATION TOGGLE
+const navLinks = document.querySelectorAll('.nav-link');
+const sections = document.querySelectorAll('section[data-section]');
 
-    navLinks.forEach(link => {
-        link.addEventListener('click', e => {
-            e.preventDefault();
-            const target = link.getAttribute('data-target');
+navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = link.getAttribute('data-target');
 
-            sections.forEach(sec => {
-                sec.style.display = sec.getAttribute('data-section') === target ? 'block' : 'none';
-            });
+        sections.forEach(sec => {
+            sec.style.display = sec.getAttribute('data-section') === target ? 'block' : 'none';
         });
     });
+});
 
-    // SHOP CATEGORY FILTER
-    const buttons = document.querySelectorAll('.categories button');
-    const products = document.querySelectorAll('.product-card');
+// SHOP CATEGORY FILTER + SEARCH
+const buttons = document.querySelectorAll('.categories button');
+const products = document.querySelectorAll('.product-card');
+const searchInput = document.querySelector('#shop input');
 
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            buttons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
+let currentCategory = 'all'; // track selected category
 
-            const category = button.getAttribute('data-category');
-            products.forEach(product => {
-                if(category === 'all' || product.getAttribute('data-category') === category) {
-                    product.style.display = 'flex';
-                } else {
-                    product.style.display = 'none';
-                }
-            });
-        });
+// CATEGORY FILTER
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        buttons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        currentCategory = button.getAttribute('data-category');
+        filterProducts();
     });
+});
+
+// SEARCH FILTER
+searchInput.addEventListener('input', () => {
+    filterProducts();
+});
+
+// COMBINED FILTER FUNCTION
+function filterProducts() {
+    const query = searchInput.value.toLowerCase();
+
+    products.forEach(product => {
+        const title = product.querySelector('h3').textContent.toLowerCase();
+        const matchesCategory = (currentCategory === 'all' || product.getAttribute('data-category') === currentCategory);
+        const matchesSearch = title.includes(query);
+
+        if (matchesCategory && matchesSearch) {
+            product.style.display = 'flex';
+        } else {
+            product.style.display = 'none';
+        }
+    });
+}
+
 </script>
 
 </body>
 </html>
+
 
