@@ -29,6 +29,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 10;
+    overflow: visible; /* Make sure this isn't set to hidden! */
 }
 
 .logo {
@@ -436,5 +437,6 @@ body {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
 
 
