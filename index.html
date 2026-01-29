@@ -3,712 +3,475 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Aptus Veterinary Clinic" />
-  <title>Aptus Vet Clinic</title>
+  <title>Aptus Vet | My Pets</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet" />
-
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
 
   <style>
-    /* SHOP SECTION STYLES */
-    .shop-section {
-      background-color: #f7f2ee;
-      padding: 40px 0;
-      font-family: 'Montserrat', serif;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "Montserrat", sans-serif; background: #f8f6f3; color: #2f2f2f; }
 
-    .shop-section .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+    .container { max-width: 1100px; margin: auto; padding: 40px 20px 60px; }
 
-    .shop-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
+    .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
+    .title h1 { font-family: "Playfair Display", serif; font-size: 32px; margin-bottom: 6px; }
+    .title p { color: #666; font-size: 14px; line-height: 1.4; }
 
-    .shop-header input {
-      padding: 10px 14px;
-      width: 250px;
-      border-radius: 6px;
-      border: 1px solid #dcd7d2;
-    }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn { padding: 12px 16px; border-radius: 12px; border: none; font-weight: 800; cursor: pointer; font-size: 13px; transition: 0.2s ease; }
+    .btn-primary { background: #7aa89f; color: #fff; }
+    .btn-primary:hover { filter: brightness(0.95); }
+    .btn-light { background: #f3f0ec; border: 1px solid #e8ded5; color: #333; }
+    .btn-light:hover { background: #efeae4; }
 
-    .categories {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 25px;
-      flex-wrap: wrap;
-    }
+    .pets { display: flex; flex-direction: column; gap: 14px; margin-top: 12px; }
 
-    .categories button {
-      padding: 8px 14px;
-      border: none;
-      border-radius: 20px;
-      background-color: #a67b52;
-      color: #fff;
-      cursor: pointer;
-      font-size: 13px;
-    }
-
-    .categories button:hover,
-    .categories button.active {
-      background-color: #8e6845;
-      color: #fff;
-    }
-
-    .products {
+    .pet {
+      background: #fff;
+      border-radius: 18px;
+      padding: 14px;
+      border: 1px solid #eee7df;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 20px;
+      grid-template-columns: 74px 1fr auto;
+      gap: 14px;
+      align-items: center;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.05);
     }
 
-    .product-card {
-      background-color: #fff;
-      border-radius: 10px;
-      padding: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      display: flex;
-      flex-direction: column;
+    .pet-pic { width: 74px; height: 74px; border-radius: 18px; object-fit: cover; border: 1px solid #eee7df; background: #f3f0ec; }
+    .pet-main .name { font-size: 16px; font-weight: 900; margin-bottom: 4px; }
+    .pet-main .meta { font-size: 13px; color: #666; line-height: 1.4; margin-bottom: 8px; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .chip {
+      font-size: 12px; font-weight: 900; padding: 6px 10px; border-radius: 999px;
+      border: 1px solid #eee7df; background: #fbfaf8; color: #444; white-space: nowrap;
+    }
+    .chip.good { background: #e3f4ef; border-color: #cdebe3; color: #2e7d6b; }
+    .chip.warn { background: #fff0e0; border-color: #ffe0bf; color: #b85f00; }
+
+    .pet-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+    .small { padding: 10px 12px; border-radius: 12px; border: none; cursor: pointer; font-weight: 900; font-size: 12px; transition: 0.2s ease; white-space: nowrap; }
+    .small.primary { background: #7aa89f; color: #fff; }
+    .small.primary:hover { filter: brightness(0.95); }
+    .small.light { background: #f3f0ec; border: 1px solid #e8ded5; color: #333; }
+    .small.light:hover { background: #efeae4; }
+
+    .empty { background: #fff; border: 1px dashed #d9cfc6; border-radius: 18px; padding: 18px; color: #666; line-height: 1.5; }
+
+    /* Modal */
+    .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.45); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 18px; }
+    .modal.active { display: flex; }
+
+    .modal-box {
+      background: #fff; width: 100%; max-width: 640px; border-radius: 20px; padding: 22px; position: relative;
+      border: 1px solid #eee7df;
     }
 
-    .product-card img.product-image {
-      width: 100%;
-      height: 180px;
-      object-fit: contain;
-      border-radius: 8px;
-      margin-bottom: 12px;
-      background-color: #fbf9f7;
+    .close { position: absolute; top: 14px; right: 16px; font-size: 20px; cursor: pointer; user-select: none; }
+
+    .modal-box h2 { font-family: "Playfair Display", serif; font-size: 26px; margin-bottom: 6px; }
+    .modal-box p { font-size: 13px; color: #666; margin-bottom: 16px; }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field.full { grid-column: span 2; }
+
+    label { font-size: 12px; font-weight: 900; color: #555; }
+
+    input, select, textarea {
+      padding: 10px 12px; border-radius: 12px; border: 1px solid #ddd;
+      font-family: inherit; font-size: 14px; outline: none; background: #fff;
     }
 
-    .product-card h3 {
-      font-size: 16px;
-      margin-bottom: 6px;
-      color: #2c5c54;
-    }
+    textarea { resize: none; height: 90px; }
 
-    .product-card p {
-      font-size: 13px;
-      margin-bottom: 10px;
-      color: #777;
-    }
+    .photo-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .photo-preview { width: 72px; height: 72px; border-radius: 18px; border: 1px solid #eee7df; background: #f3f0ec; object-fit: cover; }
 
-    .price {
-      font-weight: bold;
-      margin-bottom: 12px;
-      color: #a67b52;
-    }
+    .form-actions { display: flex; gap: 10px; margin-top: 18px; justify-content: flex-end; flex-wrap: wrap; }
 
-    .product-card button {
-      margin-top: auto;
-      padding: 10px;
-      border: none;
-      border-radius: 6px;
-      background-color: #946d43;
-      color: #fff;
-      cursor: pointer;
-      font-size: 14px;
-    }
+    .notice { margin-top: 12px; color: #b85f00; font-size: 13px; font-weight: 700; display: none; }
+    .notice.show { display: block; }
 
-    .product-card button:hover {
-      background-color: #724A24;
-    }
-
-    footer.shop-footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #ffffff;
-      color: #b5b0ab;
-      font-size: 13px;
-      margin-top: 40px;
-      border-top: 1px solid #e0dcd8;
+    @media (max-width: 560px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: span 1; }
     }
   </style>
 </head>
 
 <body>
-
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="logo">
-      <img src="images/paws1.png" alt="Paw logo" />
-      APTUS VET
-    </div>
-
-    <nav class="nav-menu">
-      <a href="#" class="nav-link" data-target="care">Care</a>
-      <a href="#" class="nav-link" data-target="grooming">Grooming</a>
-      <a href="#" class="nav-link" data-target="shop">Shop</a>
-      <a href="#" class="nav-link" data-target="emergency">Emergency</a>
-
-      <!-- DROPDOWN -->
-      <div class="nav-item-dropdown">
-        <a href="#" class="nav-link nav-account" aria-haspopup="true" aria-expanded="false">
-          Account <span class="caret">▾</span>
-        </a>
-
-        <div class="dropdown-content" role="menu">
-          <a href="#" id="openAuth" role="menuitem">Login / Signup</a>
-          <a href="#" role="menuitem">My Pets</a>
-          <a href="#" role="menuitem">Appointments</a>
-          <a href="#" role="menuitem">Orders</a>
-        </div>
+  <div class="container">
+    <div class="top">
+      <div class="title">
+        <h1>My Pets</h1>
+        <p>Manage pet profiles, save photos, and keep basic details for faster appointments.</p>
       </div>
-    </nav>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero" data-section="care">
-    <div class="hero-content">
-      <h1>
-        <span class="line-one">Expert Veterinary</span>
-        <span class="line-two">Care for Every Pet</span>
-      </h1>
-      <p>
-        Our dedicated team is here to provide outstanding,
-        compassionate care for your pet’s health and wellbeing.
-      </p>
-      <button class="cta">Our Services</button>
-    </div>
-  </section>
-
-  <!-- DOG CARD -->
-  <section class="care-section" data-section="care">
-    <div class="care-image-card dog-card">
-      <img src="images/c1dog.png" alt="Happy dog" />
-
-      <div class="care-overlay">
-        <h3>Quality Care<br />Tailored to Your Pet</h3>
-        <ul class="care-list">
-          <li>24/7 care services provided</li>
-          <li>Expert health tailored plans</li>
-          <li>Modern treatment technology</li>
-          <li>Comfortable clinic experience</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- CAT CARD -->
-  <section class="care-section no-gap" data-section="care">
-    <div class="care-image-card cat-card">
-      <img src="images/cat.png" alt="Cat care" class="cat" />
-
-      <div class="care-overlay">
-        <h3>Contact Us</h3>
-        <ul class="care-list no-checks">
-          <li>📞 (503) 123-4567</li>
-          <li>✉️ care@aptusvet.com</li>
-          <li>🕘 Mon – Fri, 9am – 6pm</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- WELLNESS CARD -->
-  <section class="care-section no-gap" data-section="care">
-    <div class="info-card wellness-card">
-      <div class="info-text">
-        <h3>Wellness Plans</h3>
-        <p>
-          Our curated grooming and health plans keep your pets
-          relaxed and protected.
-        </p>
-
-        <div class="pill-buttons">
-          <span>🐾 Basic Care</span>
-          <span>🩺 Appointment</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SHOP SECTION -->
-  <section id="shop" class="shop-section" data-section="shop" style="display:none;">
-    <div class="container">
-
-      <div class="shop-header">
-        <h2>Shop Products</h2>
-        <input type="text" placeholder="Search products..." />
-      </div>
-
-      <div class="categories">
-        <button class="active" data-category="all">All</button>
-        <button data-category="food">Food</button>
-        <button data-category="supplements">Supplements</button>
-        <button data-category="medicines">Medicines</button>
-        <button data-category="grooming">Grooming</button>
-        <button data-category="accessories">Accessories</button>
-      </div>
-
-      <div class="products">
-        <div class="product-card" data-category="supplements">
-          <img src="images/dogmulti.jpg" alt="Dog Multivitamins" class="product-image" />
-          <h3>Dog Multivitamins</h3>
-          <p>Supports overall health and immunity.</p>
-          <div class="price">₱450.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="food">
-          <img src="images/catdry.png" alt="Cat Dry Food" class="product-image" />
-          <h3>Cat Dry Food</h3>
-          <p>Nutritious and vet-approved formula.</p>
-          <div class="price">₱1,200.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="grooming">
-          <img src="images/petsham.png" alt="Pet Shampoo" class="product-image" />
-          <h3>Pet Shampoo</h3>
-          <p>Gentle care for sensitive skin.</p>
-          <div class="price">₱320.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="medicines">
-          <img src="images/ticknple.webp" alt="Tick & Flea Medicine" class="product-image" />
-          <h3>Tick & Flea Medicine</h3>
-          <p>Effective protection for your pet.</p>
-          <div class="price">₱680.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/trainpads.jpg" alt="Puppy Training Pads" class="product-image" />
-          <h3>Puppy Training Pads</h3>
-          <p>Highly absorbent and leak-proof.</p>
-          <div class="price">₱550.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="food">
-          <img src="images/dogchew.jpg" alt="Dog Chew Treats" class="product-image" />
-          <h3>Dog Chew Treats</h3>
-          <p>Helps maintain dental health.</p>
-          <div class="price">₱260.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/catlitter.jpeg" alt="Cat Litter" class="product-image" />
-          <h3>Cat Litter</h3>
-          <p>Odor control and easy clumping.</p>
-          <div class="price">₱480.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="supplements">
-          <img src="images/petvet.jpg" alt="Pet Vitamins Syrup" class="product-image" />
-          <h3>Pet Vitamins Syrup</h3>
-          <p>Boosts appetite and energy.</p>
-          <div class="price">₱390.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/dogcollar.jpg" alt="Dog Collar" class="product-image" />
-          <h3>Dog Collar</h3>
-          <p>Adjustable and comfortable fit.</p>
-          <div class="price">₱220.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="grooming">
-          <img src="images/nailclipper.jpg" alt="Pet Nail Clipper" class="product-image" />
-          <h3>Pet Nail Clipper</h3>
-          <p>Safe trimming for pets.</p>
-          <div class="price">₱180.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="food">
-          <img src="images/dogwetfood.webp" alt="Dog Wet Food" class="product-image" />
-          <h3>Dog Wet Food</h3>
-          <p>Rich in protein and nutrients.</p>
-          <div class="price">₱95.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="food">
-          <img src="images/catwetfood.jpg" alt="Cat Wet Food" class="product-image" />
-          <h3>Cat Wet Food</h3>
-          <p>Soft texture for easy eating.</p>
-          <div class="price">₱90.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="grooming">
-          <img src="images/earcleaner.webp" alt="Ear Cleaner" class="product-image" />
-          <h3>Pet Ear Cleaner</h3>
-          <p>Prevents ear infections.</p>
-          <div class="price">₱300.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/dogharness.jpg" alt="Dog Harness" class="product-image" />
-          <h3>Dog Harness</h3>
-          <p>Secure and breathable design.</p>
-          <div class="price">₱650.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="grooming">
-          <img src="images/pettooth.jpg" alt="Pet Toothbrush" class="product-image" />
-          <h3>Pet Toothbrush Set</h3>
-          <p>Maintains oral hygiene.</p>
-          <div class="price">₱210.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/dogbed.jpg" alt="Dog Bed" class="product-image" />
-          <h3>Dog Bed</h3>
-          <p>Soft and cozy sleeping area.</p>
-          <div class="price">₱1,450.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/catpost.jpg" alt="Cat Scratching Post" class="product-image" />
-          <h3>Cat Scratching Post</h3>
-          <p>Protects furniture from scratches.</p>
-          <div class="price">₱980.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/petbowl.jpg" alt="Pet Feeding Bowl" class="product-image" />
-          <h3>Pet Feeding Bowl</h3>
-          <p>Durable and easy to clean.</p>
-          <div class="price">₱150.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/dogleash.jpg" alt="Dog Leash" class="product-image" />
-          <h3>Dog Leash</h3>
-          <p>Strong grip for daily walks.</p>
-          <div class="price">₱280.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/pettravel.jpg" alt="Pet Travel Carrier" class="product-image" />
-          <h3>Pet Travel Carrier</h3>
-          <p>Safe and ventilated design.</p>
-          <div class="price">₱1,800.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="grooming">
-          <img src="images/wipes.jpg" alt="Pet Wipes" class="product-image" />
-          <h3>Pet Wipes</h3>
-          <p>Quick cleaning on the go.</p>
-          <div class="price">₱140.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="supplements">
-          <img src="images/dogcal.jpg" alt="Dog Calcium Supplement" class="product-image" />
-          <h3>Dog Calcium Supplement</h3>
-          <p>Supports bone development.</p>
-          <div class="price">₱520.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="supplements">
-          <img src="images/cathairball.jpg" alt="Cat Hairball Remedy" class="product-image" />
-          <h3>Cat Hairball Remedy</h3>
-          <p>Reduces hairball formation.</p>
-          <div class="price">₱410.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="grooming">
-          <img src="images/petbrush.jpg" alt="Pet Grooming Brush" class="product-image" />
-          <h3>Pet Grooming Brush</h3>
-          <p>Removes loose fur easily.</p>
-          <div class="price">₱230.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="medicines">
-          <img src="images/antitick.jpg" alt="Dog Anti-Tick Spray" class="product-image" />
-          <h3>Dog Anti-Tick Spray</h3>
-          <p>Daily protection from parasites.</p>
-          <div class="price">₱360.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="supplements">
-          <img src="images/catvita.webp" alt="Cat Vitamins" class="product-image" />
-          <h3>Cat Vitamins</h3>
-          <p>Improves coat and vitality.</p>
-          <div class="price">₱440.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/petcoolingmat.png" alt="Pet Cooling Mat" class="product-image" />
-          <h3>Pet Cooling Mat</h3>
-          <p>Keeps pets cool in hot weather.</p>
-          <div class="price">₱890.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/petjar.jpg" alt="Dog Treat Jar" class="product-image" />
-          <h3>Dog Treat Jar</h3>
-          <p>Airtight storage container.</p>
-          <div class="price">₱310.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/petfirstaid.webp" alt="Pet First Aid Kit" class="product-image" />
-          <h3>Pet First Aid Kit</h3>
-          <p>Emergency essentials for pets.</p>
-          <div class="price">₱750.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/raincoat.jpg" alt="Dog Raincoat" class="product-image" />
-          <h3>Dog Raincoat</h3>
-          <p>Waterproof and lightweight.</p>
-          <div class="price">₱540.00</div>
-          <button>Add to Cart</button>
-        </div>
+      <div class="actions">
+        <button class="btn btn-light" id="clearAllBtn">Clear All</button>
+        <button class="btn btn-primary" id="openBtn">+ Add Pet</button>
       </div>
     </div>
 
-    <footer class="shop-footer">
-      © 2026 Aptus Veterinary Clinic. All rights reserved.
-    </footer>
-  </section>
+    <div id="petsWrap" class="pets"></div>
+    <div id="emptyState" class="empty">
+      No pets yet. Click <b>+ Add Pet</b> to create your first pet profile.
+    </div>
+  </div>
 
-  <!-- ================= AUTH MODAL ================= -->
-  <div class="auth-overlay" id="authOverlay" aria-hidden="true">
-    <div class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
-      <button class="auth-close" id="authClose" aria-label="Close">✕</button>
+  <!-- MODAL -->
+  <div class="modal" id="petModal">
+    <div class="modal-box">
+      <div class="close" id="closeBtn">✕</div>
 
-      <h2 class="auth-title" id="authTitle">Welcome to Aptus Vet</h2>
-      <p class="auth-subtitle">Login or create an account to continue.</p>
+      <h2>Add New Pet</h2>
+      <p>Fill in your pet details. This will be saved even after refresh.</p>
 
-      <div class="auth-tabs">
-        <button class="auth-tab active" id="tabLogin" type="button">Login</button>
-        <button class="auth-tab" id="tabSignup" type="button">Sign Up</button>
-      </div>
+      <form id="petForm">
+        <div class="form-grid">
+          <div class="field full">
+            <label>Pet Photo</label>
+            <div class="photo-row">
+              <img id="photoPreview" class="photo-preview" alt="Preview" />
+              <input id="petPhoto" type="file" accept="image/*" />
+            </div>
+          </div>
 
-      <!-- LOGIN FORM -->
-      <form class="auth-form" id="loginForm">
-        <label>Email</label>
-        <input type="email" placeholder="Enter your email" required />
+          <div class="field">
+            <label>Pet Name *</label>
+            <input id="petName" type="text" placeholder="e.g. Buddy" required />
+          </div>
 
-        <label>Password</label>
-        <input type="password" placeholder="Enter your password" required />
+          <div class="field">
+            <label>Species *</label>
+            <select id="petSpecies" required>
+              <option value="Dog">Dog</option>
+              <option value="Cat">Cat</option>
+              <option value="Bird">Bird</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
 
-        <button class="auth-btn" type="submit">Login</button>
+          <div class="field">
+            <label>Breed</label>
+            <input id="petBreed" type="text" placeholder="e.g. Shih Tzu" />
+          </div>
 
-        <p class="auth-note">
-          No account yet?
-          <a href="#" id="switchToSignup">Create one</a>
-        </p>
-      </form>
+          <div class="field">
+            <label>Age (years)</label>
+            <input id="petAge" type="number" min="0" step="1" placeholder="e.g. 2" />
+          </div>
 
-      <!-- SIGNUP FORM -->
-      <form class="auth-form hidden" id="signupForm">
-        <label>Full Name</label>
-        <input type="text" placeholder="Enter your fullname" required />
+          <div class="field">
+            <label>Status</label>
+            <select id="petStatus">
+              <option value="Healthy">Healthy</option>
+              <option value="Needs Checkup">Needs Checkup</option>
+            </select>
+          </div>
 
-        <label>Email</label>
-        <input type="email" placeholder="Enter your email" required />
+          <div class="field">
+            <label>Weight (kg)</label>
+            <input id="petWeight" type="number" min="0" step="0.1" placeholder="e.g. 4.6" />
+          </div>
 
-        <label>Password</label>
-        <input type="password" placeholder="Create a password" required />
+          <div class="field full">
+            <label>Notes</label>
+            <textarea id="petNotes" placeholder="Allergies, conditions, reminders..."></textarea>
+          </div>
+        </div>
 
-        <label>Confirm Password</label>
-        <input type="password" placeholder="Repeat the password" required />
+        <div id="saveNotice" class="notice"></div>
 
-        <button class="auth-btn" type="submit">Create Account</button>
-
-        <p class="auth-note">
-          Already have an account?
-          <a href="#" id="switchToLogin">Login</a>
-        </p>
+        <div class="form-actions">
+          <button type="button" class="btn btn-light" id="cancelBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Pet</button>
+        </div>
       </form>
     </div>
   </div>
 
-  <!-- ================= SCRIPTS ================= -->
   <script>
-    /* SECTION SWITCH */
-    const navLinks = document.querySelectorAll('.nav-link[data-target]');
-    const sections = document.querySelectorAll('section[data-section]');
+    const STORAGE_KEY = "aptus_pets_v1";
 
-    navLinks.forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const target = link.getAttribute('data-target');
+    const petsWrap = document.getElementById("petsWrap");
+    const emptyState = document.getElementById("emptyState");
 
-        sections.forEach(sec => {
-          sec.style.display = (sec.getAttribute('data-section') === target) ? 'block' : 'none';
-        });
-      });
-    });
+    const modal = document.getElementById("petModal");
+    const openBtn = document.getElementById("openBtn");
+    const closeBtn = document.getElementById("closeBtn");
+    const cancelBtn = document.getElementById("cancelBtn");
+    const clearAllBtn = document.getElementById("clearAllBtn");
 
-    /* ACCOUNT DROPDOWN CLICK */
-    const accountBtn = document.querySelector('.nav-account');
-    const dropdown = document.querySelector('.nav-item-dropdown');
+    const petForm = document.getElementById("petForm");
+    const saveNotice = document.getElementById("saveNotice");
 
-    accountBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      dropdown.classList.toggle('open');
-      accountBtn.setAttribute(
-        'aria-expanded',
-        dropdown.classList.contains('open') ? 'true' : 'false'
-      );
-    });
+    const petPhoto = document.getElementById("petPhoto");
+    const photoPreview = document.getElementById("photoPreview");
 
-    document.addEventListener('click', (e) => {
-      if (!dropdown.contains(e.target)) {
-        dropdown.classList.remove('open');
-        accountBtn.setAttribute('aria-expanded', 'false');
+    const petName = document.getElementById("petName");
+    const petSpecies = document.getElementById("petSpecies");
+    const petBreed = document.getElementById("petBreed");
+    const petAge = document.getElementById("petAge");
+    const petStatus = document.getElementById("petStatus");
+    const petWeight = document.getElementById("petWeight");
+    const petNotes = document.getElementById("petNotes");
+
+    let pets = [];
+    let pendingPhotoDataUrl = ""; // base64 string
+
+    function safeParse(json, fallback) {
+      try { return JSON.parse(json) ?? fallback; }
+      catch { return fallback; }
+    }
+
+    function loadPets() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      pets = raw ? safeParse(raw, []) : [];
+      renderPets();
+    }
+
+    function savePets() {
+      // If localStorage fails (quota / blocked), we show a message.
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(pets));
+        showNotice("");
+        return true;
+      } catch (err) {
+        showNotice("Could not save. Photo may be too large or storage is blocked. Try a smaller photo.", true);
+        return false;
       }
-    });
-
-    /* SHOP FILTER + SEARCH */
-    const buttons = document.querySelectorAll('.categories button');
-    const products = document.querySelectorAll('.product-card');
-    const searchInput = document.querySelector('#shop input');
-
-    let currentCategory = 'all';
-
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        buttons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-
-        currentCategory = button.getAttribute('data-category');
-        filterProducts();
-      });
-    });
-
-    searchInput.addEventListener('input', filterProducts);
-
-    function filterProducts() {
-      const query = searchInput.value.toLowerCase();
-
-      products.forEach(product => {
-        const title = product.querySelector('h3').textContent.toLowerCase();
-        const matchesCategory =
-          (currentCategory === 'all' || product.getAttribute('data-category') === currentCategory);
-        const matchesSearch = title.includes(query);
-
-        product.style.display = (matchesCategory && matchesSearch) ? 'flex' : 'none';
-      });
     }
 
-    /* AUTH MODAL OPEN/CLOSE + SWITCH */
-    const openAuth = document.getElementById('openAuth');
-    const authOverlay = document.getElementById('authOverlay');
-    const authClose = document.getElementById('authClose');
-
-    const tabLogin = document.getElementById('tabLogin');
-    const tabSignup = document.getElementById('tabSignup');
-
-    const loginForm = document.getElementById('loginForm');
-    const signupForm = document.getElementById('signupForm');
-
-    const switchToSignup = document.getElementById('switchToSignup');
-    const switchToLogin = document.getElementById('switchToLogin');
-
-    function openModal() {
-      authOverlay.classList.add('show');
-      authOverlay.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
+    function showNotice(msg, isError = false) {
+      if (!msg) {
+        saveNotice.classList.remove("show");
+        saveNotice.textContent = "";
+        return;
+      }
+      saveNotice.textContent = msg;
+      saveNotice.style.color = isError ? "#b00020" : "#2e7d6b";
+      saveNotice.classList.add("show");
     }
 
-    function closeModal() {
-      authOverlay.classList.remove('show');
-      authOverlay.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
+    function renderPets() {
+      petsWrap.innerHTML = "";
 
-    function showLogin() {
-      tabLogin.classList.add('active');
-      tabSignup.classList.remove('active');
-      loginForm.classList.remove('hidden');
-      signupForm.classList.add('hidden');
-    }
-
-    function showSignup() {
-      tabSignup.classList.add('active');
-      tabLogin.classList.remove('active');
-      signupForm.classList.remove('hidden');
-      loginForm.classList.add('hidden');
-    }
-
-    openAuth.addEventListener('click', (e) => {
-      e.preventDefault();
-      openModal();
-      showLogin();
-      dropdown.classList.remove('open');
-      accountBtn.setAttribute('aria-expanded', 'false');
-    });
-
-    authClose.addEventListener('click', closeModal);
-
-    authOverlay.addEventListener('click', (e) => {
-      if (e.target === authOverlay) closeModal();
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && authOverlay.classList.contains('show')) closeModal();
-    });
-
-    tabLogin.addEventListener('click', showLogin);
-    tabSignup.addEventListener('click', showSignup);
-
-    switchToSignup.addEventListener('click', (e) => {
-      e.preventDefault();
-      showSignup();
-    });
-
-    switchToLogin.addEventListener('click', (e) => {
-      e.preventDefault();
-      showLogin();
-    });
-
-    loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Logged in (demo only). Connect backend/database next.');
-      closeModal();
-    });
-
-    signupForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const pass = signupForm.querySelectorAll('input[type="password"]')[0].value;
-      const confirmPass = signupForm.querySelectorAll('input[type="password"]')[1].value;
-
-      if (pass !== confirmPass) {
-        alert('Passwords do not match.');
+      if (!pets.length) {
+        emptyState.style.display = "block";
         return;
       }
 
-      alert('Account created (demo only). Connect backend/database next.');
+      emptyState.style.display = "none";
+
+      pets.forEach((p) => {
+        const card = document.createElement("div");
+        card.className = "pet";
+
+        const img = document.createElement("img");
+        img.className = "pet-pic";
+        img.alt = p.name || "Pet";
+        img.src = p.photo || defaultPhoto(p.species);
+
+        const main = document.createElement("div");
+        main.className = "pet-main";
+
+        const name = document.createElement("div");
+        name.className = "name";
+        name.textContent = p.name;
+
+        const meta = document.createElement("div");
+        meta.className = "meta";
+        meta.textContent = `${p.species}${p.breed ? " • " + p.breed : ""}${p.age ? " • " + p.age + " yrs" : ""}`;
+
+        const chips = document.createElement("div");
+        chips.className = "chips";
+
+        const statusChip = document.createElement("span");
+        statusChip.className = "chip " + (p.status === "Healthy" ? "good" : "warn");
+        statusChip.textContent = p.status;
+
+        chips.appendChild(statusChip);
+
+        if (p.weight) {
+          const w = document.createElement("span");
+          w.className = "chip";
+          w.textContent = `Weight: ${p.weight} kg`;
+          chips.appendChild(w);
+        }
+
+        if (p.notes) {
+          const n = document.createElement("span");
+          n.className = "chip";
+          n.textContent = "Has notes";
+          chips.appendChild(n);
+        }
+
+        main.appendChild(name);
+        main.appendChild(meta);
+        main.appendChild(chips);
+
+        const actions = document.createElement("div");
+        actions.className = "pet-actions";
+
+        const del = document.createElement("button");
+        del.className = "small light";
+        del.type = "button";
+        del.textContent = "Delete";
+        del.onclick = () => deletePet(p.id);
+
+        const view = document.createElement("button");
+        view.className = "small primary";
+        view.type = "button";
+        view.textContent = "View";
+        view.onclick = () => alert("Preview only. Connect this to your profile page later 🙂");
+
+        actions.appendChild(del);
+        actions.appendChild(view);
+
+        card.appendChild(img);
+        card.appendChild(main);
+        card.appendChild(actions);
+
+        petsWrap.appendChild(card);
+      });
+    }
+
+    function defaultPhoto(species) {
+      // simple placeholder colors via SVG data url (no external images)
+      const bg = species === "Cat" ? "#e7efff" : species === "Dog" ? "#e3f4ef" : "#fff0e0";
+      const text = species ? species[0].toUpperCase() : "P";
+      const svg =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+          <rect width="100%" height="100%" rx="28" ry="28" fill="${bg}"/>
+          <text x="50%" y="54%" text-anchor="middle" font-size="90" font-family="Montserrat" font-weight="900" fill="#333">${text}</text>
+        </svg>`;
+      return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+    }
+
+    function openModal() {
+      modal.classList.add("active");
+    }
+
+    function closeModal() {
+      modal.classList.remove("active");
+      petForm.reset();
+      pendingPhotoDataUrl = "";
+      photoPreview.src = "";
+      showNotice("");
+    }
+
+    function deletePet(id) {
+      pets = pets.filter(p => p.id !== id);
+      savePets();
+      renderPets();
+    }
+
+    function clearAll() {
+      pets = [];
+      localStorage.removeItem(STORAGE_KEY);
+      renderPets();
+    }
+
+    // Compress image -> smaller base64 so it actually saves
+    async function fileToCompressedDataURL(file, maxSize = 420, quality = 0.7) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onerror = reject;
+        reader.onload = () => {
+          const img = new Image();
+          img.onerror = reject;
+          img.onload = () => {
+            let w = img.width;
+            let h = img.height;
+
+            const scale = Math.min(maxSize / w, maxSize / h, 1);
+            w = Math.round(w * scale);
+            h = Math.round(h * scale);
+
+            const canvas = document.createElement("canvas");
+            canvas.width = w;
+            canvas.height = h;
+
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, w, h);
+
+            const dataUrl = canvas.toDataURL("image/jpeg", quality);
+            resolve(dataUrl);
+          };
+          img.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // Events
+    openBtn.addEventListener("click", openModal);
+    closeBtn.addEventListener("click", closeModal);
+    cancelBtn.addEventListener("click", closeModal);
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    clearAllBtn.addEventListener("click", () => {
+      const ok = confirm("Clear all pets? This will remove saved pets from this browser.");
+      if (ok) clearAll();
+    });
+
+    petPhoto.addEventListener("change", async (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+
+      try {
+        pendingPhotoDataUrl = await fileToCompressedDataURL(file, 420, 0.7);
+        photoPreview.src = pendingPhotoDataUrl;
+        showNotice("");
+      } catch {
+        pendingPhotoDataUrl = "";
+        photoPreview.src = "";
+        showNotice("Could not read this image. Try a different file.", true);
+      }
+    });
+
+    petForm.addEventListener("submit", (e) => {
+      // ✅ This is what stops the “didn't save” refresh problem
+      e.preventDefault();
+
+      const newPet = {
+        id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
+        name: petName.value.trim(),
+        species: petSpecies.value,
+        breed: petBreed.value.trim(),
+        age: petAge.value ? String(petAge.value).trim() : "",
+        status: petStatus.value,
+        weight: petWeight.value ? String(petWeight.value).trim() : "",
+        notes: petNotes.value.trim(),
+        photo: pendingPhotoDataUrl
+      };
+
+      if (!newPet.name) {
+        showNotice("Pet name is required.", true);
+        return;
+      }
+
+      pets.unshift(newPet);
+
+      const ok = savePets();
+      if (!ok) {
+        // remove if not saved
+        pets.shift();
+        return;
+      }
+
+      renderPets();
       closeModal();
     });
-  </script>
 
+    // Load saved pets on page open
+    loadPets();
+  </script>
 </body>
 </html>
-
