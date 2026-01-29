@@ -1,713 +1,418 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Aptus Veterinary Clinic" />
-  <title>Aptus Vet Clinic</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aptus Veterinary Clinic">
+    <title>Aptus Vet Clinic</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css" />
-
-  <style>
-    /* SHOP SECTION STYLES */
-    .shop-section {
-      background-color: #f7f2ee;
-      padding: 40px 0;
-      font-family: 'Montserrat', serif;
-    }
-
-    .shop-section .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .shop-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .shop-header input {
-      padding: 10px 14px;
-      width: 250px;
-      border-radius: 6px;
-      border: 1px solid #dcd7d2;
-    }
-
-    .categories {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 25px;
-      flex-wrap: wrap;
-    }
-
-    .categories button {
-      padding: 8px 14px;
-      border: none;
-      border-radius: 20px;
-      background-color: #a67b52;
-      color: #fff;
-      cursor: pointer;
-      font-size: 13px;
-    }
-
-    .categories button:hover,
-    .categories button.active {
-      background-color: #8e6845;
-      color: #fff;
-    }
-
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 20px;
-    }
-
-    .product-card {
-      background-color: #fff;
-      border-radius: 10px;
-      padding: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .product-card img.product-image {
-      width: 100%;
-      height: 180px;
-      object-fit: contain;
-      border-radius: 8px;
-      margin-bottom: 12px;
-      background-color: #fbf9f7;
-    }
-
-    .product-card h3 {
-      font-size: 16px;
-      margin-bottom: 6px;
-      color: #2c5c54;
-    }
-
-    .product-card p {
-      font-size: 13px;
-      margin-bottom: 10px;
-      color: #777;
-    }
-
-    .price {
-      font-weight: bold;
-      margin-bottom: 12px;
-      color: #a67b52;
-    }
-
-    .product-card button {
-      margin-top: auto;
-      padding: 10px;
-      border: none;
-      border-radius: 6px;
-      background-color: #946d43;
-      color: #fff;
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    .product-card button:hover {
-      background-color: #724A24;
-    }
-
-    footer.shop-footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #ffffff;
-      color: #b5b0ab;
-      font-size: 13px;
-      margin-top: 40px;
-      border-top: 1px solid #e0dcd8;
-    }
-  </style>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-  <!-- NAVBAR -->
-  <header class="navbar">
+<script src="script.js" defer></script>
+<!-- NAVBAR -->
+<header class="navbar">
     <div class="logo">
-      <img src="images/paws1.png" alt="Paw logo" />
-      APTUS VET
+        <img src="images/paws1.png" alt="Paw logo">
+        APTUS VET
     </div>
 
-    <nav class="nav-menu">
-      <a href="#" class="nav-link" data-target="care">Care</a>
-      <a href="#" class="nav-link" data-target="grooming">Grooming</a>
-      <a href="#" class="nav-link" data-target="shop">Shop</a>
-      <a href="#" class="nav-link" data-target="emergency">Emergency</a>
-
-      <!-- DROPDOWN -->
-      <div class="nav-item-dropdown">
-        <a href="#" class="nav-link nav-account" aria-haspopup="true" aria-expanded="false">
-          Account <span class="caret">▾</span>
-        </a>
-
-        <div class="dropdown-content" role="menu">
-          <a href="#" id="openAuth" role="menuitem">Login / Signup</a>
-          <a href="#" role="menuitem">My Pets</a>
-          <a href="#" role="menuitem">Appointments</a>
-          <a href="#" role="menuitem">Orders</a>
-        </div>
-      </div>
+    <nav>
+        <a href="#">Clinic</a>
+        <a href="#">Grooming</a>
+        <a href="#">Shop</a>
+        <a href="#">Emergency</a>
+        <a href="#">Account</a>
     </nav>
-  </header>
+</header>
 
-  <!-- HERO -->
-  <section class="hero" data-section="care">
+<!-- HERO -->
+<section class="hero">
     <div class="hero-content">
-      <h1>
-        <span class="line-one">Expert Veterinary</span>
-        <span class="line-two">Care for Every Pet</span>
-      </h1>
-      <p>
-        Our dedicated team is here to provide outstanding,
-        compassionate care for your pet’s health and wellbeing.
-      </p>
-      <button class="cta">Our Services</button>
-    </div>
-  </section>
-
-  <!-- DOG CARD -->
-  <section class="care-section" data-section="care">
-    <div class="care-image-card dog-card">
-      <img src="images/c1dog.png" alt="Happy dog" />
-
-      <div class="care-overlay">
-        <h3>Quality Care<br />Tailored to Your Pet</h3>
-        <ul class="care-list">
-          <li>24/7 care services provided</li>
-          <li>Expert health tailored plans</li>
-          <li>Modern treatment technology</li>
-          <li>Comfortable clinic experience</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- CAT CARD -->
-  <section class="care-section no-gap" data-section="care">
-    <div class="care-image-card cat-card">
-      <img src="images/cat.png" alt="Cat care" class="cat" />
-
-      <div class="care-overlay">
-        <h3>Contact Us</h3>
-        <ul class="care-list no-checks">
-          <li>📞 (503) 123-4567</li>
-          <li>✉️ care@aptusvet.com</li>
-          <li>🕘 Mon – Fri, 9am – 6pm</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- WELLNESS CARD -->
-  <section class="care-section no-gap" data-section="care">
-    <div class="info-card wellness-card">
-      <div class="info-text">
-        <h3>Wellness Plans</h3>
+        <h1>
+            <span class="line-one">Exceptional Care</span>
+            <span class="line-two">for Dogs & Cat</span>
+        </h1>
         <p>
-          Our curated grooming and health plans keep your pets
-          relaxed and protected.
+            Our dedicated team is here to provide outstanding,
+            compassionate care for your pet’s health and wellbeing.
         </p>
-
-        <div class="pill-buttons">
-          <span>🐾 Basic Care</span>
-          <span>🩺 Appointment</span>
-        </div>
-      </div>
+        <button class="cta">View Our Services</button>
+        <button class="cta2">Book an appointment</button>
     </div>
-  </section>
+</section>
 
-  <!-- SHOP SECTION -->
-  <section id="shop" class="shop-section" data-section="shop" style="display:none;">
-    <div class="container">
-
-      <div class="shop-header">
-        <h2>Shop Products</h2>
-        <input type="text" placeholder="Search products..." />
-      </div>
-
-      <div class="categories">
-        <button class="active" data-category="all">All</button>
-        <button data-category="food">Food</button>
-        <button data-category="supplements">Supplements</button>
-        <button data-category="medicines">Medicines</button>
-        <button data-category="grooming">Grooming</button>
-        <button data-category="accessories">Accessories</button>
-      </div>
-
-      <div class="products">
-        <div class="product-card" data-category="supplements">
-          <img src="images/dogmulti.jpg" alt="Dog Multivitamins" class="product-image" />
-          <h3>Dog Multivitamins</h3>
-          <p>Supports overall health and immunity.</p>
-          <div class="price">₱450.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="food">
-          <img src="images/catdry.png" alt="Cat Dry Food" class="product-image" />
-          <h3>Cat Dry Food</h3>
-          <p>Nutritious and vet-approved formula.</p>
-          <div class="price">₱1,200.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="grooming">
-          <img src="images/petsham.png" alt="Pet Shampoo" class="product-image" />
-          <h3>Pet Shampoo</h3>
-          <p>Gentle care for sensitive skin.</p>
-          <div class="price">₱320.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="medicines">
-          <img src="images/ticknple.webp" alt="Tick & Flea Medicine" class="product-image" />
-          <h3>Tick & Flea Medicine</h3>
-          <p>Effective protection for your pet.</p>
-          <div class="price">₱680.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/trainpads.jpg" alt="Puppy Training Pads" class="product-image" />
-          <h3>Puppy Training Pads</h3>
-          <p>Highly absorbent and leak-proof.</p>
-          <div class="price">₱550.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="food">
-          <img src="images/dogchew.jpg" alt="Dog Chew Treats" class="product-image" />
-          <h3>Dog Chew Treats</h3>
-          <p>Helps maintain dental health.</p>
-          <div class="price">₱260.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/catlitter.jpeg" alt="Cat Litter" class="product-image" />
-          <h3>Cat Litter</h3>
-          <p>Odor control and easy clumping.</p>
-          <div class="price">₱480.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="supplements">
-          <img src="images/petvet.jpg" alt="Pet Vitamins Syrup" class="product-image" />
-          <h3>Pet Vitamins Syrup</h3>
-          <p>Boosts appetite and energy.</p>
-          <div class="price">₱390.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/dogcollar.jpg" alt="Dog Collar" class="product-image" />
-          <h3>Dog Collar</h3>
-          <p>Adjustable and comfortable fit.</p>
-          <div class="price">₱220.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="grooming">
-          <img src="images/nailclipper.jpg" alt="Pet Nail Clipper" class="product-image" />
-          <h3>Pet Nail Clipper</h3>
-          <p>Safe trimming for pets.</p>
-          <div class="price">₱180.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="food">
-          <img src="images/dogwetfood.webp" alt="Dog Wet Food" class="product-image" />
-          <h3>Dog Wet Food</h3>
-          <p>Rich in protein and nutrients.</p>
-          <div class="price">₱95.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="food">
-          <img src="images/catwetfood.jpg" alt="Cat Wet Food" class="product-image" />
-          <h3>Cat Wet Food</h3>
-          <p>Soft texture for easy eating.</p>
-          <div class="price">₱90.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="grooming">
-          <img src="images/earcleaner.webp" alt="Ear Cleaner" class="product-image" />
-          <h3>Pet Ear Cleaner</h3>
-          <p>Prevents ear infections.</p>
-          <div class="price">₱300.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/dogharness.jpg" alt="Dog Harness" class="product-image" />
-          <h3>Dog Harness</h3>
-          <p>Secure and breathable design.</p>
-          <div class="price">₱650.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="grooming">
-          <img src="images/pettooth.jpg" alt="Pet Toothbrush" class="product-image" />
-          <h3>Pet Toothbrush Set</h3>
-          <p>Maintains oral hygiene.</p>
-          <div class="price">₱210.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/dogbed.jpg" alt="Dog Bed" class="product-image" />
-          <h3>Dog Bed</h3>
-          <p>Soft and cozy sleeping area.</p>
-          <div class="price">₱1,450.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/catpost.jpg" alt="Cat Scratching Post" class="product-image" />
-          <h3>Cat Scratching Post</h3>
-          <p>Protects furniture from scratches.</p>
-          <div class="price">₱980.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/petbowl.jpg" alt="Pet Feeding Bowl" class="product-image" />
-          <h3>Pet Feeding Bowl</h3>
-          <p>Durable and easy to clean.</p>
-          <div class="price">₱150.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/dogleash.jpg" alt="Dog Leash" class="product-image" />
-          <h3>Dog Leash</h3>
-          <p>Strong grip for daily walks.</p>
-          <div class="price">₱280.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/pettravel.jpg" alt="Pet Travel Carrier" class="product-image" />
-          <h3>Pet Travel Carrier</h3>
-          <p>Safe and ventilated design.</p>
-          <div class="price">₱1,800.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="grooming">
-          <img src="images/wipes.jpg" alt="Pet Wipes" class="product-image" />
-          <h3>Pet Wipes</h3>
-          <p>Quick cleaning on the go.</p>
-          <div class="price">₱140.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="supplements">
-          <img src="images/dogcal.jpg" alt="Dog Calcium Supplement" class="product-image" />
-          <h3>Dog Calcium Supplement</h3>
-          <p>Supports bone development.</p>
-          <div class="price">₱520.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="supplements">
-          <img src="images/cathairball.jpg" alt="Cat Hairball Remedy" class="product-image" />
-          <h3>Cat Hairball Remedy</h3>
-          <p>Reduces hairball formation.</p>
-          <div class="price">₱410.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="grooming">
-          <img src="images/petbrush.jpg" alt="Pet Grooming Brush" class="product-image" />
-          <h3>Pet Grooming Brush</h3>
-          <p>Removes loose fur easily.</p>
-          <div class="price">₱230.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="medicines">
-          <img src="images/antitick.jpg" alt="Dog Anti-Tick Spray" class="product-image" />
-          <h3>Dog Anti-Tick Spray</h3>
-          <p>Daily protection from parasites.</p>
-          <div class="price">₱360.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="supplements">
-          <img src="images/catvita.webp" alt="Cat Vitamins" class="product-image" />
-          <h3>Cat Vitamins</h3>
-          <p>Improves coat and vitality.</p>
-          <div class="price">₱440.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/petcoolingmat.png" alt="Pet Cooling Mat" class="product-image" />
-          <h3>Pet Cooling Mat</h3>
-          <p>Keeps pets cool in hot weather.</p>
-          <div class="price">₱890.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/petjar.jpg" alt="Dog Treat Jar" class="product-image" />
-          <h3>Dog Treat Jar</h3>
-          <p>Airtight storage container.</p>
-          <div class="price">₱310.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/petfirstaid.webp" alt="Pet First Aid Kit" class="product-image" />
-          <h3>Pet First Aid Kit</h3>
-          <p>Emergency essentials for pets.</p>
-          <div class="price">₱750.00</div>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-          <img src="images/raincoat.jpg" alt="Dog Raincoat" class="product-image" />
-          <h3>Dog Raincoat</h3>
-          <p>Waterproof and lightweight.</p>
-          <div class="price">₱540.00</div>
-          <button>Add to Cart</button>
-        </div>
-      </div>
-    </div>
-
-    <footer class="shop-footer">
-      © 2026 Aptus Veterinary Clinic. All rights reserved.
-    </footer>
-  </section>
-
-  <!-- ================= AUTH MODAL ================= -->
-  <div class="auth-overlay" id="authOverlay" aria-hidden="true">
-    <div class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
-      <button class="auth-close" id="authClose" aria-label="Close">✕</button>
-
-      <h2 class="auth-title" id="authTitle">Welcome to Aptus Vet</h2>
-      <p class="auth-subtitle">Login or create an account to continue.</p>
-
-      <div class="auth-tabs">
-        <button class="auth-tab active" id="tabLogin" type="button">Login</button>
-        <button class="auth-tab" id="tabSignup" type="button">Sign Up</button>
-      </div>
-
-      <!-- LOGIN FORM -->
-      <form class="auth-form" id="loginForm">
-        <label>Email</label>
-        <input type="email" placeholder="you@example.com" required />
-
-        <label>Password</label>
-        <input type="password" placeholder="••••••••" required />
-
-        <button class="auth-btn" type="submit">Login</button>
-
-        <p class="auth-note">
-          No account yet?
-          <a href="#" id="switchToSignup">Create one</a>
-        </p>
-      </form>
-
-      <!-- SIGNUP FORM -->
-      <form class="auth-form hidden" id="signupForm">
-        <label>Full Name</label>
-        <input type="text" placeholder="Juan Dela Cruz" required />
-
-        <label>Email</label>
-        <input type="email" placeholder="you@example.com" required />
-
-        <label>Password</label>
-        <input type="password" placeholder="Create a password" required />
-
-        <label>Confirm Password</label>
-        <input type="password" placeholder="Repeat password" required />
-
-        <button class="auth-btn" type="submit">Create Account</button>
-
-        <p class="auth-note">
-          Already have an account?
-          <a href="#" id="switchToLogin">Login</a>
-        </p>
-      </form>
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-icon">⭐</span>
+    <div class="stat-text">
+      <strong>4.9 Stars</strong>
+      <span>Rated by happy pet owners</span>
     </div>
   </div>
 
-  <!-- ================= SCRIPTS ================= -->
-  <script>
-    /* SECTION SWITCH */
-    const navLinks = document.querySelectorAll('.nav-link[data-target]');
-    const sections = document.querySelectorAll('section[data-section]');
+  <div class="stat-item">
+    <span class="stat-icon">🐾</span>
+    <div class="stat-text">
+      <strong>10+ Years</strong>
+      <span>Trusted experience</span>
+    </div>
+  </div>
 
-    navLinks.forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const target = link.getAttribute('data-target');
+  <div class="stat-item">
+    <span class="stat-icon">🏥</span>
+    <div class="stat-text">
+      <strong>Modern Facilities</strong>
+      <span>Advanced care & tools</span>
+    </div>
+  </div>
 
-        sections.forEach(sec => {
-          sec.style.display = (sec.getAttribute('data-section') === target) ? 'block' : 'none';
-        });
-      });
-    });
+  <div class="stat-item">
+    <span class="stat-icon">❤️</span>
+    <div class="stat-text">
+      <strong>Compassionate Care</strong>
+      <span>Every visit matters</span>
+    </div>
+  </div>
+</div>
 
-    /* ACCOUNT DROPDOWN CLICK */
-    const accountBtn = document.querySelector('.nav-account');
-    const dropdown = document.querySelector('.nav-item-dropdown');
 
-    accountBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      dropdown.classList.toggle('open');
-      accountBtn.setAttribute(
-        'aria-expanded',
-        dropdown.classList.contains('open') ? 'true' : 'false'
-      );
-    });
+<section class="our-services">
 
-    document.addEventListener('click', (e) => {
-      if (!dropdown.contains(e.target)) {
-        dropdown.classList.remove('open');
-        accountBtn.setAttribute('aria-expanded', 'false');
-      }
-    });
+  <h2 class="services-title">Our Services</h2>
 
-    /* SHOP FILTER + SEARCH */
-    const buttons = document.querySelectorAll('.categories button');
-    const products = document.querySelectorAll('.product-card');
-    const searchInput = document.querySelector('#shop input');
+  <div class="services-layout">
 
-    let currentCategory = 'all';
+    <!-- LEFT COLUMN -->
+    <div class="services-column">
 
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        buttons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
+      <div class="service-item">
+        <img class ="service-paw" src="images/paws.png" alt="Paw pic"/>
+        <h4>Inpatient & Outpatient Care</h4>
+        <p>Medical care for routine and ongoing conditions.</p>
+      </div>
 
-        currentCategory = button.getAttribute('data-category');
-        filterProducts();
-      });
-    });
+      <div class="service-item">
+        <img class ="service-paw" src="images/paws.png" alt="Paw pic"/>
+        <h4>Checkups & Vaccinations</h4>
+        <p>Preventive care to keep pets healthy.</p>
+      </div>
 
-    searchInput.addEventListener('input', filterProducts);
+    </div>
 
-    function filterProducts() {
-      const query = searchInput.value.toLowerCase();
+    <!-- CENTER IMAGE -->
+    <div class="services-image">
+      <!-- replace with your actual image -->
+      <img src="images/dog-cat.png" alt="Dog and cat receiving care">
+    </div>
 
-      products.forEach(product => {
-        const title = product.querySelector('h3').textContent.toLowerCase();
-        const matchesCategory =
-          (currentCategory === 'all' || product.getAttribute('data-category') === currentCategory);
-        const matchesSearch = title.includes(query);
+    <!-- RIGHT COLUMN -->
+    <div class="services-column">
 
-        product.style.display = (matchesCategory && matchesSearch) ? 'flex' : 'none';
-      });
-    }
+      <div class="service-item">
+        <img class ="service-paw" src="images/paws.png" alt="Paw pic"/>
+        <h4>Emergency & Surgery</h4>
+        <p>Urgent care and essential surgical procedures.</p>
+      </div>
 
-    /* AUTH MODAL OPEN/CLOSE + SWITCH */
-    const openAuth = document.getElementById('openAuth');
-    const authOverlay = document.getElementById('authOverlay');
-    const authClose = document.getElementById('authClose');
+      <div class="service-item">
+        <img class ="service-paw" src="images/paws.png" alt="Paw pic"/>
+        <h4>Pet Supplies & Accessories</h4>
+        <p>Daily essentials for dogs and cats.</p>
+      </div>
 
-    const tabLogin = document.getElementById('tabLogin');
-    const tabSignup = document.getElementById('tabSignup');
+    </div>
 
-    const loginForm = document.getElementById('loginForm');
-    const signupForm = document.getElementById('signupForm');
+  </div>
 
-    const switchToSignup = document.getElementById('switchToSignup');
-    const switchToLogin = document.getElementById('switchToLogin');
+  <!-- BOTTOM SERVICE -->
+  <div class="services-bottom">
+    <div class="service-item">
+      <img class ="service-paw" src="images/paws.png" alt="Paw pic"/>
+      <h4>Pet Grooming</h4>
+      <p>Bathing, trimming, and gentle puppy grooming.</p>
+      <button class="cta">View Our Services</button>
+      
+    </div>
+  </div>
+</section>
 
-    function openModal() {
-      authOverlay.classList.add('show');
-      authOverlay.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
+<section class="vets-section">
+  <h2>Meet Our Veterinarians</h2>
+  <p class="vets-subtitle">
+    Dedicated professionals providing compassionate care for dogs and cats.
+  </p>
 
-    function closeModal() {
-      authOverlay.classList.remove('show');
-      authOverlay.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
+  <div class="vets-slider">
 
-    function showLogin() {
-      tabLogin.classList.add('active');
-      tabSignup.classList.remove('active');
-      loginForm.classList.remove('hidden');
-      signupForm.classList.add('hidden');
-    }
+    <!-- LEFT ARROW -->
+    <button class="slider-btn prev">‹</button>
 
-    function showSignup() {
-      tabSignup.classList.add('active');
-      tabLogin.classList.remove('active');
-      signupForm.classList.remove('hidden');
-      loginForm.classList.add('hidden');
-    }
+    <!-- SLIDER WINDOW -->
+    <div class="vets-window">
+      <div class="vets-track">
 
-    openAuth.addEventListener('click', (e) => {
-      e.preventDefault();
-      openModal();
-      showLogin();
-      dropdown.classList.remove('open');
-      accountBtn.setAttribute('aria-expanded', 'false');
-    });
+        <!-- CARD 1 -->
+        <div class="vet-card">
+          <img src="images/vet1.png" alt="">
+          <h4>Dr. Andriy Melnyk</h4>
+          <span>Veterinary Surgeon</span>
+          <p>10+ years experience</p>
+        </div>
 
-    authClose.addEventListener('click', closeModal);
+        <div class="vet-card">
+          <img src="images/vet2.png" alt="">
+          <h4>Dr. Olena Koval</h4>
+          <span>Small Animal Specialist</span>
+          <p>8+ years experience</p>
+        </div>
 
-    authOverlay.addEventListener('click', (e) => {
-      if (e.target === authOverlay) closeModal();
-    });
+        <div class="vet-card">
+          <img src="images/vet3.png" alt="">
+          <h4>Dr. Maria Mazur</h4>
+          <span>General Veterinarian</span>
+          <p>6+ years experience</p>
+        </div>
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && authOverlay.classList.contains('show')) closeModal();
-    });
+        <div class="vet-card">
+          <img src="images/vet4.png" alt="">
+          <h4>Dr. Iryna Novak</h4>
+          <span>Internal Medicine</span>
+          <p>7+ years experience</p>
+        </div>
 
-    tabLogin.addEventListener('click', showLogin);
-    tabSignup.addEventListener('click', showSignup);
+        <div class="vet-card">
+          <img src="images/vet5.png" alt="">
+          <h4>Dr. Oleh Petrenko</h4>
+          <span>Emergency Care</span>
+          <p>9+ years experience</p>
+        </div>
 
-    switchToSignup.addEventListener('click', (e) => {
-      e.preventDefault();
-      showSignup();
-    });
+        <div class="vet-card">
+          <img src="images/vet6.png" alt="">
+          <h4>Dr. Kateryna Ivanova</h4>
+          <span>Preventive Care</span>
+          <p>5+ years experience</p>
+        </div>
 
-    switchToLogin.addEventListener('click', (e) => {
-      e.preventDefault();
-      showLogin();
-    });
+        <div class="vet-card">
+          <img src="images/vet7.png" alt="">
+          <h4>Dr. Dmytro Shevchenko</h4>
+          <span>Diagnostics</span>
+          <p>6+ years experience</p>
+        </div>
 
-    loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Logged in (demo only). Connect backend/database next.');
-      closeModal();
-    });
+      </div>
+    </div>
 
-    signupForm.addEventListener('submit', (e) => {
-      e.preventDefault();
+    <!-- RIGHT ARROW -->
+    <button class="slider-btn next">›</button>
+  </div>
 
-      const pass = signupForm.querySelectorAll('input[type="password"]')[0].value;
-      const confirmPass = signupForm.querySelectorAll('input[type="password"]')[1].value;
+  <!-- DOTS -->
+  <div class="slider-dots"></div>
+</section>
 
-      if (pass !== confirmPass) {
-        alert('Passwords do not match.');
-        return;
-      }
 
-      alert('Account created (demo only). Connect backend/database next.');
-      closeModal();
-    });
-  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- SECTION HEADER
+  <div class="services-header">
+    <h2>Our Veterinary Services</h2>
+    <p>Comprehensive care for dogs and cats.</p>
+  </div>
+
+  <!-- MAIN CONTENT 
+  <div class="services-content">
+    
+    <!-- IMAGE 
+    <div class="services-image">
+      <img src="images/vets-pic.png" alt="Vet with dog">
+    </div>
+
+
+
+
+-->
+
+
+
+
+
+    
+
+    <!-- TEXT 
+    <div class="services-text">
+      <h3>Personalized Care for Your Pets</h3>
+      <p>
+        At Aptus Vet, we understand that every pet is unique.
+        Our experienced team offers compassionate, personalized
+        care tailored to your dog or cat’s individual needs.
+      </p>
+
+      <ul class="services-list">
+        <li>Experienced-caring veterinarians</li>
+        <li>Fear-free, stress-free environment</li>
+        <li>Customized wellness plans</li>
+        <li>Same-day appointments available</li>
+      </ul>
+    </div>
+  </div>
+<!--
+  <section class="wellness-full">
+  <div class="wellness-inner">
+
+    <h2>Wellness Plans for Your Pets</h2>
+
+    <div class="wellness-tabs">
+      <span class="active" data-tab="dogs">For Dogs</span>
+      <span data-tab="cats">For Cats</span>
+      <span data-tab="care">Complete Care</span>
+    </div>
+
+    <p class="wellness-desc" id="wellness-desc">
+      Preventative, cost-effective wellness plans designed to keep your pet healthy and happy.
+    </p>
+
+    <button class="wellness-btn">Explore Plans</button>
+
+  </div>
+</section>
+
+<section class="appointment-cta">
+  <div class="appointment-inner">
+    <h2>Ready to Schedule Your Pet’s Appointment?</h2>
+    <p class="appointment-sub">
+      Call our friendly team or book online to get started.
+    </p> 
+
+    <div class="review-cards">
+      <!-- Review 1 
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">
+          “Aptus Vet is the best! The vets are so caring and gentle with our dog.”
+        </p>
+        <span class="review-name">— Sarah M.</span>
+      </div>
+
+      <!-- Review 2 
+       <section class="appointment-section">
+  <h2>Ready to Schedule Your Pet’s Appointment?</h2>
+  <p>Call our friendly team or book online to get started.</p>
+  <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">
+          “Our cat received amazing care. Clean clinic and very compassionate staff.”
+        </p>
+        <span class="review-name">— Daniel R.</span>
+
+  <a href="#appointment" class="appointment-btn">
+    Book Appointment
+  </a>
+</section>-->
+
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+<!--
+DOG CARD 
+<section class="care-section">
+    <div class="care-image-card dog-card">
+        <img src="images/c1dog.png" alt="Happy dog">
+
+        <div class="care-overlay">
+            <h3>Quality Care<br>Tailored to Your Pet</h3>
+            <ul class="care-list">
+                <li>24/7 care services provided</li>
+                <li>Expert health tailored plans</li>
+                <li>Modern treatment technology</li>
+                <li>Comfortable clinic experience</li>
+            </ul>
+        </div>
+    </div>
+</section> -->
+
+<!-- CAT CARD (NO GAP BELOW)
+<section class="care-section no-gap">
+    <div class="care-image-card cat-card">
+        <img src="images/cat.png" alt="Cat care" class="cat">
+
+        <div class="care-overlay">
+            <ul class="care-list no-checks">
+                <h3>Contact Us</h3>
+                <li>📞 (503) 123-4567</li>
+                <li>✉️ care@aptusvet.com</li>
+                <li>🕘 Mon – Fri, 9am – 6pm</li>
+            </ul>
+        </div>
+    </div>
+</section> 
+
+ <!-- WELLNESS CARD (FLUSH TO CAT) 
+<section class="care-section no-gap">
+    <div class="info-card wellness-card">
+        <div class="info-text">
+            <h3>Wellness Plans</h3>
+            <p>
+                Our curated grooming and health plans keep your pets
+                relaxed and protected.
+            </p>
+
+            <div class="pill-buttons">
+                <span>🐾 Basic Care</span>
+                <span>🩺 Appointment</span>
+            </div>
+        </div>
+    </div>
+</section> -->
+
 
 </body>
 </html>
