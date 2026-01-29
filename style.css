@@ -28,8 +28,8 @@ body {
     background: #ffffff;
     position: sticky;
     top: 0;
-    z-index: 10;
-    overflow: visible; /* Make sure this isn't set to hidden! */
+    z-index: 1000;
+    overflow: visible;
 }
 
 .logo {
@@ -46,8 +46,13 @@ body {
     height: 40px;
 }
 
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
 .navbar nav a {
-    margin-left: 30px;
     text-decoration: none;
     font-size: 14px;
     color: #555;
@@ -56,6 +61,69 @@ body {
 
 .navbar nav a:hover {
     color: #b08a60;
+}
+
+/* =======================
+   ACCOUNT DROPDOWN
+======================= */
+.nav-item-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-account {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.caret {
+    font-size: 12px;
+    transform: translateY(-1px);
+}
+
+/* dropdown panel */
+.dropdown-content {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    min-width: 190px;
+
+    background: #ffffff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.12);
+
+    padding: 8px;
+    display: none;
+
+    z-index: 2000;
+}
+
+/* show on hover (desktop) */
+.nav-item-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* show on click (mobile) */
+.nav-item-dropdown.open .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px 12px;
+    margin: 2px 0;
+    border-radius: 10px;
+
+    font-size: 13px;
+    color: #555;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background: #f5eee6;
+    color: #8e6845;
 }
 
 /* =======================
@@ -94,7 +162,7 @@ body {
     margin-bottom: 20px;
     font-weight: 100;
     color: #000;
-    transform: scaleX(1.04);  /* 1.03–1.08 is ideal */
+    transform: scaleX(1.04);
     transform-origin: left;
 }
 
@@ -132,9 +200,11 @@ body {
     justify-content: center;
 }
 
-/* REMOVE GAP AFTER CAT */
 .care-section.no-gap {
-    margin-bottom: 0;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 /* =======================
@@ -145,16 +215,11 @@ body {
     width: 100%;
     max-width: 1200px;
     height: 600px;
-
     border-radius: 32px;
     overflow: hidden;
-
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
 }
-.care-image-card img.cat {
-    object-position: 90% center;
-}
-/* IMAGE */
+
 .care-image-card img {
     width: 100%;
     height: 100%;
@@ -162,7 +227,6 @@ body {
     display: block;
 }
 
-/* Optional cat image focus */
 .care-image-card img.cat {
     object-position: center 30%;
 }
@@ -173,7 +237,7 @@ body {
     position: absolute;
     inset: 0;
     background: none;
-    -webkit-mask-image: none;;
+    -webkit-mask-image: none;
 }
 
 /* =======================
@@ -181,22 +245,19 @@ body {
 ======================= */
 .care-overlay {
     position: absolute;
-    
     top: 50%;
     right: 150px;
     transform: translateY(-50%);
     max-width: 380px;
-
     color: black;
     z-index: 2;
 }
+
 .dog-card::after {
     content: "";
     position: absolute;
     inset: 0;
-
     background: rgba(210, 210, 210, 0.7);
-
     mask-image: linear-gradient(
         to right,
         transparent 38%,
@@ -204,7 +265,6 @@ body {
         rgba(0,0,0,0.7) 65%,
         rgba(0,0,0,1) 78%
     );
-
     -webkit-mask-image: linear-gradient(
         to right,
         transparent 38%,
@@ -212,7 +272,6 @@ body {
         rgba(0,0,0,0.7) 65%,
         rgba(0,0,0,1) 78%
     );
-
     z-index: 1;
     pointer-events: none;
 }
@@ -223,25 +282,18 @@ body {
     font-weight: 100;
     margin-bottom: 16px;
     text-shadow: 0 2px 12px rgba(0,0,0,0.35);
-    transform: scaleX(1.2);  /* 1.03–1.08 is ideal */
+    transform: scaleX(1.2);
     transform-origin: left;
     line-height: 1.4;
-    
-    
 }
 
-/* =======================
-   CAT TEXT ON LEFT
-======================= */
+/* CAT TEXT ON LEFT */
 .cat-card .care-overlay {
     left: 80px;
     right: auto;
     text-align: left;
 }
 
-/* =======================
-   CHECK LIST
-======================= */
 .care-list {
     list-style: none;
     padding: 0;
@@ -255,45 +307,42 @@ body {
     text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
-/* PAW MATCHED CHECK */
 .care-list li::before {
     content: "✔";
     position: absolute;
     left: 0;
     top: 2px;
-    
     color: #9BE6BE;
     font-size: 18px;
     font-weight: bold;
-
     text-shadow:
         -1px 0 #0E0E0E,
          1px 0 #0E0E0E,
          0 -1px #0E0E0E,
          0  1px #0E0E0E;
 }
+
+.no-checks li::before {
+    display: none;
+}
+
 .cat-card .care-overlay h3 {
     padding-left: 32px;
 }
-/* CAT — gray only on the LEFT, face untouched */
+
 .cat-card::after {
     content: "";
     position: absolute;
     inset: 0;
-
-    /* neutral gray */
     background: rgba(185, 185, 185, 0.85);
-
-    /* push blend further LEFT */
     mask-image: linear-gradient(
         to right,
-        rgba(0,0,0,1) 0%,        /* full gray on far left */
+        rgba(0,0,0,1) 0%,
         rgba(0,0,0,0.85) 20%,
         rgba(0,0,0,0.45) 30%,
         rgba(0,0,0,0.15) 38%,
-        transparent 46%         /* CAT FACE SAFE ZONE */
+        transparent 46%
     );
-
     -webkit-mask-image: linear-gradient(
         to right,
         rgba(0,0,0,1) 0%,
@@ -302,14 +351,8 @@ body {
         rgba(0,0,0,0.15) 38%,
         transparent 46%
     );
-
     z-index: 1;
     pointer-events: none;
-}
-
-/* REMOVE CHECKS WHEN NEEDED */
-.no-checks li::before {
-    display: none;
 }
 
 /* =======================
@@ -319,32 +362,27 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     width: 100%;
     max-width: 1200px;
-     margin-top: 0;              
+    margin-top: 0;
     margin-bottom: 50px;
     padding: 40px;
-
     background: #f6f1ec;
     border-radius: 32px;
-
     box-shadow: 0 20px 45px rgba(0,0,0,0.12);
     gap: 30px;
+}
+
+.wellness-card {
+    background: #f9f5f1;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin-top: 0 !important;
 }
 
 .cat-card {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-}
-
-.wellness-card {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-
-.wellness-card {
-    background: #f9f5f1;
 }
 
 .info-text h3 {
@@ -353,7 +391,7 @@ body {
     margin-bottom: 12px;
     font-weight: 100;
     text-shadow: 0 2px 12px rgba(0,0,0,0.35);
-    transform: scaleX(1.2);  /* 1.03–1.08 is ideal */
+    transform: scaleX(1.2);
     transform-origin: left;
     line-height: 1.4;
 }
@@ -383,6 +421,19 @@ body {
    RESPONSIVE
 ======================= */
 @media (max-width: 768px) {
+    .navbar {
+        padding: 18px 20px;
+    }
+
+    .nav-menu {
+        gap: 18px;
+    }
+
+    .dropdown-content {
+        right: 0;
+        left: auto;
+    }
+
     .care-image-card {
         height: auto;
     }
@@ -409,34 +460,3 @@ body {
         text-align: center;
     }
 }
-.care-section.no-gap {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-/* ===============================
-   REMOVE GAP BETWEEN CAT & WELLNESS
-================================ */
-.care-section.no-gap {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    padding-top: 0;
-    padding-bottom: 0;
-}
-
-.wellness-card {
-    margin-top: 0 !important;
-}
-
-.cat-card {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-}
-
-.wellness-card {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-
-
-
