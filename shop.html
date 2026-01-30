@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Aptus Veterinary Clinic - Shop" />
+  <title>Aptus Vet Clinic | Shop</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Montserrat", sans-serif;
+      background-color: #f7f2ee;
+      color: #333;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      width: 100%;
+      padding: 18px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #eee7e2;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: "Playfair Display", serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: #2c5c54;
+    }
+
+    .logo img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+    }
+
+    .navbar nav a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: #333;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .navbar nav a:hover {
+      color: #2c5c54;
+    }
+
+    /* SHOP SECTION */
+    .shop-section {
+      background-color: #f7f2ee;
+      padding: 40px 0;
+      font-family: "Montserrat", serif;
+    }
+
+    .shop-section .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .shop-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .shop-header h2 {
+      font-size: 26px;
+      color: #2c5c54;
+    }
+
+    .shop-header input {
+      padding: 10px 14px;
+      width: 280px;
+      border-radius: 6px;
+      border: 1px solid #dcd7d2;
+      outline: none;
+    }
+
+    .categories {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    .categories button {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 20px;
+      background-color: #a67b52;
+      color: #fff;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .categories button:hover,
+    .categories button.active {
+      background-color: #8e6845;
+      color: #fff;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card img.product-image {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      background-color: #fbf9f7;
+    }
+
+    .product-card h3 {
+      font-size: 16px;
+      margin-bottom: 6px;
+      color: #2c5c54;
+    }
+
+    .product-card p {
+      font-size: 13px;
+      margin-bottom: 10px;
+      color: #777;
+      line-height: 1.4;
+    }
+
+    .price {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #a67b52;
+    }
+
+    /* QUANTITY UI */
+    .qty-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .qty-row span {
+      font-size: 12px;
+      color: #666;
+      font-weight: 600;
+      width: 60px;
+    }
+
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .qty-btn {
+      width: 32px;
+      height: 32px;
+      border: 1px solid #e2dad3;
+      background: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 800;
+      color: #2c5c54;
+    }
+
+    .qty-input {
+      width: 55px;
+      height: 32px;
+      border: 1px solid #e2dad3;
+      border-radius: 8px;
+      text-align: center;
+      outline: none;
+      font-weight: 600;
+    }
+
+    .product-card button.add-btn {
+      margin-top: auto;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background-color: #946d43;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .product-card button.add-btn:hover {
+      background-color: #724a24;
+    }
+
+    .no-results {
+      display: none;
+      padding: 16px;
+      text-align: center;
+      color: #777;
+      font-size: 14px;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid #eee7e2;
+      margin-top: 20px;
+    }
+
+    footer.shop-footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #ffffff;
+      color: #b5b0ab;
+      font-size: 13px;
+      margin-top: 40px;
+      border-top: 1px solid #e0dcd8;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <img src="images/paws1.png" alt="Paw logo" />
+      APTUS VET
+    </div>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="clinic.html">Clinic</a>
+      <a href="grooming.html">Grooming</a>
+      <a href="shop.html">Shop</a>
+      <a href="emergency.html">Emergency</a>
+      <a href="account.html">Account</a>
+    </nav>
+  </header>
+
+  <section id="shop" class="shop-section">
+    <div class="container">
+      <div class="shop-header">
+        <h2>Shop Products</h2>
+        <input id="searchInput" type="text" placeholder="Search products..." />
+      </div>
+
+      <div class="categories" id="categoryButtons">
+        <button class="active" data-category="all">All</button>
+        <button data-category="food">Food</button>
+        <button data-category="supplements">Supplements</button>
+        <button data-category="medicines">Medicines</button>
+        <button data-category="grooming">Grooming</button>
+        <button data-category="accessories">Accessories</button>
+      </div>
+
+      <div class="products" id="productGrid">
+
+        <div class="product-card" data-category="supplements">
+          <img src="images/dogmulti.jpg" alt="Dog Multivitamins" class="product-image" />
+          <h3>Dog Multivitamins</h3>
+          <p>Supports overall health and immunity.</p>
+          <div class="price">₱450.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="food">
+          <img src="images/catdry.png" alt="Cat Dry Food" class="product-image" />
+          <h3>Cat Dry Food</h3>
+          <p>Nutritious and vet-approved formula.</p>
+          <div class="price">₱1,200.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="grooming">
+          <img src="images/petsham.png" alt="Pet Shampoo" class="product-image" />
+          <h3>Pet Shampoo</h3>
+          <p>Gentle care for sensitive skin.</p>
+          <div class="price">₱320.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="medicines">
+          <img src="images/ticknple.webp" alt="Tick & Flea Medicine" class="product-image" />
+          <h3>Tick & Flea Medicine</h3>
+          <p>Effective protection for your pet.</p>
+          <div class="price">₱680.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="accessories">
+          <img src="images/trainpads.jpg" alt="Puppy Training Pads" class="product-image" />
+          <h3>Puppy Training Pads</h3>
+          <p>Highly absorbent and leak-proof.</p>
+          <div class="price">₱550.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="food">
+          <img src="images/dogchew.jpg" alt="Dog Chew Treats" class="product-image" />
+          <h3>Dog Chew Treats</h3>
+          <p>Helps maintain dental health.</p>
+          <div class="price">₱260.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="accessories">
+          <img src="images/catlitter.jpeg" alt="Cat Litter" class="product-image" />
+          <h3>Cat Litter</h3>
+          <p>Odor control and easy clumping.</p>
+          <div class="price">₱480.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="supplements">
+          <img src="images/petvet.jpg" alt="Pet Vitamins Syrup" class="product-image" />
+          <h3>Pet Vitamins Syrup</h3>
+          <p>Boosts appetite and energy.</p>
+          <div class="price">₱390.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="accessories">
+          <img src="images/dogcollar.jpg" alt="Dog Collar" class="product-image" />
+          <h3>Dog Collar</h3>
+          <p>Adjustable and comfortable fit.</p>
+          <div class="price">₱220.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="grooming">
+          <img src="images/nailclipper.jpg" alt="Pet Nail Clipper" class="product-image" />
+          <h3>Pet Nail Clipper</h3>
+          <p>Safe trimming for pets.</p>
+          <div class="price">₱180.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="food">
+          <img src="images/dogwetfood.webp" alt="Dog Wet Food" class="product-image" />
+          <h3>Dog Wet Food</h3>
+          <p>Rich in protein and nutrients.</p>
+          <div class="price">₱95.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="food">
+          <img src="images/catwetfood.jpg" alt="Cat Wet Food" class="product-image" />
+          <h3>Cat Wet Food</h3>
+          <p>Soft texture for easy eating.</p>
+          <div class="price">₱90.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="grooming">
+          <img src="images/earcleaner.webp" alt="Pet Ear Cleaner" class="product-image" />
+          <h3>Pet Ear Cleaner</h3>
+          <p>Prevents ear infections.</p>
+          <div class="price">₱300.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="accessories">
+          <img src="images/dogharness.jpg" alt="Dog Harness" class="product-image" />
+          <h3>Dog Harness</h3>
+          <p>Secure and breathable design.</p>
+          <div class="price">₱650.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="grooming">
+          <img src="images/pettooth.jpg" alt="Pet Toothbrush" class="product-image" />
+          <h3>Pet Toothbrush Set</h3>
+          <p>Maintains oral hygiene.</p>
+          <div class="price">₱210.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="accessories">
+          <img src="images/dogbed.jpg" alt="Dog Bed" class="product-image" />
+          <h3>Dog Bed</h3>
+          <p>Soft and cozy sleeping area.</p>
+          <div class="price">₱1,450.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="accessories">
+          <img src="images/catpost.jpg" alt="Cat Scratching Post" class="product-image" />
+          <h3>Cat Scratching Post</h3>
+          <p>Protects furniture from scratches.</p>
+          <div class="price">₱980.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="accessories">
+          <img src="images/petbowl.jpg" alt="Pet Feeding Bowl" class="product-image" />
+          <h3>Pet Feeding Bowl</h3>
+          <p>Durable and easy to clean.</p>
+          <div class="price">₱150.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="accessories">
+          <img src="images/dogleash.jpg" alt="Dog Leash" class="product-image" />
+          <h3>Dog Leash</h3>
+          <p>Strong grip for daily walks.</p>
+          <div class="price">₱280.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="accessories">
+          <img src="images/pettravel.jpg" alt="Pet Travel Carrier" class="product-image" />
+          <h3>Pet Travel Carrier</h3>
+          <p>Safe and ventilated design.</p>
+          <div class="price">₱1,800.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="grooming">
+          <img src="images/wipes.jpg" alt="Pet Wipes" class="product-image" />
+          <h3>Pet Wipes</h3>
+          <p>Quick cleaning on the go.</p>
+          <div class="price">₱140.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="supplements">
+          <img src="images/dogcal.jpg" alt="Dog Calcium Supplement" class="product-image" />
+          <h3>Dog Calcium Supplement</h3>
+          <p>Supports bone development.</p>
+          <div class="price">₱520.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="supplements">
+          <img src="images/cathairball.jpg" alt="Cat Hairball Remedy" class="product-image" />
+          <h3>Cat Hairball Remedy</h3>
+          <p>Reduces hairball formation.</p>
+          <div class="price">₱410.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="grooming">
+          <img src="images/petbrush.jpg" alt="Pet Grooming Brush" class="product-image" />
+          <h3>Pet Grooming Brush</h3>
+          <p>Removes loose fur easily.</p>
+          <div class="price">₱230.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="medicines">
+          <img src="images/antitick.jpg" alt="Dog Anti-Tick Spray" class="product-image" />
+          <h3>Dog Anti-Tick Spray</h3>
+          <p>Daily protection from parasites.</p>
+          <div class="price">₱360.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="supplements">
+          <img src="images/catvita.webp" alt="Cat Vitamins" class="product-image" />
+          <h3>Cat Vitamins</h3>
+          <p>Improves coat and vitality.</p>
+          <div class="price">₱440.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="accessories">
+          <img src="images/petcoolingmat.png" alt="Pet Cooling Mat" class="product-image" />
+          <h3>Pet Cooling Mat</h3>
+          <p>Keeps pets cool in hot weather.</p>
+          <div class="price">₱890.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="accessories">
+          <img src="images/petjar.jpg" alt="Dog Treat Jar" class="product-image" />
+          <h3>Dog Treat Jar</h3>
+          <p>Airtight storage container.</p>
+          <div class="price">₱310.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="accessories">
+          <img src="images/petfirstaid.webp" alt="Pet First Aid Kit" class="product-image" />
+          <h3>Pet First Aid Kit</h3>
+          <p>Emergency essentials for pets.</p>
+          <div class="price">₱750.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="accessories">
+          <img src="images/raincoat.jpg" alt="Dog Raincoat" class="product-image" />
+          <h3>Dog Raincoat</h3>
+          <p>Waterproof and lightweight.</p>
+          <div class="price">₱540.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+      </div>
+
+      <div class="no-results" id="noResults">
+        No products matched your search.
+      </div>
+    </div>
+
+    <footer class="shop-footer">
+      © 2026 Aptus Veterinary Clinic. All rights reserved.
+    </footer>
+  </section>
+
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const categoryButtons = document.getElementById("categoryButtons");
+    const productCards = Array.from(document.querySelectorAll(".product-card"));
+    const noResults = document.getElementById("noResults");
+
+    let activeCategory = "all";
+
+    function normalize(text) {
+      return (text || "").toLowerCase().trim();
+    }
+
+    function injectQuantityUI() {
+      productCards.forEach((card) => {
+        const existing = card.querySelector(".qty-row");
+        if (existing) return;
+
+        const qtyRow = document.createElement("div");
+        qtyRow.className = "qty-row";
+        qtyRow.innerHTML = `
+          <span>Qty:</span>
+          <div class="qty-controls">
+            <button class="qty-btn" data-action="minus" type="button">−</button>
+            <input class="qty-input" type="number" min="1" value="1" />
+            <button class="qty-btn" data-action="plus" type="button">+</button>
+          </div>
+        `;
+
+        const priceEl = card.querySelector(".price");
+        const addBtn = card.querySelector(".add-btn");
+
+        if (priceEl && addBtn) {
+          card.insertBefore(qtyRow, addBtn);
+        } else {
+          card.appendChild(qtyRow);
+        }
+      });
+    }
+
+    function getCardText(card) {
+      const title = card.querySelector("h3")?.innerText || "";
+      const desc = card.querySelector("p")?.innerText || "";
+      return normalize(title + " " + desc);
+    }
+
+    function matchesCategory(card) {
+      if (activeCategory === "all") return true;
+      return card.dataset.category === activeCategory;
+    }
+
+    function matchesSearch(card) {
+      const q = normalize(searchInput.value);
+      if (!q) return true;
+      return getCardText(card).includes(q);
+    }
+
+    function applyFilters() {
+      let visibleCount = 0;
+
+      productCards.forEach((card) => {
+        const show = matchesCategory(card) && matchesSearch(card);
+        card.style.display = show ? "flex" : "none";
+        if (show) visibleCount += 1;
+      });
+
+      noResults.style.display = visibleCount === 0 ? "block" : "none";
+    }
+
+    categoryButtons.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-category]");
+      if (!btn) return;
+
+      activeCategory = btn.dataset.category;
+
+      categoryButtons
+        .querySelectorAll("button")
+        .forEach((b) => b.classList.remove("active"));
+
+      btn.classList.add("active");
+      applyFilters();
+    });
+
+    searchInput.addEventListener("input", () => {
+      applyFilters();
+    });
+
+    document.addEventListener("click", (e) => {
+      const qtyBtn = e.target.closest(".qty-btn");
+      if (!qtyBtn) return;
+
+      const card = e.target.closest(".product-card");
+      if (!card) return;
+
+      const input = card.querySelector(".qty-input");
+      if (!input) return;
+
+      const current = parseInt(input.value || "1", 10);
+      const action = qtyBtn.dataset.action;
+
+      if (action === "minus") {
+        input.value = Math.max(1, current - 1);
+      }
+
+      if (action === "plus") {
+        input.value = current + 1;
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      const addBtn = e.target.closest(".add-btn");
+      if (!addBtn) return;
+
+      const card = e.target.closest(".product-card");
+      if (!card) return;
+
+      const name = card.querySelector("h3")?.innerText || "Item";
+      const qty = parseInt(card.querySelector(".qty-input")?.value || "1", 10);
+
+      alert(`Added to cart: ${name}\nQuantity: ${qty}`);
+    });
+
+    injectQuantityUI();
+    applyFilters();
+  </script>
+</body>
+</html>
