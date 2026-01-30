@@ -1,41 +1,66 @@
 <!-- AUTH MODAL OVERLAY -->
-<div id="authOverlay" class="auth-overlay">
-  <div class="auth-modal">
+<div id="authOverlay" class="auth-overlay" aria-hidden="true">
+  <div class="auth-modal" role="dialog" aria-modal="true" aria-label="Account">
 
-    <button class="auth-close" id="authClose" aria-label="Close">&times;</button>
+    <button class="auth-close" id="authClose" type="button" aria-label="Close">
+      ✕
+    </button>
 
-    <!-- LOGIN -->
-    <div id="loginBox" class="auth-box">
-      <h2>Login</h2>
+    <div class="auth-head">
+      <h2>Welcome to Aptus Vet</h2>
+      <p>Login or create an account to continue.</p>
+    </div>
 
-      <input id="loginEmail" type="email" placeholder="Email">
-      <input id="loginPass" type="password" placeholder="Password">
+    <!-- Tabs -->
+    <div class="auth-tabs" role="tablist" aria-label="Auth tabs">
+      <button id="tabLogin" class="auth-tab active" type="button" role="tab" aria-selected="true">
+        Login
+      </button>
+      <button id="tabSignup" class="auth-tab" type="button" role="tab" aria-selected="false">
+        Sign Up
+      </button>
+    </div>
 
-      <button class="auth-btn" id="loginBtn">Login</button>
+    <!-- LOGIN FORM -->
+    <form id="loginForm" class="auth-form" autocomplete="on">
+      <label class="auth-label" for="loginEmail">Email</label>
+      <input id="loginEmail" class="auth-input" type="email" placeholder="you@example.com" required>
 
-      <p class="auth-switch">
-        No account? <span id="toSignup">Sign Up</span>
+      <label class="auth-label" for="loginPass">Password</label>
+      <input id="loginPass" class="auth-input" type="password" placeholder="••••••••" required>
+
+      <button class="auth-primary" id="loginBtn" type="submit">Login</button>
+
+      <p class="auth-foot">
+        No account yet? <button class="auth-link" id="linkCreate" type="button">Create one</button>
       </p>
 
       <p class="auth-msg" id="loginMsg"></p>
-    </div>
+    </form>
 
-    <!-- SIGNUP -->
-    <div id="signupBox" class="auth-box hidden">
-      <h2>Create Account</h2>
+    <!-- SIGNUP FORM -->
+    <form id="signupForm" class="auth-form hidden" autocomplete="on">
+      <label class="auth-label" for="signName">Full Name</label>
+      <input id="signName" class="auth-input" type="text" placeholder="Juan Dela Cruz" required>
 
-      <input id="signName" type="text" placeholder="Full Name">
-      <input id="signEmail" type="email" placeholder="Email">
-      <input id="signPass" type="password" placeholder="Password">
+      <label class="auth-label" for="signEmail">Email</label>
+      <input id="signEmail" class="auth-input" type="email" placeholder="you@example.com" required>
 
-      <button class="auth-btn" id="signupBtn">Sign Up</button>
+      <label class="auth-label" for="signPass">Password</label>
+      <input id="signPass" class="auth-input" type="password" placeholder="Create a password" required>
 
-      <p class="auth-switch">
-        Have account? <span id="toLogin">Login</span>
+      <label class="auth-label" for="signPass2">Confirm Password</label>
+      <input id="signPass2" class="auth-input" type="password" placeholder="Repeat password" required>
+
+      <button class="auth-primary" id="signupBtn" type="submit">Create Account</button>
+
+      <p class="auth-foot">
+        Already have an account? <button class="auth-link" id="linkLogin" type="button">Login</button>
       </p>
 
       <p class="auth-msg" id="signMsg"></p>
-    </div>
+    </form>
 
   </div>
 </div>
+v
