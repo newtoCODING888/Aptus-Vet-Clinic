@@ -65,55 +65,60 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================= */
   const track = document.querySelector(".vets-track");
   const cards = document.querySelectorAll(".vet-card");
-  const prev = document.querySelector(".prev");
-  const next = document.querySelector(".next");
+  const prev = document.getElementById("vetsPrev");
+  const next = document.getElementById("vetsNext");
   const dotsContainer = document.querySelector(".slider-dots");
 
-  if (track && cards.length && prev && next && dotsContainer) {
-    let pageIndex = 0;
+  if (!track || !cards.length || !prev || !next || !dotsContainer) return;
 
-    function setupSlider() {
-      const isMobile = window.innerWidth < 768;
-      const visible = isMobile ? 1 : 3;
+  let pageIndex = 0;
 
-      const cardWidth = isMobile ? 260 : 290;
-      const gap = 30;
-      const step = (cardWidth + gap) * visible;
+  function setupSlider() {
+    const isMobile = window.innerWidth < 768;
+    const visible = isMobile ? 1 : 3;
 
-      const pages = Math.ceil(cards.length / visible);
+    const cardW = cards[0].getBoundingClientRect().width;
+    const gap = 30; // must match CSS gap
+    const step = (cardW + gap) * visible;
 
-      dotsContainer.innerHTML = "";
+    const pages = Math.ceil(cards.length / visible);
 
-      for (let i = 0; i < pages; i++) {
-        const dot = document.createElement("span");
-        if (i === pageIndex) dot.classList.add("active");
-        dotsContainer.appendChild(dot);
-      }
+    dotsContainer.innerHTML = "";
+    for (let i = 0; i < pages; i++) {
+      const dot = document.createElement("span");
+      if (i === pageIndex) dot.classList.add("active");
+      dot.addEventListener("click", () => {
+        pageIndex = i;
+        update();
+      });
+      dotsContainer.appendChild(dot);
+    }
 
-      const dots = dotsContainer.querySelectorAll("span");
+    function update() {
+      track.style.transform = `translateX(-${pageIndex * step}px)`;
+      dotsContainer.querySelectorAll("span").forEach((d, idx) => {
+        d.classList.toggle("active", idx === pageIndex);
+      });
+    }
 
-      function updateSlider() {
-        track.style.transform = `translateX(-${pageIndex * step}px)`;
-        dots.forEach(d => d.classList.remove("active"));
-        if (dots[pageIndex]) dots[pageIndex].classList.add("active");
-      }
+    prev.onclick = () => {
+      pageIndex = Math.max(0, pageIndex - 1);
+      update();
+    };
 
-      next.onclick = () => {
-        pageIndex++;
-        if (pageIndex > pages - 1) pageIndex = pages - 1;
-        updateSlider();
-      };
+    next.onclick = () => {
+      pageIndex = Math.min(pages - 1, pageIndex + 1);
+      update();
+    };
 
-      prev.onclick = () => {
-        pageIndex--;
-        if (pageIndex < 0) pageIndex = 0;
-        updateSlider();
-      };
+    update();
+  }
 
-      dots.forEach((dot, i) => {
-        dot.onclick = () => {
-          pageIndex = i;
-          updateSlider();
+  setupSlider();
+
+  window.addEventListener("resize", () => {
+    pageIndex = 0;
+    setupSlider();
         };
       });
 
@@ -169,3 +174,4 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+
