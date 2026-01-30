@@ -13,12 +13,11 @@
 html, body {
   width: 100%;
   max-width: 100%;
-  
 }
 
 body {
   font-family: "Montserrat", sans-serif;
-  background-color: #f8f6f384;
+  background-color: #f8f6f3;
   color: #2d2c2c;
 }
 
@@ -34,320 +33,35 @@ body {
   background: #ffffff;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 99999;        /* IMPORTANT */
+  overflow: visible;     /* IMPORTANT */
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: "Playfair", serif;
+  font-family: "Playfair Display", serif;
   font-size: 28px;
   font-weight: 300;
 }
 
-.navbar img {
-  width: 40px;
-  height: 40px;
+/* nav layout fix */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 30px;
 }
 
-.navbar nav a {
-  margin-left: 30px;
+.nav-menu a {
   text-decoration: none;
   font-size: 14px;
   color: #555;
   font-weight: 500;
 }
 
-.navbar nav a:hover {
+.nav-menu a:hover {
   color: #b08a60;
   text-decoration: underline;
-  text-underline-offset: 15px;
+  text-underline-offset: 12px;
   text-decoration-thickness: 2px;
-}
-
-/* =======================
-   HERO SECTION
-======================= */
-.hero {
-  min-height: 100vh;
-  position: relative;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  padding: 60px 0;
-
-  background:
-    linear-gradient(
-      to right,
-      rgba(200, 200, 200, 0.75) 0%,
-      rgba(200, 200, 200, 0.6) 28%,
-      rgba(200, 200, 200, 0.35) 48%,
-      rgba(200, 200, 200, 0.0) 50%
-    ),
-    url("images/1vet-banner.png");
-
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 53% center;
-}
-
-.hero-content {
-  max-width: 650px;
-  padding-left: 10%;
-}
-
-.hero-content h1 {
-  font-family: "Playfair", serif;
-  font-size: 50px;
-  line-height: 1.5;
-  margin-bottom: 20px;
-  font-weight: 100;
-  color: #000;
-  transform: scaleX(1.06);
-  transform-origin: left;
-}
-
-.hero-content p {
-  font-size: 16px;
-  line-height: 1.6;
-  margin-bottom: 30px;
-}
-
-/* CTA BUTTONS */
-.cta,
-.cta2 {
-  padding: 14px 22px;
-  border: none;
-  font-size: 15px;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.cta {
-  background-color: #b08a60;
-  color: #fff;
-}
-
-.cta:hover {
-  background-color: #9c774f;
-  transform: translateY(-2px);
-}
-
-.cta2 {
-  background-color: #509470bb;
-  color: #fff;
-}
-
-.cta2:hover {
-  background-color: #253c3082;
-  transform: translateY(-2px);
-}
-
-/* =======================
-   STATS BAR
-======================= */
-.stats-bar {
-  position: absolute;
-  left: 50%;
-  bottom: -120px;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 1200px;
-  padding: 28px 40px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  border-radius: 24px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
-}
-
-.stat-item {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 0 20px;
-  position: relative;
-}
-
-.stat-item:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 10%;
-  width: 1px;
-  height: 80%;
-  background: rgba(0,0,0,0.15);
-}
-
-/* =======================
-   SERVICES
-======================= */
-.our-services {
-  padding: 120px 80px 60px;
-  text-align: center;
-}
-
-.services-title {
-  font-family: "Playfair", serif;
-  font-size: 38px;
-  margin-bottom: 60px;
-  font-weight: 300;
-}
-
-.services-layout {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr 1fr;
-  align-items: center;
-  gap: 60px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.services-column {
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-}
-
-.service-item {
-  max-width: 260px;
-  margin: 0 auto;
-}
-.service-item h4 {
-    font-weight:600;
-}
-
-.service-paw {
-  height: 55px;
-  margin-bottom: 12px;
-  filter: invert(54%) sepia(65%) saturate(540%) hue-rotate(104deg)
-          brightness(92%) contrast(88%);
-}
-
-.services-image img {
-  width: 370px;
-  height: 370px;
-  object-fit: cover;
-}
-
-/* BUTTON */
-.cta {
-  margin-top: 40px;
-  padding: 12px 22px;
-  background: #b08a60;
-  color: #fff;
-  border-radius: 12px;
-  border: none;
-  cursor: pointer;
-  font-size: 15px;
-}
-
-.cta:hover {
-  background: #9c774f;
-  transform: translateY(-2px);
-}
-
-/* =======================
-   VETS SECTION
-======================= */
-.vets-section {
-  padding: 60px 0;
-  text-align: center;
-  background: #ffffff;
-}
-
-.vets-section h2 {
-  font-family: "Playfair", serif;
-  font-size: 38px;
-  font-weight: 100;
-}
-
-.vets-subtitle {
-  color: #666;
-  margin-bottom: 40px;
-}
-
-/* Slider */
-.vets-slider {
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.vets-window {
-    overflow: hidden;
-}
-.vets-track {
-  display: flex;
-  gap: 30px;
-  transition: transform 0.6s ease;
-}
-
-.vet-card {
-  min-width: 260px;
-  background: #f9f9f7;
-  border-radius: 22px;
-  padding: 22px;
-}
-
-.vet-card img {
-  width: 100%;
-  height: 290px;
-  object-fit: cover;
-  border-radius: 18px;
-}
-
-/* Arrows */
-.slider-btn {
-  position: absolute;
-  top: 45%;
-  background: #fff;
-  border: none;
-  font-size: 28px;
-  cursor: pointer;
-  padding: 8px 14px;
-  border-radius: 50%;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  z-index: 5;
-}
-
-.prev { left: 10px; }
-.next { right: 10px; }
-
-/* Dots */
-.slider-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 30px;
-}
-
-.slider-dots span {
-  width: 8px;
-  height: 8px;
-  background: #ccc;
-  border-radius: 50%;
-}
-
-.slider-dots .active {
-  background: #509470;
-}
-/* =======================
-   SHOP FONT FIX
-======================= */
-.shop-section {
-  font-family: "Montserrat", sans-serif;
-}
-
-.shop-section h2,
-.shop-section h3 {
-  font-family: "Playfair Display", serif;
 }
 
 /* ======================
@@ -355,6 +69,18 @@ body {
 ====================== */
 .nav-item-dropdown {
   position: relative;
+  display: inline-block;
+}
+
+.nav-account {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.caret {
+  font-size: 12px;
 }
 
 .dropdown-content {
@@ -369,7 +95,7 @@ body {
   padding: 8px;
 
   display: none;
-  z-index: 9999;
+  z-index: 999999;
 }
 
 .nav-item-dropdown.open .dropdown-content {
@@ -378,7 +104,7 @@ body {
 
 .dropdown-content a {
   display: block;
-  padding: 10px;
+  padding: 10px 12px;
   border-radius: 8px;
   text-decoration: none;
   color: #555;
@@ -390,15 +116,211 @@ body {
   color: #8e6845;
 }
 
-/* ======================
+/* =======================
+   HERO
+======================= */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 60px 0;
+
+  background:
+    linear-gradient(
+      to right,
+      rgba(200,200,200,.75) 0%,
+      rgba(200,200,200,.6) 28%,
+      rgba(200,200,200,.35) 48%,
+      rgba(200,200,200,0) 55%
+    ),
+    url("images/1vet-banner.png");
+
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-content {
+  max-width: 650px;
+  padding-left: 10%;
+}
+
+.hero-content h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 48px;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+/* =======================
+   BUTTONS
+======================= */
+.cta,
+.cta2 {
+  padding: 14px 22px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: .3s ease;
+}
+
+.cta {
+  background: #b08a60;
+  color: #fff;
+}
+
+.cta:hover {
+  background: #9c774f;
+  transform: translateY(-2px);
+}
+
+.cta2 {
+  background: #509470;
+  color: #fff;
+}
+
+.cta2:hover {
+  background: #356c55;
+  transform: translateY(-2px);
+}
+
+/* =======================
+   STATS BAR
+======================= */
+.stats-bar {
+  pointer-events: none;   /* IMPORTANT — prevents blocking dropdown */
+  margin-top: -60px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 28px 40px;
+
+  display: flex;
+  justify-content: space-between;
+  background: rgba(255,255,255,.75);
+  backdrop-filter: blur(8px);
+  border-radius: 24px;
+  box-shadow: 0 10px 20px rgba(0,0,0,.15);
+}
+
+.stat-item {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+/* =======================
+   SERVICES
+======================= */
+.our-services {
+  padding: 120px 80px 60px;
+  text-align: center;
+}
+
+.services-title {
+  font-family: "Playfair Display", serif;
+  font-size: 36px;
+  margin-bottom: 60px;
+}
+
+.services-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.services-column {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.service-item h4 {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.services-image img {
+  width: 370px;
+  height: 370px;
+  object-fit: cover;
+}
+
+/* =======================
+   VETS SLIDER
+======================= */
+.vets-section {
+  padding: 60px 0;
+  text-align: center;
+  background: #fff;
+}
+
+.vets-section h2 {
+  font-family: "Playfair Display", serif;
+  font-weight: 300;
+}
+
+.vets-slider {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.vets-window {
+  overflow: hidden;
+}
+
+.vets-track {
+  display: flex;
+  gap: 30px;
+  transition: transform .5s ease;
+}
+
+.vet-card {
+  min-width: 260px;
+  background: #f9f9f7;
+  border-radius: 22px;
+  padding: 22px;
+}
+
+.vet-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 45%;
+  background: #fff;
+  border: none;
+  font-size: 26px;
+  cursor: pointer;
+  padding: 8px 14px;
+  border-radius: 50%;
+  box-shadow: 0 8px 20px rgba(0,0,0,.15);
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* =======================
    AUTH PAGE
-====================== */
+======================= */
 .auth-page {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f8f6f3;
 }
 
 .auth-card {
@@ -411,15 +333,8 @@ body {
 }
 
 .auth-card h2 {
-  font-family: 'Playfair Display', serif;
-  font-weight: 400;
+  font-family: "Playfair Display", serif;
   margin-bottom: 8px;
-}
-
-.auth-card p {
-  font-size: 13px;
-  color: #777;
-  margin-bottom: 18px;
 }
 
 .auth-form {
@@ -428,20 +343,13 @@ body {
   gap: 12px;
 }
 
-.auth-form label {
-  font-size: 13px;
-  font-weight: 600;
-}
-
 .auth-form input {
   padding: 12px;
   border-radius: 10px;
   border: 1px solid #ddd;
-  font-size: 14px;
 }
 
 .auth-btn {
-  margin-top: 10px;
   padding: 12px;
   border: none;
   border-radius: 12px;
@@ -454,6 +362,3 @@ body {
 .auth-btn:hover {
   background: #9c774f;
 }
-
-
-
