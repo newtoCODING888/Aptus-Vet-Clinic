@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   /* =========================
      ACCOUNT DROPDOWN (COMPLETE FIX)
   ========================= */
@@ -28,24 +27,19 @@ document.addEventListener("DOMContentLoaded", () => {
       toggleMenu();
     });
 
-    menu.addEventListener("click", (e) => {
-      e.stopPropagation();
-    });
+    menu.addEventListener("click", (e) => e.stopPropagation());
 
-    document.addEventListener("click", () => {
-      closeMenu();
-    });
+    document.addEventListener("click", () => closeMenu());
 
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") closeMenu();
     });
   }
 
-
   /* =========================
      CTA BUTTON LINKS
   ========================= */
-  document.querySelectorAll(".cta").forEach(btn => {
+  document.querySelectorAll(".cta").forEach((btn) => {
     btn.addEventListener("click", () => {
       window.location.href = "clinic.html";
     });
@@ -58,72 +52,74 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-
   /* =========================
      VETS SLIDER (SAFE RUN)
-     - Only runs if slider elements exist
   ========================= */
   const track = document.querySelector(".vets-track");
   const cards = document.querySelectorAll(".vet-card");
-  const prev = document.getElementById("vetsPrev");
-  const next = document.getElementById("vetsNext");
+  const prev = document.querySelector(".prev");
+  const next = document.querySelector(".next");
   const dotsContainer = document.querySelector(".slider-dots");
 
-  if (!track || !cards.length || !prev || !next || !dotsContainer) return;
+  if (track && cards.length && prev && next && dotsContainer) {
+    let pageIndex = 0;
+    let pages = 1;
+    let step = 0;
 
-  let pageIndex = 0;
+    function setupSlider() {
+      const isMobile = window.innerWidth < 768;
+      const visible = isMobile ? 1 : 3;
 
-  function setupSlider() {
-    const isMobile = window.innerWidth < 768;
-    const visible = isMobile ? 1 : 3;
+      const cardWidth = isMobile ? 260 : 290;
+      const gap = 30;
 
-    const cardW = cards[0].getBoundingClientRect().width;
-    const gap = 30; // must match CSS gap
-    const step = (cardW + gap) * visible;
+      step = (cardWidth + gap) * visible;
+      pages = Math.ceil(cards.length / visible);
 
-    const pages = Math.ceil(cards.length / visible);
+      // clamp pageIndex
+      if (pageIndex > pages - 1) pageIndex = pages - 1;
+      if (pageIndex < 0) pageIndex = 0;
 
-    dotsContainer.innerHTML = "";
-    for (let i = 0; i < pages; i++) {
-      const dot = document.createElement("span");
-      if (i === pageIndex) dot.classList.add("active");
-      dot.addEventListener("click", () => {
-        pageIndex = i;
-        update();
-      });
-      dotsContainer.appendChild(dot);
-    }
-
-    function update() {
-      track.style.transform = `translateX(-${pageIndex * step}px)`;
-      dotsContainer.querySelectorAll("span").forEach((d, idx) => {
-        d.classList.toggle("active", idx === pageIndex);
-      });
-    }
-
-    prev.onclick = () => {
-      pageIndex = Math.max(0, pageIndex - 1);
-      update();
-    };
-
-    next.onclick = () => {
-      pageIndex = Math.min(pages - 1, pageIndex + 1);
-      update();
-    };
-
-    update();
-  }
-
-  setupSlider();
-
-  window.addEventListener("resize", () => {
-    pageIndex = 0;
-    setupSlider();
-        };
-      });
+      // dots
+      dotsContainer.innerHTML = "";
+      for (let i = 0; i < pages; i++) {
+        const dot = document.createElement("span");
+        if (i === pageIndex) dot.classList.add("active");
+        dot.addEventListener("click", () => {
+          pageIndex = i;
+          updateSlider();
+        });
+        dotsContainer.appendChild(dot);
+      }
 
       updateSlider();
     }
+
+    function updateSlider() {
+      track.style.transform = `translateX(-${pageIndex * step}px)`;
+
+      const dots = dotsContainer.querySelectorAll("span");
+      dots.forEach((d) => d.classList.remove("active"));
+      if (dots[pageIndex]) dots[pageIndex].classList.add("active");
+
+      // optional: disable buttons at ends
+      prev.disabled = pageIndex === 0;
+      next.disabled = pageIndex === pages - 1;
+    }
+
+    next.addEventListener("click", () => {
+      if (pageIndex < pages - 1) {
+        pageIndex++;
+        updateSlider();
+      }
+    });
+
+    prev.addEventListener("click", () => {
+      if (pageIndex > 0) {
+        pageIndex--;
+        updateSlider();
+      }
+    });
 
     setupSlider();
 
@@ -133,10 +129,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-
   /* =========================
      SHOP FILTER (SAFE RUN)
-     - Only runs if shop elements exist
   ========================= */
   const categoryButtons = document.querySelectorAll(".categories button");
   const products = document.querySelectorAll(".product-card");
@@ -148,30 +142,33 @@ document.addEventListener("DOMContentLoaded", () => {
     function filterProducts() {
       const query = searchInput.value.toLowerCase();
 
-      products.forEach(product => {
+      products.forEach((product) => {
         const titleEl = product.querySelector("h3");
         const title = titleEl ? titleEl.textContent.toLowerCase() : "";
-        const category = product.dataset.category;
 
-        const matchCategory = currentCategory === "all" || category === currentCategory;
+        const category = (product.dataset.category || "").toLowerCase();
+        const matchCategory =
+          currentCategory === "all" || category === currentCategory;
+
         const matchSearch = title.includes(query);
 
-        product.style.display = (matchCategory && matchSearch) ? "flex" : "none";
+        product.style.display = matchCategory && matchSearch ? "flex" : "none";
       });
     }
 
-    categoryButtons.forEach(btn => {
+    categoryButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
-        categoryButtons.forEach(b => b.classList.remove("active"));
+        categoryButtons.forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
 
-        currentCategory = btn.dataset.category;
+        currentCategory = (btn.dataset.category || "all").toLowerCase();
         filterProducts();
       });
     });
 
     searchInput.addEventListener("input", filterProducts);
+
+    // run once on load
+    filterProducts();
   }
-
 });
-
