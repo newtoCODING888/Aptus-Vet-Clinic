@@ -329,179 +329,81 @@ body {
 .prev { left: 10px; }
 .next { right: 10px; }
 /* =========================
-   AUTH MODAL (Aptus style)
+   AUTH MODAL — NORMAL SIZE RESET
 ========================= */
-:root{
-  --aptus-bg: #f8f6f3;
-  --aptus-card: #ffffff;
-  --aptus-ink: #2f2a26;
-  --aptus-muted: #8c8076;
-  --aptus-line: #e7ded6;
-
-  --aptus-soft: #f3ebe3;
-  --aptus-accent: #c7a17a;
-  --aptus-accent-2: #b8916a;
-}
-
-.auth-overlay{
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: rgba(0,0,0,0.40);
-  backdrop-filter: blur(3px);
-
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.2s ease;
-}
-
-.auth-overlay.active{
-  opacity: 1;
-  pointer-events: auto;
-}
 
 .auth-modal{
-  width: min(560px, 92vw);
-  background: var(--aptus-card);
-  border-radius: 18px;
-  padding: 26px 26px 22px;
-  box-shadow: 0 16px 45px rgba(0,0,0,0.22);
-  position: relative;
-
-  transform: translateY(10px);
-  transition: 0.2s ease;
+  width: 480px;
+  max-width: 92vw;
+  padding: 20px 22px 18px;
+  border-radius: 16px;
 }
 
-.auth-overlay.active .auth-modal{
-  transform: translateY(0);
-}
-
-.auth-close{
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  width: 38px;
-  height: 38px;
-  border: 0;
-  border-radius: 12px;
-  background: var(--aptus-soft);
-  color: #4b3f37;
-  cursor: pointer;
-  font-size: 16px;
-  display: grid;
-  place-items: center;
-}
-
+/* Header */
 .auth-head h2{
-  font-family: 'Playfair Display', serif;
-  font-weight: 500;
-  font-size: 34px;
-  margin: 0 0 6px;
-  color: var(--aptus-ink);
+  font-size: 30px;
+  margin: 0 0 4px;
 }
 
 .auth-head p{
-  margin: 0 0 18px;
-  color: var(--aptus-muted);
-  font-size: 15px;
+  font-size: 14px;
+  margin: 0 0 12px;
 }
 
+/* Tabs */
 .auth-tabs{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 18px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
 }
 
 .auth-tab{
-  padding: 12px 14px;
+  flex: 1;
+  padding: 10px 12px;
+  font-size: 14px;
   border-radius: 12px;
-  border: 1px solid var(--aptus-line);
-  background: #faf7f4;
-  cursor: pointer;
-  font-weight: 600;
-  color: #3f352f;
 }
 
-.auth-tab.active{
-  background: #f2e6db;
-  border-color: #d8c4b1;
-  box-shadow: inset 0 0 0 1px rgba(199,161,122,0.25);
-}
-
+/* Form spacing */
 .auth-form{
-  display: grid;
-  gap: 10px;
+  gap: 7px;
 }
 
+/* Labels */
 .auth-label{
-  font-weight: 600;
-  color: #3f352f;
-  font-size: 14px;
-  margin-top: 2px;
-}
-
-.auth-input{
-  width: 100%;
-  padding: 14px 16px;
-  border-radius: 14px;
-  border: 1px solid var(--aptus-line);
-  background: #fff;
-  font-size: 14px;
-  outline: none;
-}
-
-.auth-input:focus{
-  border-color: #d8c4b1;
-  box-shadow: 0 0 0 3px rgba(199,161,122,0.20);
-}
-
-.auth-primary{
-  margin-top: 10px;
-  width: 100%;
-  padding: 14px 16px;
-  border-radius: 14px;
-  border: 0;
-  cursor: pointer;
-  background: var(--aptus-accent-2);
-  color: #fff;
-  font-weight: 700;
-  font-size: 15px;
-}
-
-.auth-primary:hover{
-  background: var(--aptus-accent);
-}
-
-.auth-foot{
-  text-align: center;
-  margin: 10px 0 0;
-  color: var(--aptus-muted);
-  font-size: 14px;
-}
-
-.auth-link{
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  color: var(--aptus-accent-2);
-  font-weight: 700;
-  padding: 0 2px;
-}
-
-.auth-msg{
-  text-align: center;
-  margin: 4px 0 0;
   font-size: 13px;
-  color: #5b4f47;
-  min-height: 18px;
+  margin-top: 4px;
 }
 
-.hidden{ display: none; }
+/* Inputs — THIS is what fixes “stretched” look */
+.auth-input{
+  padding: 11px 13px;
+  font-size: 14px;
+  border-radius: 12px;
+}
+
+/* Main button */
+.auth-primary{
+  margin-top: 8px;
+  padding: 12px 14px;
+  font-size: 14px;
+  border-radius: 12px;
+}
+
+/* Footer text */
+.auth-foot{
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+/* Close button */
+.auth-close{
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+
 
 
