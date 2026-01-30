@@ -95,15 +95,5 @@ document.addEventListener("DOMContentLoaded", () => {
         dropdown.classList.contains("open")
       );
     });
-
-    document.addEventListener("click", (e) => {
-      const clickedInside = dropdown.contains(e.target);
-      const clickedButton = accountBtn.contains(e.target);
-
-      if (!clickedInside && !clickedButton) {
-        dropdown.classList.remove("open");
-        accountBtn.setAttribute("aria-expanded", "false");
-      }
-    });
   }
 });
