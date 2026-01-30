@@ -328,3 +328,112 @@ body {
 
 .prev { left: 10px; }
 .next { right: 10px; }
+/* =========================
+   AUTH MODAL (FLOATING)
+========================= */
+
+.auth-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.2s ease;
+}
+
+.auth-overlay.active{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.auth-modal{
+  width: min(420px, 92vw);
+  background: #fff;
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+  position: relative;
+
+  transform: translateY(10px);
+  transition: 0.2s ease;
+}
+
+.auth-overlay.active .auth-modal{
+  transform: translateY(0);
+}
+
+.auth-close{
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  border: none;
+  background: transparent;
+  font-size: 28px;
+  cursor: pointer;
+  color: #444;
+  line-height: 1;
+}
+
+.auth-box h2{
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  margin: 0 0 18px;
+}
+
+.auth-box input{
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  outline: none;
+}
+
+.auth-box input:focus{
+  border-color: #c7a17a;
+}
+
+.auth-btn{
+  width: 100%;
+  padding: 12px;
+  background: #c7a17a;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.auth-btn:hover{
+  background: #b8916a;
+}
+
+.auth-switch{
+  text-align: center;
+  margin-top: 14px;
+  font-size: 14px;
+}
+
+.auth-switch span{
+  color: #c7a17a;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.auth-msg{
+  text-align: center;
+  margin-top: 10px;
+  font-size: 13px;
+  color: #444;
+}
+
+.hidden{ display: none; }
+
+
