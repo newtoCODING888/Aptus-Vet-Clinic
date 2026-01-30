@@ -1,231 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Aptus Veterinary Clinic">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Aptus Veterinary Clinic" />
   <title>Aptus Vet Clinic</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <script src="script.js" defer></script>
 </head>
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
-<header class="navbar">
-  <div class="logo">APTUS VET</div>
+  <!-- ================= NAVBAR ================= -->
+  <header class="navbar">
+    <div class="logo">APTUS VET</div>
 
-  <nav class="nav-menu">
-    <a href="#">Clinic</a>
-    <a href="#">Grooming</a>
-    <a href="shop.html">Shop</a>
-    <a href="#">Emergency</a>
+    <nav class="nav-menu">
+      <a href="#">Clinic</a>
+      <a href="#">Grooming</a>
+      <a href="shop.html">Shop</a>
+      <a href="#">Emergency</a>
 
-    <!-- ACCOUNT DROPDOWN -->
-    <div class="nav-item-dropdown">
-      <a href="#" class="nav-account" aria-haspopup="true" aria-expanded="false">
-        Account <span class="caret">▾</span>
-      </a>
+      <!-- ACCOUNT DROPDOWN -->
+      <div class="nav-item-dropdown" id="accountDropdown">
+        <button class="nav-account" type="button" aria-haspopup="true" aria-expanded="false">
+          Account <span class="caret">▾</span>
+        </button>
 
-      <div class="dropdown-content">
-        <a href="auth.html">Login / Signup</a>
-        <a href="mypets.html">My Pets</a>
-        <a href="appointments.html">Appointments</a>
-        <a href="orders.html">Orders</a>
+        <div class="dropdown-content" role="menu" aria-label="Account menu">
+          <a href="auth.html" role="menuitem">Login / Signup</a>
+          <a href="mypets.html" role="menuitem">My Pets</a>
+          <a href="appointments.html" role="menuitem">Appointments</a>
+          <a href="orders.html" role="menuitem">Orders</a>
+        </div>
       </div>
-    </div>
+    </nav>
+  </header>
 
-  </nav>
-</header>
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>
+        <span>Exceptional Care</span>
+        <span>for Dogs & Cats</span>
+      </h1>
 
-<!-- ================= HERO ================= -->
-<section class="hero">
-  <div class="hero-content">
-    <h1>
-      <span>Exceptional Care</span>
-      <span>for Dogs & Cats</span>
-    </h1>
+      <p>
+        Our dedicated team is here to provide outstanding,
+        compassionate care for your pet’s health and wellbeing.
+      </p>
 
-    <p>
-      Our dedicated team is here to provide outstanding,
-      compassionate care for your pet’s health and wellbeing.
-    </p>
-
-    <button class="cta">View Our Services</button>
-    <button class="cta2">Book an appointment</button>
-  </div>
-</section>
-
-<!-- ================= STATS ================= -->
-<div class="stats-bar">
-
-  <div class="stat-item">
-    <span>⭐</span>
-    <div>
-      <strong>4.9 Stars</strong>
-      <span>Rated by happy pet owners</span>
-    </div>
-  </div>
-
-  <div class="stat-item">
-    <span>🐾</span>
-    <div>
-      <strong>10+ Years</strong>
-      <span>Trusted experience</span>
-    </div>
-  </div>
-
-  <div class="stat-item">
-    <span>🏥</span>
-    <div>
-      <strong>Modern Facilities</strong>
-      <span>Advanced care & tools</span>
-    </div>
-  </div>
-
-  <div class="stat-item">
-    <span>❤️</span>
-    <div>
-      <strong>Compassionate Care</strong>
-      <span>Every visit matters</span>
-    </div>
-  </div>
-
-</div>
-
-<!-- ================= SERVICES ================= -->
-<section class="our-services">
-  <h2>Our Services</h2>
-
-  <div class="services-layout">
-
-    <div class="services-column">
-      <div class="service-item">
-        <h4>Inpatient & Outpatient Care</h4>
-        <p>Medical care for routine and ongoing conditions.</p>
-      </div>
-
-      <div class="service-item">
-        <h4>Checkups & Vaccinations</h4>
-        <p>Preventive care to keep pets healthy.</p>
-      </div>
-    </div>
-
-    <div class="services-image">
-      <img src="images/dog-cat.png" alt="">
-    </div>
-
-    <div class="services-column">
-      <div class="service-item">
-        <h4>Emergency & Surgery</h4>
-        <p>Urgent care and essential surgical procedures.</p>
-      </div>
-
-      <div class="service-item">
-        <h4>Pet Supplies & Accessories</h4>
-        <p>Daily essentials for dogs and cats.</p>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="services-bottom">
-    <div class="service-item">
-      <h4>Pet Grooming</h4>
-      <p>Bathing, trimming, and gentle puppy grooming.</p>
       <button class="cta">View Our Services</button>
+      <button class="cta2">Book an appointment</button>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ================= VETS ================= -->
-<section class="vets-section">
-  <h2>Meet Our Veterinarians</h2>
-  <p>Dedicated professionals providing compassionate care.</p>
-
-  <div class="vets-slider">
-    <button class="slider-btn prev">‹</button>
-
-    <div class="vets-window">
-      <div class="vets-track">
-
-        <div class="vet-card">
-          <img src="images/vet1.png">
-          <h4>Dr. Sophia Yin</h4>
-          <p>Veterinary Surgeon</p>
-        </div>
-
-        <div class="vet-card">
-          <img src="images/vet2.png">
-          <h4>Dr. Justine Lee</h4>
-          <p>Small Animal Specialist</p>
-        </div>
-
-        <div class="vet-card">
-          <img src="images/vet3.png">
-          <h4>Dr. Bonnie Beaver</h4>
-          <p>General Veterinarian</p>
-        </div>
-
-        <div class="vet-card">
-        <img src="images/vet4.png" alt="Dr. John Smith">
-        <h4>Dr. John Smith</h4>
-        <span>Internal Medicine</span>
-        <p>7+ years experience</p>
-      </div>
-    
-      <div class="vet-card">
-        <img src="images/vet5.png" alt="Dr. Dani McVety">
-        <h4>Dr. Dani McVety</h4>
-        <span>Emergency Care</span>
-        <p>9+ years experience</p>
-      </div>
-    
-      <div class="vet-card">
-        <img src="images/vet6.png" alt="Dr. Michael Tobias">
-        <h4>Dr. Michael Tobias</h4>
-        <span>Preventive Care</span>
-        <p>5+ years experience</p>
-      </div>
-    
-      <div class="vet-card">
-        <img src="images/vet7.png" alt="Dr. Alvin Kauffman">
-        <h4>Dr. Alvin Kauffman</h4>
-        <span>Diagnostics</span>
-        <p>6+ years experience</p>
-      </div>
+  <!-- ================= STATS ================= -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span>⭐</span>
+      <div>
+        <strong>4.9 Stars</strong>
+        <span>Rated by happy pet owners</span>
       </div>
     </div>
 
-    <button class="slider-btn next">›</button>
+    <div class="stat-item">
+      <span>🐾</span>
+      <div>
+        <strong>10+ Years</strong>
+        <span>Trusted experience</span>
+      </div>
+    </div>
+
+    <div class="stat-item">
+      <span>🏥</span>
+      <div>
+        <strong>Modern Facilities</strong>
+        <span>Advanced care & tools</span>
+      </div>
+    </div>
+
+    <div class="stat-item">
+      <span>❤️</span>
+      <div>
+        <strong>Compassionate Care</strong>
+        <span>Every visit matters</span>
+      </div>
+    </div>
   </div>
-</section>
 
-<!-- ================= DROPDOWN SCRIPT ================= -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.querySelector(".nav-account");
-  const dropdown = document.querySelector(".nav-item-dropdown");
+  <!-- ================= SERVICES ================= -->
+  <section class="our-services">
+    <h2>Our Services</h2>
 
-  if (!btn) return;
+    <div class="services-layout">
+      <div class="services-column">
+        <div class="service-item">
+          <h4>Inpatient & Outpatient Care</h4>
+          <p>Medical care for routine and ongoing conditions.</p>
+        </div>
 
-  btn.addEventListener("click", e => {
-    e.preventDefault();
-    dropdown.classList.toggle("open");
-  });
+        <div class="service-item">
+          <h4>Checkups & Vaccinations</h4>
+          <p>Preventive care to keep pets healthy.</p>
+        </div>
+      </div>
 
-  document.addEventListener("click", e => {
-    if (!dropdown.contains(e.target)) {
-      dropdown.classList.remove("open");
-    }
-  });
-});
-</script>
+      <div class="services-image">
+        <img src="images/dog-cat.png" alt="">
+      </div>
+
+      <div class="services-column">
+        <div class="service-item">
+          <h4>Emergency & Surgery</h4>
+          <p>Urgent care and essential surgical procedures.</p>
+        </div>
+
+        <div class="service-item">
+          <h4>Pet Supplies & Accessories</h4>
+          <p>Daily essentials for dogs and cats.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="services-bottom">
+      <div class="service-item">
+        <h4>Pet Grooming</h4>
+        <p>Bathing, trimming, and gentle puppy grooming.</p>
+        <button class="cta">View Our Services</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= VETS ================= -->
+  <section class="vets-section">
+    <h2>Meet Our Veterinarians</h2>
+    <p>Dedicated professionals providing compassionate care.</p>
+
+    <div class="vets-slider">
+      <button class="slider-btn prev">‹</button>
+
+      <div class="vets-window">
+        <div class="vets-track">
+
+          <div class="vet-card">
+            <img src="images/vet1.png" alt="">
+            <h4>Dr. Sophia Yin</h4>
+            <p>Veterinary Surgeon</p>
+          </div>
+
+          <div class="vet-card">
+            <img src="images/vet2.png" alt="">
+            <h4>Dr. Justine Lee</h4>
+            <p>Small Animal Specialist</p>
+          </div>
+
+          <div class="vet-card">
+            <img src="images/vet3.png" alt="">
+            <h4>Dr. Bonnie Beaver</h4>
+            <p>General Veterinarian</p>
+          </div>
+
+          <div class="vet-card">
+            <img src="images/vet4.png" alt="Dr. John Smith">
+            <h4>Dr. John Smith</h4>
+            <span>Internal Medicine</span>
+            <p>7+ years experience</p>
+          </div>
+
+          <div class="vet-card">
+            <img src="images/vet5.png" alt="Dr. Dani McVety">
+            <h4>Dr. Dani McVety</h4>
+            <span>Emergency Care</span>
+            <p>9+ years experience</p>
+          </div>
+
+          <div class="vet-card">
+            <img src="images/vet6.png" alt="Dr. Michael Tobias">
+            <h4>Dr. Michael Tobias</h4>
+            <span>Preventive Care</span>
+            <p>5+ years experience</p>
+          </div>
+
+          <div class="vet-card">
+            <img src="images/vet7.png" alt="Dr. Alvin Kauffman">
+            <h4>Dr. Alvin Kauffman</h4>
+            <span>Diagnostics</span>
+            <p>6+ years experience</p>
+          </div>
+
+        </div>
+      </div>
+
+      <button class="slider-btn next">›</button>
+    </div>
+  </section>
 
 </body>
 </html>
-
