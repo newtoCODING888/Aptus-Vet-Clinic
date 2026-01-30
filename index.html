@@ -202,103 +202,130 @@
   </section>
 <script>
 document.addEventListener("DOMContentLoaded", async () => {
-  // 1) Load the modal HTML from auth-modal.html
   const res = await fetch("auth-modal.html");
   const html = await res.text();
   document.body.insertAdjacentHTML("beforeend", html);
 
-  // Elements
   const overlay = document.getElementById("authOverlay");
   const closeBtn = document.getElementById("authClose");
 
-  const loginBox = document.getElementById("loginBox");
-  const signupBox = document.getElementById("signupBox");
+  const tabLogin = document.getElementById("tabLogin");
+  const tabSignup = document.getElementById("tabSignup");
 
-  const toSignup = document.getElementById("toSignup");
-  const toLogin = document.getElementById("toLogin");
+  const loginForm = document.getElementById("loginForm");
+  const signupForm = document.getElementById("signupForm");
 
-  const loginBtn = document.getElementById("loginBtn");
-  const signupBtn = document.getElementById("signupBtn");
+  const loginMsg = document.getElementById("loginMsg");
+  const signMsg = document.getElementById("signMsg");
 
-  // OPEN functions (so you can call these anywhere)
+  const linkCreate = document.getElementById("linkCreate");
+  const linkLogin = document.getElementById("linkLogin");
+
+  function showLogin(){
+    tabLogin.classList.add("active");
+    tabSignup.classList.remove("active");
+    tabLogin.setAttribute("aria-selected", "true");
+    tabSignup.setAttribute("aria-selected", "false");
+    loginForm.classList.remove("hidden");
+    signupForm.classList.add("hidden");
+    loginMsg.textContent = "";
+    signMsg.textContent = "";
+  }
+
+  function showSignup(){
+    tabSignup.classList.add("active");
+    tabLogin.classList.remove("active");
+    tabSignup.setAttribute("aria-selected", "true");
+    tabLogin.setAttribute("aria-selected", "false");
+    signupForm.classList.remove("hidden");
+    loginForm.classList.add("hidden");
+    loginMsg.textContent = "";
+    signMsg.textContent = "";
+  }
+
   window.openLogin = function(){
     overlay.classList.add("active");
-    loginBox.classList.remove("hidden");
-    signupBox.classList.add("hidden");
-    document.getElementById("loginMsg").innerText = "";
+    overlay.setAttribute("aria-hidden", "false");
+    showLogin();
   };
 
   window.openSignup = function(){
     overlay.classList.add("active");
-    loginBox.classList.add("hidden");
-    signupBox.classList.remove("hidden");
-    document.getElementById("signMsg").innerText = "";
+    overlay.setAttribute("aria-hidden", "false");
+    showSignup();
   };
 
   function closeAuth(){
     overlay.classList.remove("active");
+    overlay.setAttribute("aria-hidden", "true");
   }
 
-  // Close handlers
   closeBtn.addEventListener("click", closeAuth);
+  overlay.addEventListener("click", (e) => { if (e.target === overlay) closeAuth(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeAuth(); });
 
-  overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) closeAuth();
-  });
+  tabLogin.addEventListener("click", showLogin);
+  tabSignup.addEventListener("click", showSignup);
+  linkCreate.addEventListener("click", showSignup);
+  linkLogin.addEventListener("click", showLogin);
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeAuth();
-  });
+  // SIGNUP
+  signupForm.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-  // Switch login/signup
-  toSignup.addEventListener("click", window.openSignup);
-  toLogin.addEventListener("click", window.openLogin);
-
-  // Signup logic
-  signupBtn.addEventListener("click", () => {
     const name = document.getElementById("signName").value.trim();
     const email = document.getElementById("signEmail").value.trim();
     const pass = document.getElementById("signPass").value.trim();
-    const msg = document.getElementById("signMsg");
+    const pass2 = document.getElementById("signPass2").value.trim();
 
-    if (!name || !email || !pass) {
-      msg.innerText = "Fill all fields.";
+    if (!name || !email || !pass || !pass2) {
+      signMsg.textContent = "Please fill all fields.";
+      return;
+    }
+
+    if (pass.length < 6) {
+      signMsg.textContent = "Password must be at least 6 characters.";
+      return;
+    }
+
+    if (pass !== pass2) {
+      signMsg.textContent = "Passwords do not match.";
       return;
     }
 
     let users = JSON.parse(localStorage.getItem("aptusUsers")) || [];
-
     if (users.find(u => u.email === email)) {
-      msg.innerText = "Email already exists.";
+      signMsg.textContent = "Email already exists.";
       return;
     }
 
     users.push({ name, email, pass });
     localStorage.setItem("aptusUsers", JSON.stringify(users));
 
-    msg.innerText = "Account created! Please login.";
-    setTimeout(() => window.openLogin(), 600);
+    signMsg.textContent = "Account created! Please login.";
+    setTimeout(() => showLogin(), 600);
   });
 
-  // Login logic
-  loginBtn.addEventListener("click", () => {
+  // LOGIN
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
     const email = document.getElementById("loginEmail").value.trim();
     const pass = document.getElementById("loginPass").value.trim();
-    const msg = document.getElementById("loginMsg");
 
     let users = JSON.parse(localStorage.getItem("aptusUsers")) || [];
     const user = users.find(u => u.email === email && u.pass === pass);
 
     if (!user) {
-      msg.innerText = "Invalid login.";
+      loginMsg.textContent = "Invalid login.";
       return;
     }
 
     localStorage.setItem("aptusCurrentUser", JSON.stringify(user));
-    msg.innerText = "Login success!";
+    loginMsg.textContent = "Login success!";
 
     setTimeout(() => {
-      // change this to your owner page / dashboard
+      closeAuth();
       window.location.href = "dashboard.html";
     }, 700);
   });
@@ -306,4 +333,5 @@ document.addEventListener("DOMContentLoaded", async () => {
 </script>
 </body>
 </html>
+
 
