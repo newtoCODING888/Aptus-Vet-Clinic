@@ -11,11 +11,7 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: "Montserrat", sans-serif;
@@ -53,14 +49,13 @@
       object-fit: contain;
     }
 
-    /* ✅ nav row same as index style */
-    .nav-menu {
-      display: flex;
-      align-items: center;
-      gap: 0;
+    /* ✅ NAV MENU (so dropdown aligns nicely) */
+    .nav-menu{
+      display:flex;
+      align-items:center;
     }
 
-    .nav-menu > a {
+    .nav-menu a{
       margin-left: 25px;
       text-decoration: none;
       color: #333;
@@ -68,9 +63,7 @@
       font-weight: 600;
     }
 
-    .nav-menu > a:hover {
-      color: #2c5c54;
-    }
+    .nav-menu a:hover { color: #2c5c54; }
 
     /* ======================
        ACCOUNT DROPDOWN
@@ -102,15 +95,15 @@
       color: #2c5c54;
     }
 
-    .caret {
-      font-size: 12px;
-    }
+    .caret { font-size: 12px; }
 
+    /* Default hidden */
     .dropdown-content {
       position: absolute;
       top: calc(100% + 10px);
       right: 0;
       min-width: 200px;
+
       background: #fff;
       border-radius: 12px;
       box-shadow: 0 18px 35px rgba(0, 0, 0, 0.12);
@@ -125,6 +118,7 @@
       transition: 0.18s ease;
     }
 
+    /* When open */
     .nav-item-dropdown.open .dropdown-content {
       opacity: 1;
       visibility: visible;
@@ -327,157 +321,17 @@
       margin-top: 40px;
       border-top: 1px solid #e0dcd8;
     }
-
-    /* =========================
-       AUTH MODAL (Login/Signup)
-    ========================= */
-    .auth-overlay{
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.45);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: .2s ease;
-      z-index: 9999999;
-      padding: 18px;
-    }
-
-    .auth-overlay.active{
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .auth-modal{
-      width: 480px;
-      max-width: 92vw;
-      background: #fff;
-      border-radius: 16px;
-      padding: 20px 22px 18px;
-      box-shadow: 0 20px 50px rgba(0,0,0,.25);
-      position: relative;
-    }
-
-    .auth-close{
-      position:absolute;
-      right: 14px;
-      top: 14px;
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      border: none;
-      background: #f3ebe3;
-      cursor: pointer;
-      font-weight: 800;
-    }
-
-    .auth-head h2{
-      font-family: "Playfair Display", serif;
-      font-weight: 500;
-      font-size: 28px;
-      margin-bottom: 6px;
-      color:#2f2a26;
-    }
-
-    .auth-head p{
-      font-size: 14px;
-      color:#8c8076;
-      margin-bottom: 12px;
-    }
-
-    .auth-tabs{
-      display:flex;
-      gap:10px;
-      margin-bottom: 12px;
-    }
-
-    .auth-tab{
-      flex:1;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid #e7ded6;
-      background: #faf7f4;
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 14px;
-    }
-
-    .auth-tab.active{
-      background: #f2e6db;
-      border-color: #d8c4b1;
-    }
-
-    .auth-form{ display:grid; gap: 8px; }
-
-    .auth-label{
-      font-size: 13px;
-      font-weight: 700;
-      color:#3f352f;
-      margin-top: 4px;
-    }
-
-    .auth-input{
-      width: 100%;
-      padding: 11px 13px;
-      border-radius: 12px;
-      border: 1px solid #e7ded6;
-      outline: none;
-      font-size: 14px;
-    }
-
-    .auth-primary{
-      margin-top: 8px;
-      width: 100%;
-      padding: 12px 14px;
-      border: none;
-      border-radius: 12px;
-      background: #b8916a;
-      color: #fff;
-      font-weight: 800;
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    .auth-primary:hover{ background:#c7a17a; }
-
-    .auth-foot{
-      text-align:center;
-      font-size: 13px;
-      color:#8c8076;
-      margin-top: 6px;
-    }
-
-    .auth-link{
-      border:none;
-      background:transparent;
-      cursor:pointer;
-      color:#b8916a;
-      font-weight: 800;
-    }
-
-    .auth-msg{
-      text-align:center;
-      font-size: 13px;
-      color:#5b4f47;
-      min-height: 18px;
-      margin-top: 6px;
-    }
-
-    .hidden{ display:none; }
   </style>
 </head>
 
 <body>
-
   <header class="navbar">
     <div class="logo">
       <img src="images/paws1.png" alt="Paw logo" />
       APTUS VET
     </div>
 
-    <!-- ✅ kept your links, only changed Account into dropdown -->
+    <!-- ✅ same links, but Account becomes dropdown -->
     <nav class="nav-menu">
       <a href="index.html">Home</a>
       <a href="clinic.html">Clinic</a>
@@ -491,6 +345,7 @@
         </button>
 
         <div class="dropdown-content" role="menu" aria-label="Account menu">
+          <!-- ✅ this calls openLogin() which is defined in auth.js -->
           <a href="#" role="menuitem" onclick="openLogin(); return false;">Login / Signup</a>
           <a href="mypets.html" role="menuitem">My Pets</a>
           <a href="appointments.html" role="menuitem">Appointments</a>
@@ -502,10 +357,8 @@
 
   <section id="shop" class="shop-section">
     <div class="container">
-
       <div class="shop-header">
         <h2>Shop Products</h2>
-        <!-- ✅ SEARCH BAR STILL HERE -->
         <input id="searchInput" type="text" placeholder="Search products..." />
       </div>
 
@@ -520,6 +373,7 @@
 
       <div class="products" id="productGrid">
 
+        <!-- ✅ your products kept exactly -->
         <div class="product-card" data-category="supplements">
           <img src="images/dogmulti.jpg" alt="Dog Multivitamins" class="product-image" />
           <h3>Dog Multivitamins</h3>
@@ -765,7 +619,6 @@
       <div class="no-results" id="noResults">
         No products matched your search.
       </div>
-
     </div>
 
     <footer class="shop-footer">
@@ -773,64 +626,8 @@
     </footer>
   </section>
 
-  <!-- ✅ AUTH MODAL HTML -->
-  <div id="authOverlay" class="auth-overlay" aria-hidden="true">
-    <div class="auth-modal" role="dialog" aria-modal="true" aria-label="Account">
-      <button class="auth-close" id="authClose" type="button" aria-label="Close">✕</button>
-
-      <div class="auth-head">
-        <h2>Account</h2>
-        <p>Login or create an account to continue.</p>
-      </div>
-
-      <div class="auth-tabs">
-        <button class="auth-tab active" id="tabLogin" type="button">Login</button>
-        <button class="auth-tab" id="tabSignup" type="button">Sign Up</button>
-      </div>
-
-      <!-- LOGIN -->
-      <form id="loginForm" class="auth-form">
-        <label class="auth-label" for="loginEmail">Email</label>
-        <input id="loginEmail" class="auth-input" type="email" required placeholder="you@example.com">
-
-        <label class="auth-label" for="loginPass">Password</label>
-        <input id="loginPass" class="auth-input" type="password" required placeholder="••••••••">
-
-        <button class="auth-primary" id="loginBtn" type="submit">Login</button>
-
-        <p class="auth-foot">
-          No account? <button class="auth-link" id="toSignup" type="button">Create one</button>
-        </p>
-
-        <p class="auth-msg" id="loginMsg"></p>
-      </form>
-
-      <!-- SIGNUP -->
-      <form id="signupForm" class="auth-form hidden">
-        <label class="auth-label" for="signName">Name</label>
-        <input id="signName" class="auth-input" type="text" required placeholder="Your name">
-
-        <label class="auth-label" for="signEmail">Email</label>
-        <input id="signEmail" class="auth-input" type="email" required placeholder="you@example.com">
-
-        <label class="auth-label" for="signPass">Password</label>
-        <input id="signPass" class="auth-input" type="password" required placeholder="Create a password">
-
-        <button class="auth-primary" id="signupBtn" type="submit">Sign Up</button>
-
-        <p class="auth-foot">
-          Have an account? <button class="auth-link" id="toLogin" type="button">Login</button>
-        </p>
-
-        <p class="auth-msg" id="signMsg"></p>
-      </form>
-    </div>
-  </div>
-
+  <!-- ✅ keep your shop logic EXACTLY -->
   <script>
-    /* =========================
-       YOUR SEARCH/FILTER/QTY/SORTING (UNCHANGED LOGIC)
-    ========================= */
     const searchInput = document.getElementById("searchInput");
     const categoryButtons = document.getElementById("categoryButtons");
     const productCards = Array.from(document.querySelectorAll(".product-card"));
@@ -929,13 +726,8 @@
       const current = parseInt(input.value || "1", 10);
       const action = qtyBtn.dataset.action;
 
-      if (action === "minus") {
-        input.value = Math.max(1, current - 1);
-      }
-
-      if (action === "plus") {
-        input.value = current + 1;
-      }
+      if (action === "minus") input.value = Math.max(1, current - 1);
+      if (action === "plus") input.value = current + 1;
     });
 
     document.addEventListener("click", (e) => {
@@ -953,146 +745,9 @@
 
     injectQuantityUI();
     applyFilters();
-
-
-    /* =========================
-       ACCOUNT DROPDOWN (NEW)
-    ========================= */
-    const accountDropdown = document.getElementById("accountDropdown");
-    const accountBtn = accountDropdown?.querySelector(".nav-account");
-
-    if (accountBtn) {
-      accountBtn.addEventListener("click", () => {
-        accountDropdown.classList.toggle("open");
-        const expanded = accountDropdown.classList.contains("open");
-        accountBtn.setAttribute("aria-expanded", expanded ? "true" : "false");
-      });
-
-      document.addEventListener("click", (e) => {
-        if (!accountDropdown.contains(e.target)) {
-          accountDropdown.classList.remove("open");
-          accountBtn.setAttribute("aria-expanded", "false");
-        }
-      });
-    }
-
-
-    /* =========================
-       AUTH MODAL (NEW)
-    ========================= */
-    const overlay = document.getElementById("authOverlay");
-    const authClose = document.getElementById("authClose");
-
-    const tabLogin = document.getElementById("tabLogin");
-    const tabSignup = document.getElementById("tabSignup");
-
-    const loginForm = document.getElementById("loginForm");
-    const signupForm = document.getElementById("signupForm");
-
-    const toSignup = document.getElementById("toSignup");
-    const toLogin = document.getElementById("toLogin");
-
-    const loginMsg = document.getElementById("loginMsg");
-    const signMsg = document.getElementById("signMsg");
-
-    function showLogin() {
-      tabLogin.classList.add("active");
-      tabSignup.classList.remove("active");
-      loginForm.classList.remove("hidden");
-      signupForm.classList.add("hidden");
-      loginMsg.textContent = "";
-      signMsg.textContent = "";
-    }
-
-    function showSignup() {
-      tabSignup.classList.add("active");
-      tabLogin.classList.remove("active");
-      signupForm.classList.remove("hidden");
-      loginForm.classList.add("hidden");
-      loginMsg.textContent = "";
-      signMsg.textContent = "";
-    }
-
-    // ✅ required by your dropdown link
-    window.openLogin = function () {
-      overlay.classList.add("active");
-      overlay.setAttribute("aria-hidden", "false");
-      showLogin();
-    };
-
-    window.openSignup = function () {
-      overlay.classList.add("active");
-      overlay.setAttribute("aria-hidden", "false");
-      showSignup();
-    };
-
-    function closeAuth() {
-      overlay.classList.remove("active");
-      overlay.setAttribute("aria-hidden", "true");
-    }
-
-    authClose.addEventListener("click", closeAuth);
-
-    overlay.addEventListener("click", (e) => {
-      if (e.target === overlay) closeAuth();
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeAuth();
-    });
-
-    tabLogin.addEventListener("click", showLogin);
-    tabSignup.addEventListener("click", showSignup);
-    toSignup.addEventListener("click", showSignup);
-    toLogin.addEventListener("click", showLogin);
-
-    // signup
-    signupForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const name = document.getElementById("signName").value.trim();
-      const email = document.getElementById("signEmail").value.trim();
-      const pass = document.getElementById("signPass").value.trim();
-
-      if (!name || !email || !pass) {
-        signMsg.textContent = "Fill all fields.";
-        return;
-      }
-
-      let users = JSON.parse(localStorage.getItem("aptusUsers")) || [];
-
-      if (users.find(u => u.email === email)) {
-        signMsg.textContent = "Email already exists.";
-        return;
-      }
-
-      users.push({ name, email, pass });
-      localStorage.setItem("aptusUsers", JSON.stringify(users));
-
-      signMsg.textContent = "Account created! Please login.";
-      setTimeout(showLogin, 500);
-    });
-
-    // login
-    loginForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const email = document.getElementById("loginEmail").value.trim();
-      const pass = document.getElementById("loginPass").value.trim();
-
-      let users = JSON.parse(localStorage.getItem("aptusUsers")) || [];
-      const user = users.find(u => u.email === email && u.pass === pass);
-
-      if (!user) {
-        loginMsg.textContent = "Invalid login.";
-        return;
-      }
-
-      localStorage.setItem("aptusCurrentUser", JSON.stringify(user));
-      loginMsg.textContent = "Login success!";
-      setTimeout(closeAuth, 600);
-    });
   </script>
 
+  <!-- ✅ THIS IS THE IMPORTANT PART: makes login modal work on shop -->
+  <script src="auth.js" defer></script>
 </body>
 </html>
