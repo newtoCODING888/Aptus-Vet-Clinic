@@ -32,7 +32,7 @@
         </button>
 
         <div class="dropdown-content" role="menu" aria-label="Account menu">
-          <a href="auth.html" role="menuitem">Login / Signup</a>
+          <a href="#" role="menuitem" onclick="openLogin(); return false;">Login / Signup</a>
           <a href="mypets.html" role="menuitem">My Pets</a>
           <a href="appointments.html" role="menuitem">Appointments</a>
           <a href="orders.html" role="menuitem">Orders</a>
@@ -200,6 +200,110 @@
       <button class="slider-btn next">›</button>
     </div>
   </section>
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+  // 1) Load the modal HTML from auth-modal.html
+  const res = await fetch("auth-modal.html");
+  const html = await res.text();
+  document.body.insertAdjacentHTML("beforeend", html);
 
+  // Elements
+  const overlay = document.getElementById("authOverlay");
+  const closeBtn = document.getElementById("authClose");
+
+  const loginBox = document.getElementById("loginBox");
+  const signupBox = document.getElementById("signupBox");
+
+  const toSignup = document.getElementById("toSignup");
+  const toLogin = document.getElementById("toLogin");
+
+  const loginBtn = document.getElementById("loginBtn");
+  const signupBtn = document.getElementById("signupBtn");
+
+  // OPEN functions (so you can call these anywhere)
+  window.openLogin = function(){
+    overlay.classList.add("active");
+    loginBox.classList.remove("hidden");
+    signupBox.classList.add("hidden");
+    document.getElementById("loginMsg").innerText = "";
+  };
+
+  window.openSignup = function(){
+    overlay.classList.add("active");
+    loginBox.classList.add("hidden");
+    signupBox.classList.remove("hidden");
+    document.getElementById("signMsg").innerText = "";
+  };
+
+  function closeAuth(){
+    overlay.classList.remove("active");
+  }
+
+  // Close handlers
+  closeBtn.addEventListener("click", closeAuth);
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) closeAuth();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeAuth();
+  });
+
+  // Switch login/signup
+  toSignup.addEventListener("click", window.openSignup);
+  toLogin.addEventListener("click", window.openLogin);
+
+  // Signup logic
+  signupBtn.addEventListener("click", () => {
+    const name = document.getElementById("signName").value.trim();
+    const email = document.getElementById("signEmail").value.trim();
+    const pass = document.getElementById("signPass").value.trim();
+    const msg = document.getElementById("signMsg");
+
+    if (!name || !email || !pass) {
+      msg.innerText = "Fill all fields.";
+      return;
+    }
+
+    let users = JSON.parse(localStorage.getItem("aptusUsers")) || [];
+
+    if (users.find(u => u.email === email)) {
+      msg.innerText = "Email already exists.";
+      return;
+    }
+
+    users.push({ name, email, pass });
+    localStorage.setItem("aptusUsers", JSON.stringify(users));
+
+    msg.innerText = "Account created! Please login.";
+    setTimeout(() => window.openLogin(), 600);
+  });
+
+  // Login logic
+  loginBtn.addEventListener("click", () => {
+    const email = document.getElementById("loginEmail").value.trim();
+    const pass = document.getElementById("loginPass").value.trim();
+    const msg = document.getElementById("loginMsg");
+
+    let users = JSON.parse(localStorage.getItem("aptusUsers")) || [];
+    const user = users.find(u => u.email === email && u.pass === pass);
+
+    if (!user) {
+      msg.innerText = "Invalid login.";
+      return;
+    }
+
+    localStorage.setItem("aptusCurrentUser", JSON.stringify(user));
+    msg.innerText = "Login success!";
+
+    setTimeout(() => {
+      // change this to your owner page / dashboard
+      window.location.href = "dashboard.html";
+    }, 700);
+  });
+});
+</script>
 </body>
 </html>
+
