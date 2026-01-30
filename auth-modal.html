@@ -1,0 +1,41 @@
+<!-- AUTH MODAL OVERLAY -->
+<div id="authOverlay" class="auth-overlay">
+  <div class="auth-modal">
+
+    <button class="auth-close" id="authClose" aria-label="Close">&times;</button>
+
+    <!-- LOGIN -->
+    <div id="loginBox" class="auth-box">
+      <h2>Login</h2>
+
+      <input id="loginEmail" type="email" placeholder="Email">
+      <input id="loginPass" type="password" placeholder="Password">
+
+      <button class="auth-btn" id="loginBtn">Login</button>
+
+      <p class="auth-switch">
+        No account? <span id="toSignup">Sign Up</span>
+      </p>
+
+      <p class="auth-msg" id="loginMsg"></p>
+    </div>
+
+    <!-- SIGNUP -->
+    <div id="signupBox" class="auth-box hidden">
+      <h2>Create Account</h2>
+
+      <input id="signName" type="text" placeholder="Full Name">
+      <input id="signEmail" type="email" placeholder="Email">
+      <input id="signPass" type="password" placeholder="Password">
+
+      <button class="auth-btn" id="signupBtn">Sign Up</button>
+
+      <p class="auth-switch">
+        Have account? <span id="toLogin">Login</span>
+      </p>
+
+      <p class="auth-msg" id="signMsg"></p>
+    </div>
+
+  </div>
+</div>
