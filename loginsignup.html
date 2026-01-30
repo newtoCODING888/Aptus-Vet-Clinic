@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aptus Vet — Account</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #f8f6f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 400px;
+    background: white;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #c7a17a;
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #b8916a;
+}
+
+.switch {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.switch span {
+    color: #c7a17a;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.hidden {
+    display: none;
+}
+
+.message {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LOGIN -->
+    <div id="loginBox">
+        <h2>Login</h2>
+        <input id="loginEmail" type="email" placeholder="Email">
+        <input id="loginPass" type="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+
+        <div class="switch">
+            No account? <span onclick="showSignup()">Sign Up</span>
+        </div>
+        <div class="message" id="loginMsg"></div>
+    </div>
+
+    <!-- SIGNUP -->
+    <div id="signupBox" class="hidden">
+        <h2>Create Account</h2>
+        <input id="signName" type="text" placeholder="Full Name">
+        <input id="signEmail" type="email" placeholder="Email">
+        <input id="signPass" type="password" placeholder="Password">
+        <button onclick="signup()">Sign Up</button>
+
+        <div class="switch">
+            Have account? <span onclick="showLogin()">Login</span>
+        </div>
+        <div class="message" id="signMsg"></div>
+    </div>
+
+</div>
+
+<script>
+function showSignup() {
+    loginBox.classList.add("hidden");
+    signupBox.classList.remove("hidden");
+}
+
+function showLogin() {
+    signupBox.classList.add("hidden");
+    loginBox.classList.remove("hidden");
+}
+
+function signup() {
+    const name = signName.value.trim();
+    const email = signEmail.value.trim();
+    const pass = signPass.value.trim();
+
+    if (!name || !email || !pass) {
+        signMsg.innerText = "Fill all fields.";
+        return;
+    }
+
+    let users = JSON.parse(localStorage.getItem("aptusUsers")) || [];
+
+    if (users.find(u => u.email === email)) {
+        signMsg.innerText = "Email already exists.";
+        return;
+    }
+
+    users.push({ name, email, pass });
+    localStorage.setItem("aptusUsers", JSON.stringify(users));
+
+    signMsg.innerText = "Account created! You can login now.";
+}
+
+function login() {
+    const email = loginEmail.value.trim();
+    const pass = loginPass.value.trim();
+
+    let users = JSON.parse(localStorage.getItem("aptusUsers")) || [];
+
+    const user = users.find(u => u.email === email && u.pass === pass);
+
+    if (!user) {
+        loginMsg.innerText = "Invalid login.";
+        return;
+    }
+
+    localStorage.setItem("aptusCurrentUser", JSON.stringify(user));
+    loginMsg.innerText = "Login success!";
+
+    setTimeout(() => {
+        window.location.href = "dashboard.html";
+    }, 800);
+}
+</script>
+
+</body>
+</html>
