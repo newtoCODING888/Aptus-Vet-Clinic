@@ -1,28 +1,43 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================
-     ACCOUNT DROPDOWN
+     ACCOUNT DROPDOWN (COMPLETE FIX)
   ========================= */
-  const accountBtn = document.querySelector(".nav-account");
   const dropdown = document.querySelector(".nav-item-dropdown");
+  const accountBtn = document.querySelector(".nav-account");
+  const menu = document.querySelector(".dropdown-content");
 
-  if (accountBtn && dropdown) {
+  if (dropdown && accountBtn && menu) {
+    const openMenu = () => {
+      dropdown.classList.add("open");
+      accountBtn.setAttribute("aria-expanded", "true");
+    };
+
+    const closeMenu = () => {
+      dropdown.classList.remove("open");
+      accountBtn.setAttribute("aria-expanded", "false");
+    };
+
+    const toggleMenu = () => {
+      dropdown.classList.contains("open") ? closeMenu() : openMenu();
+    };
+
     accountBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      dropdown.classList.toggle("open");
-
-      accountBtn.setAttribute(
-        "aria-expanded",
-        dropdown.classList.contains("open")
-      );
+      e.stopPropagation();
+      toggleMenu();
     });
 
-    // click outside closes dropdown
-    document.addEventListener("click", (e) => {
-      if (!dropdown.contains(e.target)) {
-        dropdown.classList.remove("open");
-        accountBtn.setAttribute("aria-expanded", "false");
-      }
+    menu.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+
+    document.addEventListener("click", () => {
+      closeMenu();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMenu();
     });
   }
 
@@ -30,15 +45,12 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =========================
      CTA BUTTON LINKS
   ========================= */
-
-  // All primary CTA buttons → clinic page
   document.querySelectorAll(".cta").forEach(btn => {
     btn.addEventListener("click", () => {
       window.location.href = "clinic.html";
     });
   });
 
-  // Book appointment button → auth/account page
   const cta2 = document.querySelector(".cta2");
   if (cta2) {
     cta2.addEventListener("click", () => {
@@ -48,9 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================
-     VETS SLIDER (FULL FIX)
+     VETS SLIDER (SAFE RUN)
+     - Only runs if slider elements exist
   ========================= */
-
   const track = document.querySelector(".vets-track");
   const cards = document.querySelectorAll(".vet-card");
   const prev = document.querySelector(".prev");
@@ -58,11 +70,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const dotsContainer = document.querySelector(".slider-dots");
 
   if (track && cards.length && prev && next && dotsContainer) {
-
     let pageIndex = 0;
 
     function setupSlider() {
-
       const isMobile = window.innerWidth < 768;
       const visible = isMobile ? 1 : 3;
 
@@ -84,7 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       function updateSlider() {
         track.style.transform = `translateX(-${pageIndex * step}px)`;
-
         dots.forEach(d => d.classList.remove("active"));
         if (dots[pageIndex]) dots[pageIndex].classList.add("active");
       }
@@ -113,7 +122,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setupSlider();
 
-    // recompute on resize
     window.addEventListener("resize", () => {
       pageIndex = 0;
       setupSlider();
@@ -122,31 +130,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================
-     SHOP FILTER (SAFE — ONLY RUNS IF SHOP EXISTS)
+     SHOP FILTER (SAFE RUN)
+     - Only runs if shop elements exist
   ========================= */
-
   const categoryButtons = document.querySelectorAll(".categories button");
   const products = document.querySelectorAll(".product-card");
   const searchInput = document.querySelector(".shop-section input");
 
   if (categoryButtons.length && products.length && searchInput) {
-
     let currentCategory = "all";
 
     function filterProducts() {
       const query = searchInput.value.toLowerCase();
 
       products.forEach(product => {
-        const title = product.querySelector("h3").textContent.toLowerCase();
+        const titleEl = product.querySelector("h3");
+        const title = titleEl ? titleEl.textContent.toLowerCase() : "";
         const category = product.dataset.category;
 
-        const matchCategory =
-          currentCategory === "all" || category === currentCategory;
-
+        const matchCategory = currentCategory === "all" || category === currentCategory;
         const matchSearch = title.includes(query);
 
-        product.style.display =
-          (matchCategory && matchSearch) ? "flex" : "none";
+        product.style.display = (matchCategory && matchSearch) ? "flex" : "none";
       });
     }
 
