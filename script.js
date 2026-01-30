@@ -1,77 +1,109 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   /* =========================
-     VETS SLIDER (2 DOTS ONLY)
+     VETS SLIDER (FIXED)
   ========================= */
-
-  const track = document.querySelector('.vets-track');
-  const cards = document.querySelectorAll('.vet-card');
-  const prev = document.querySelector('.prev');
-  const next = document.querySelector('.next');
-  const dotsContainer = document.querySelector('.slider-dots');
+  const track = document.querySelector(".vets-track");
+  const cards = document.querySelectorAll(".vet-card");
+  const prev = document.querySelector(".prev");
+  const next = document.querySelector(".next");
+  const dotsContainer = document.querySelector(".slider-dots");
 
   if (track && cards.length && prev && next && dotsContainer) {
-
-    let index = 0;
+    let pageIndex = 0;
 
     const isMobile = window.innerWidth < 768;
     const visible = isMobile ? 1 : 3;
-    const cardWidth = isMobile ? 260 : 290;
 
-    /* CLEAR dots */
+    const cardWidth = isMobile ? 260 : 290;
+    const gap = 30; // MUST match your CSS: .vets-track { gap: 30px; }
+    const step = (cardWidth + gap) * visible;
+
+    const pages = Math.ceil(cards.length / visible);
+
     dotsContainer.innerHTML = "";
 
-    /* TWO DOTS LOGIC */
-    const pages = Math.floor(cards.length / visible); // ✅ ALWAYS 2 DOTS
-
     for (let i = 0; i < pages; i++) {
-      const dot = document.createElement('span');
-      if (i === 0) dot.classList.add('active');
+      const dot = document.createElement("span");
+      if (i === 0) dot.classList.add("active");
       dotsContainer.appendChild(dot);
     }
 
-    const dots = document.querySelectorAll('.slider-dots span');
+    const dots = dotsContainer.querySelectorAll("span");
 
     function updateSlider() {
-      track.style.transform = `translateX(-${index * cardWidth}px)`;
+      track.style.transform = `translateX(-${pageIndex * step}px)`;
 
-      dots.forEach(d => d.classList.remove('active'));
-      dots[Math.floor(index / visible)].classList.add('active');
+      dots.forEach((d) => d.classList.remove("active"));
+      if (dots[pageIndex]) dots[pageIndex].classList.add("active");
     }
 
     next.addEventListener("click", () => {
-      index += visible;
-      if (index > cards.length - visible) {
-        index = cards.length - visible;
-      }
+      pageIndex += 1;
+      if (pageIndex > pages - 1) pageIndex = pages - 1;
       updateSlider();
     });
 
     prev.addEventListener("click", () => {
-      index -= visible;
-      if (index < 0) index = 0;
+      pageIndex -= 1;
+      if (pageIndex < 0) pageIndex = 0;
       updateSlider();
+    });
+
+    // Optional: click dots to jump
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => {
+        pageIndex = i;
+        updateSlider();
+      });
+    });
+
+    updateSlider();
+  }
+
+  /* =========================
+     CTA BUTTONS (FIXED LINKS)
+  ========================= */
+
+  // ALL "View Our Services" buttons → clinic.html
+  const ctas = document.querySelectorAll(".cta");
+  ctas.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      window.location.href = "clinic.html";
+    });
+  });
+
+  // Book Appointment → account.html
+  const bookAppointmentBtn = document.querySelector(".cta2");
+  if (bookAppointmentBtn) {
+    bookAppointmentBtn.addEventListener("click", () => {
+      window.location.href = "account.html";
     });
   }
 
   /* =========================
-     CTA BUTTONS
+     ACCOUNT DROPDOWN (FIXED)
   ========================= */
+  const accountBtn = document.querySelector(".nav-account");
+  const dropdown = document.querySelector(".nav-item-dropdown");
 
-  /* ALL "View Our Services" buttons → Clinic */
-  const ctas = document.querySelectorAll(".cta");
-  ctas.forEach(btn => {
-    btn.addEventListener("click", () => {
-      window.location.href = "/clinic";
+  if (accountBtn && dropdown) {
+    accountBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      dropdown.classList.toggle("open");
+      accountBtn.setAttribute(
+        "aria-expanded",
+        dropdown.classList.contains("open")
+      );
     });
-  });
 
-  /* Book Appointment */
-  const bookAppointmentBtn = document.querySelector(".cta2");
-  if (bookAppointmentBtn) {
-    bookAppointmentBtn.addEventListener("click", () => {
-      window.location.href = "/account";
+    document.addEventListener("click", (e) => {
+      const clickedInside = dropdown.contains(e.target);
+      const clickedButton = accountBtn.contains(e.target);
+
+      if (!clickedInside && !clickedButton) {
+        dropdown.classList.remove("open");
+        accountBtn.setAttribute("aria-expanded", "false");
+      }
     });
   }
-
 });
