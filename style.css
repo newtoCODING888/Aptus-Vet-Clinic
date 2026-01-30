@@ -338,3 +338,15 @@ body {
 .slider-dots .active {
   background: #509470;
 }
+/* =======================
+   SHOP FONT FIX
+======================= */
+.shop-section {
+  font-family: "Montserrat", sans-serif;
+}
+
+.shop-section h2,
+.shop-section h3 {
+  font-family: "Playfair Display", serif;
+}
+
