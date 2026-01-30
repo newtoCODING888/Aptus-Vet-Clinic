@@ -1,214 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Aptus Veterinary Clinic - Shop" />
-  <title>Aptus Vet Clinic | Shop</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Aptus Veterinary Clinic - Shop" />
+<title>Aptus Vet Clinic | Shop</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:"Montserrat",sans-serif;background:#f7f2ee;color:#333;}
 
-/* ================= NAVBAR ================= */
+/* NAVBAR */
 .navbar{
-  width:100%;
-  padding:18px 50px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:#fff;
-  position:sticky;
-  top:0;
-  z-index:1000;
-  border-bottom:1px solid #eee7e2;
+width:100%;
+padding:18px 50px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#fff;
+position:sticky;
+top:0;
+z-index:1000;
+border-bottom:1px solid #eee7e2;
 }
 
 .logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-family:"Playfair Display",serif;
-  font-size:26px;
-  font-weight:600;
-  color:#2c5c54;
+display:flex;
+align-items:center;
+gap:10px;
+font-family:"Playfair Display",serif;
+font-size:26px;
+font-weight:600;
+color:#2c5c54;
 }
 
 .logo img{width:38px;height:38px;}
 
 .nav-menu{
-  display:flex;
-  align-items:center;
-  gap:26px;
+display:flex;
+align-items:center;
+gap:26px;
 }
 
 .nav-menu a{
-  text-decoration:none;
-  color:#333;
-  font-size:14px;
-  font-weight:600;
+text-decoration:none;
+color:#333;
+font-size:14px;
+font-weight:600;
 }
 
 /* ACCOUNT DROPDOWN */
 .nav-item-dropdown{position:relative;}
 
 .nav-account{
-  border:none;
-  background:transparent;
-  font:inherit;
-  font-weight:600;
-  cursor:pointer;
+border:none;
+background:transparent;
+font:inherit;
+font-weight:600;
+cursor:pointer;
 }
 
+.caret{font-size:12px;}
+
 .dropdown-content{
-  position:absolute;
-  right:0;
-  top:calc(100% + 10px);
-  background:#fff;
-  min-width:200px;
-  border-radius:12px;
-  box-shadow:0 15px 30px rgba(0,0,0,.12);
-  padding:8px;
-  opacity:0;
-  visibility:hidden;
-  transform:translateY(-6px);
-  transition:.18s ease;
+position:absolute;
+right:0;
+top:calc(100% + 10px);
+background:#fff;
+min-width:200px;
+border-radius:12px;
+box-shadow:0 15px 30px rgba(0,0,0,.12);
+padding:8px;
+opacity:0;
+visibility:hidden;
+transform:translateY(-6px);
+transition:.18s ease;
 }
 
 .nav-item-dropdown.open .dropdown-content{
-  opacity:1;
-  visibility:visible;
-  transform:translateY(0);
+opacity:1;
+visibility:visible;
+transform:translateY(0);
 }
 
 .dropdown-content a{
-  display:block;
-  padding:10px 12px;
-  border-radius:8px;
-  text-decoration:none;
-  color:#555;
-  font-size:14px;
+display:block;
+padding:10px 12px;
+border-radius:8px;
+text-decoration:none;
+color:#555;
+font-size:14px;
 }
 
 .dropdown-content a:hover{
-  background:#f5eee6;
-  color:#8e6845;
+background:#f5eee6;
+color:#8e6845;
 }
 
-/* ================= SHOP ================= */
+/* SHOP */
 .shop-section{padding:40px 0;}
 .container{width:90%;max-width:1200px;margin:auto;}
 
 .shop-header{
-  display:flex;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:15px;
-  margin-bottom:20px;
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:15px;
+margin-bottom:20px;
 }
 
 .shop-header input{
-  padding:10px 14px;
-  width:280px;
-  border-radius:6px;
-  border:1px solid #dcd7d2;
+padding:10px 14px;
+width:280px;
+border-radius:6px;
+border:1px solid #dcd7d2;
 }
 
-.categories{display:flex;gap:10px;margin-bottom:25px;flex-wrap:wrap;}
+.categories{
+display:flex;
+gap:10px;
+margin-bottom:25px;
+flex-wrap:wrap;
+}
+
 .categories button{
-  padding:8px 14px;
-  border:none;
-  border-radius:20px;
-  background:#a67b52;
-  color:#fff;
-  cursor:pointer;
-  font-size:13px;
+padding:8px 14px;
+border:none;
+border-radius:20px;
+background:#a67b52;
+color:#fff;
+cursor:pointer;
+font-size:13px;
 }
 
 .products{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  gap:20px;
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+gap:20px;
 }
 
 .product-card{
-  background:#fff;
-  border-radius:10px;
-  padding:15px;
-  box-shadow:0 4px 10px rgba(0,0,0,.05);
-  display:flex;
-  flex-direction:column;
+background:#fff;
+border-radius:10px;
+padding:15px;
+box-shadow:0 4px 10px rgba(0,0,0,.05);
+display:flex;
+flex-direction:column;
 }
 
 .product-image{
-  width:100%;
-  height:180px;
-  object-fit:contain;
-  background:#fbf9f7;
-  border-radius:8px;
-  margin-bottom:12px;
+width:100%;
+height:180px;
+object-fit:contain;
+background:#fbf9f7;
+border-radius:8px;
+margin-bottom:12px;
 }
 
 .add-btn{
-  margin-top:auto;
-  padding:10px;
-  border:none;
-  border-radius:6px;
-  background:#946d43;
-  color:#fff;
-  cursor:pointer;
+margin-top:auto;
+padding:10px;
+border:none;
+border-radius:6px;
+background:#946d43;
+color:#fff;
+cursor:pointer;
 }
 
-/* ================= AUTH MODAL ================= */
+/* AUTH MODAL */
 .auth-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.45);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  opacity:0;
-  pointer-events:none;
-  transition:.2s;
-  z-index:9999;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.45);
+display:flex;
+justify-content:center;
+align-items:center;
+opacity:0;
+pointer-events:none;
+transition:.2s;
+z-index:9999;
 }
 
 .auth-overlay.active{
-  opacity:1;
-  pointer-events:auto;
+opacity:1;
+pointer-events:auto;
 }
 
 .auth-modal{
-  width:460px;
-  max-width:92vw;
-  background:#fff;
-  border-radius:16px;
-  padding:22px;
-  box-shadow:0 20px 50px rgba(0,0,0,.25);
-  position:relative;
+width:460px;
+max-width:92vw;
+background:#fff;
+border-radius:16px;
+padding:22px;
+box-shadow:0 20px 50px rgba(0,0,0,.25);
+position:relative;
 }
 
 .auth-input{
-  width:100%;
-  padding:11px;
-  border-radius:12px;
-  border:1px solid #ddd;
-  margin-bottom:10px;
+width:100%;
+padding:11px;
+border-radius:12px;
+border:1px solid #ddd;
+margin-bottom:10px;
 }
 
 .auth-primary{
-  width:100%;
-  padding:12px;
-  border:none;
-  border-radius:12px;
-  background:#b8916a;
-  color:#fff;
-  font-weight:700;
-  cursor:pointer;
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+background:#b8916a;
+color:#fff;
+font-weight:700;
+cursor:pointer;
 }
 
 .hidden{display:none;}
@@ -218,58 +227,67 @@ body{font-family:"Montserrat",sans-serif;background:#f7f2ee;color:#333;}
 <body>
 
 <header class="navbar">
-  <div class="logo">
-    <img src="images/paws1.png">
-    APTUS VET
-  </div>
+<div class="logo">
+<img src="images/paws1.png">
+APTUS VET
+</div>
 
-  <nav class="nav-menu">
-    <a href="index.html">Home</a>
-    <a href="clinic.html">Clinic</a>
-    <a href="grooming.html">Grooming</a>
-    <a href="shop.html">Shop</a>
-    <a href="emergency.html">Emergency</a>
+<nav class="nav-menu">
+<a href="index.html">Home</a>
+<a href="clinic.html">Clinic</a>
+<a href="grooming.html">Grooming</a>
+<a href="shop.html">Shop</a>
+<a href="emergency.html">Emergency</a>
 
-    <!-- ACCOUNT DROPDOWN -->
-    <div class="nav-item-dropdown" id="accountDropdown">
-      <button class="nav-account">Account ▾</button>
+<div class="nav-item-dropdown" id="accountDropdown">
+<button class="nav-account">Account <span class="caret">▾</span></button>
+<div class="dropdown-content">
+<a href="#" onclick="openLogin();return false;">Login / Signup</a>
+<a href="mypets.html">My Pets</a>
+<a href="appointments.html">Appointments</a>
+<a href="orders.html">Orders</a>
+</div>
+</div>
 
-      <div class="dropdown-content">
-        <a href="#" onclick="openLogin();return false;">Login / Signup</a>
-        <a href="mypets.html">My Pets</a>
-        <a href="appointments.html">Appointments</a>
-        <a href="orders.html">Orders</a>
-      </div>
-    </div>
-  </nav>
+</nav>
 </header>
 
 <section class="shop-section">
 <div class="container">
 
+<div class="shop-header">
 <h2>Shop Products</h2>
-
-<div class="products">
-
-<!-- SAMPLE PRODUCTS (keep adding yours below same pattern) -->
-
-<div class="product-card" data-category="supplements">
-<img src="images/dogmulti.jpg" class="product-image">
-<h3>Dog Multivitamins</h3>
-<p>Supports immunity</p>
-<div class="price">₱450</div>
-<button class="add-btn">Add to Cart</button>
+<input id="searchInput" placeholder="Search products...">
 </div>
 
-<div class="product-card" data-category="food">
-<img src="images/catdry.png" class="product-image">
-<h3>Cat Dry Food</h3>
-<p>Nutritious formula</p>
-<div class="price">₱1,200</div>
-<button class="add-btn">Add to Cart</button>
+<div class="categories" id="categoryButtons">
+<button class="active" data-category="all">All</button>
+<button data-category="food">Food</button>
+<button data-category="supplements">Supplements</button>
+<button data-category="medicines">Medicines</button>
+<button data-category="grooming">Grooming</button>
+<button data-category="accessories">Accessories</button>
 </div>
 
-  <div class="product-card" data-category="grooming">
+<div class="products" id="productGrid">
+
+   <div class="product-card" data-category="supplements">
+          <img src="images/dogmulti.jpg" alt="Dog Multivitamins" class="product-image" />
+          <h3>Dog Multivitamins</h3>
+          <p>Supports overall health and immunity.</p>
+          <div class="price">₱450.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="food">
+          <img src="images/catdry.png" alt="Cat Dry Food" class="product-image" />
+          <h3>Cat Dry Food</h3>
+          <p>Nutritious and vet-approved formula.</p>
+          <div class="price">₱1,200.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="grooming">
           <img src="images/petsham.png" alt="Pet Shampoo" class="product-image" />
           <h3>Pet Shampoo</h3>
           <p>Gentle care for sensitive skin.</p>
@@ -501,18 +519,22 @@ body{font-family:"Montserrat",sans-serif;background:#f7f2ee;color:#333;}
 
     <footer class="shop-footer">
       © 2026 Aptus Veterinary Clinic. All rights reserved.
-    </footer>
-  </section>
+    </footer> 
 
-<!-- ================= AUTH MODAL ================= -->
+<div id="noResults" class="no-results">No products matched your search.</div>
+
+</div>
+</section>
+
+<!-- AUTH MODAL -->
 <div id="authOverlay" class="auth-overlay">
 <div class="auth-modal">
-<button onclick="closeAuth()" style="position:absolute;right:12px;top:10px;border:none;background:none;font-size:18px;cursor:pointer;">✕</button>
+<button onclick="closeAuth()" style="position:absolute;right:12px;top:10px;border:none;background:none;font-size:18px;">✕</button>
 
 <h2>Login</h2>
 <form id="loginForm">
-<input id="loginEmail" class="auth-input" placeholder="Email" required>
-<input id="loginPass" class="auth-input" type="password" placeholder="Password" required>
+<input id="loginEmail" class="auth-input" required placeholder="Email">
+<input id="loginPass" class="auth-input" type="password" required placeholder="Password">
 <button class="auth-primary">Login</button>
 </form>
 
@@ -520,9 +542,9 @@ body{font-family:"Montserrat",sans-serif;background:#f7f2ee;color:#333;}
 
 <h2>Create Account</h2>
 <form id="signupForm">
-<input id="signName" class="auth-input" placeholder="Name" required>
-<input id="signEmail" class="auth-input" placeholder="Email" required>
-<input id="signPass" class="auth-input" type="password" placeholder="Password" required>
+<input id="signName" class="auth-input" required placeholder="Name">
+<input id="signEmail" class="auth-input" required placeholder="Email">
+<input id="signPass" class="auth-input" required placeholder="Password">
 <button class="auth-primary">Sign Up</button>
 </form>
 
@@ -536,30 +558,8 @@ dd.querySelector("button").onclick=()=>dd.classList.toggle("open");
 document.addEventListener("click",e=>{if(!dd.contains(e.target))dd.classList.remove("open");});
 
 /* modal */
-function openLogin(){document.getElementById("authOverlay").classList.add("active");}
-function closeAuth(){document.getElementById("authOverlay").classList.remove("active");}
-
-/* auth logic */
-document.getElementById("signupForm").onsubmit=e=>{
-e.preventDefault();
-let users=JSON.parse(localStorage.getItem("aptusUsers"))||[];
-users.push({
-name:signName.value,
-email:signEmail.value,
-pass:signPass.value
-});
-localStorage.setItem("aptusUsers",JSON.stringify(users));
-alert("Account created");
-};
-
-document.getElementById("loginForm").onsubmit=e=>{
-e.preventDefault();
-let users=JSON.parse(localStorage.getItem("aptusUsers"))||[];
-let u=users.find(x=>x.email==loginEmail.value && x.pass==loginPass.value);
-if(!u){alert("Invalid login");return;}
-alert("Login success");
-closeAuth();
-};
+function openLogin(){authOverlay.classList.add("active");}
+function closeAuth(){authOverlay.classList.remove("active");}
 </script>
 
 </body>
