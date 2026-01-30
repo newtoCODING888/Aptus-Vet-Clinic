@@ -1,277 +1,526 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Aptus Veterinary Clinic - Shop" />
-<title>Aptus Vet Clinic | Shop</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Aptus Veterinary Clinic - Shop" />
+  <title>Aptus Vet Clinic | Shop</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
 
-<link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:"Montserrat",sans-serif;background:#f7f2ee;color:#333;}
+    body {
+      font-family: "Montserrat", sans-serif;
+      background-color: #f7f2ee;
+      color: #333;
+    }
 
-/* NAVBAR */
-.navbar{
-width:100%;
-padding:18px 50px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:#fff;
-position:sticky;
-top:0;
-z-index:1000;
-border-bottom:1px solid #eee7e2;
-}
+    /* NAVBAR */
+    .navbar {
+      width: 100%;
+      padding: 18px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #eee7e2;
+    }
 
-.logo{
-display:flex;
-align-items:center;
-gap:10px;
-font-family:"Playfair Display",serif;
-font-size:26px;
-font-weight:600;
-color:#2c5c54;
-}
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: "Playfair Display", serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: #2c5c54;
+    }
 
-.logo img{width:38px;height:38px;}
+    .logo img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+    }
 
-.nav-menu{
-display:flex;
-align-items:center;
-gap:26px;
-}
+    /* ✅ nav row same as index style */
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
 
-.nav-menu a{
-text-decoration:none;
-color:#333;
-font-size:14px;
-font-weight:600;
-}
+    .nav-menu > a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: #333;
+      font-size: 14px;
+      font-weight: 600;
+    }
 
-/* ACCOUNT DROPDOWN */
-.nav-item-dropdown{position:relative;}
+    .nav-menu > a:hover {
+      color: #2c5c54;
+    }
 
-.nav-account{
-border:none;
-background:transparent;
-font:inherit;
-font-weight:600;
-cursor:pointer;
-}
+    /* ======================
+       ACCOUNT DROPDOWN
+    ====================== */
+    .nav-item-dropdown {
+      position: relative;
+      display: inline-block;
+      margin-left: 25px;
+    }
 
-.caret{font-size:12px;}
+    .nav-account {
+      appearance: none;
+      border: none;
+      background: transparent;
+      font: inherit;
+      color: #333;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      padding: 6px 8px;
+      border-radius: 10px;
+    }
 
-.dropdown-content{
-position:absolute;
-right:0;
-top:calc(100% + 10px);
-background:#fff;
-min-width:200px;
-border-radius:12px;
-box-shadow:0 15px 30px rgba(0,0,0,.12);
-padding:8px;
-opacity:0;
-visibility:hidden;
-transform:translateY(-6px);
-transition:.18s ease;
-}
+    .nav-account:hover {
+      background: #f5eee6;
+      color: #2c5c54;
+    }
 
-.nav-item-dropdown.open .dropdown-content{
-opacity:1;
-visibility:visible;
-transform:translateY(0);
-}
+    .caret {
+      font-size: 12px;
+    }
 
-.dropdown-content a{
-display:block;
-padding:10px 12px;
-border-radius:8px;
-text-decoration:none;
-color:#555;
-font-size:14px;
-}
+    .dropdown-content {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      min-width: 200px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.12);
+      padding: 8px;
 
-.dropdown-content a:hover{
-background:#f5eee6;
-color:#8e6845;
-}
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-6px);
+      pointer-events: none;
 
-/* SHOP */
-.shop-section{padding:40px 0;}
-.container{width:90%;max-width:1200px;margin:auto;}
+      z-index: 999999;
+      transition: 0.18s ease;
+    }
 
-.shop-header{
-display:flex;
-justify-content:space-between;
-flex-wrap:wrap;
-gap:15px;
-margin-bottom:20px;
-}
+    .nav-item-dropdown.open .dropdown-content {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
 
-.shop-header input{
-padding:10px 14px;
-width:280px;
-border-radius:6px;
-border:1px solid #dcd7d2;
-}
+    .dropdown-content a {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #555;
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0;
+    }
 
-.categories{
-display:flex;
-gap:10px;
-margin-bottom:25px;
-flex-wrap:wrap;
-}
+    .dropdown-content a:hover {
+      background: #f5eee6;
+      color: #8e6845;
+    }
 
-.categories button{
-padding:8px 14px;
-border:none;
-border-radius:20px;
-background:#a67b52;
-color:#fff;
-cursor:pointer;
-font-size:13px;
-}
+    /* SHOP SECTION */
+    .shop-section {
+      background-color: #f7f2ee;
+      padding: 40px 0;
+      font-family: "Montserrat", serif;
+    }
 
-.products{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-gap:20px;
-}
+    .shop-section .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-.product-card{
-background:#fff;
-border-radius:10px;
-padding:15px;
-box-shadow:0 4px 10px rgba(0,0,0,.05);
-display:flex;
-flex-direction:column;
-}
+    .shop-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
 
-.product-image{
-width:100%;
-height:180px;
-object-fit:contain;
-background:#fbf9f7;
-border-radius:8px;
-margin-bottom:12px;
-}
+    .shop-header h2 {
+      font-size: 26px;
+      color: #2c5c54;
+    }
 
-.add-btn{
-margin-top:auto;
-padding:10px;
-border:none;
-border-radius:6px;
-background:#946d43;
-color:#fff;
-cursor:pointer;
-}
+    .shop-header input {
+      padding: 10px 14px;
+      width: 280px;
+      border-radius: 6px;
+      border: 1px solid #dcd7d2;
+      outline: none;
+    }
 
-/* AUTH MODAL */
-.auth-overlay{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.45);
-display:flex;
-justify-content:center;
-align-items:center;
-opacity:0;
-pointer-events:none;
-transition:.2s;
-z-index:9999;
-}
+    .categories {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
 
-.auth-overlay.active{
-opacity:1;
-pointer-events:auto;
-}
+    .categories button {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 20px;
+      background-color: #a67b52;
+      color: #fff;
+      cursor: pointer;
+      font-size: 13px;
+    }
 
-.auth-modal{
-width:460px;
-max-width:92vw;
-background:#fff;
-border-radius:16px;
-padding:22px;
-box-shadow:0 20px 50px rgba(0,0,0,.25);
-position:relative;
-}
+    .categories button:hover,
+    .categories button.active {
+      background-color: #8e6845;
+      color: #fff;
+    }
 
-.auth-input{
-width:100%;
-padding:11px;
-border-radius:12px;
-border:1px solid #ddd;
-margin-bottom:10px;
-}
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
 
-.auth-primary{
-width:100%;
-padding:12px;
-border:none;
-border-radius:12px;
-background:#b8916a;
-color:#fff;
-font-weight:700;
-cursor:pointer;
-}
+    .product-card {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+    }
 
-.hidden{display:none;}
-</style>
+    .product-card img.product-image {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      background-color: #fbf9f7;
+    }
+
+    .product-card h3 {
+      font-size: 16px;
+      margin-bottom: 6px;
+      color: #2c5c54;
+    }
+
+    .product-card p {
+      font-size: 13px;
+      margin-bottom: 10px;
+      color: #777;
+      line-height: 1.4;
+    }
+
+    .price {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #a67b52;
+    }
+
+    /* QUANTITY UI */
+    .qty-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .qty-row span {
+      font-size: 12px;
+      color: #666;
+      font-weight: 600;
+      width: 60px;
+    }
+
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .qty-btn {
+      width: 32px;
+      height: 32px;
+      border: 1px solid #e2dad3;
+      background: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 800;
+      color: #2c5c54;
+    }
+
+    .qty-input {
+      width: 55px;
+      height: 32px;
+      border: 1px solid #e2dad3;
+      border-radius: 8px;
+      text-align: center;
+      outline: none;
+      font-weight: 600;
+    }
+
+    .product-card button.add-btn {
+      margin-top: auto;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background-color: #946d43;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .product-card button.add-btn:hover {
+      background-color: #724a24;
+    }
+
+    .no-results {
+      display: none;
+      padding: 16px;
+      text-align: center;
+      color: #777;
+      font-size: 14px;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid #eee7e2;
+      margin-top: 20px;
+    }
+
+    footer.shop-footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #ffffff;
+      color: #b5b0ab;
+      font-size: 13px;
+      margin-top: 40px;
+      border-top: 1px solid #e0dcd8;
+    }
+
+    /* =========================
+       AUTH MODAL (Login/Signup)
+    ========================= */
+    .auth-overlay{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: .2s ease;
+      z-index: 9999999;
+      padding: 18px;
+    }
+
+    .auth-overlay.active{
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .auth-modal{
+      width: 480px;
+      max-width: 92vw;
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px 22px 18px;
+      box-shadow: 0 20px 50px rgba(0,0,0,.25);
+      position: relative;
+    }
+
+    .auth-close{
+      position:absolute;
+      right: 14px;
+      top: 14px;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      border: none;
+      background: #f3ebe3;
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    .auth-head h2{
+      font-family: "Playfair Display", serif;
+      font-weight: 500;
+      font-size: 28px;
+      margin-bottom: 6px;
+      color:#2f2a26;
+    }
+
+    .auth-head p{
+      font-size: 14px;
+      color:#8c8076;
+      margin-bottom: 12px;
+    }
+
+    .auth-tabs{
+      display:flex;
+      gap:10px;
+      margin-bottom: 12px;
+    }
+
+    .auth-tab{
+      flex:1;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid #e7ded6;
+      background: #faf7f4;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .auth-tab.active{
+      background: #f2e6db;
+      border-color: #d8c4b1;
+    }
+
+    .auth-form{ display:grid; gap: 8px; }
+
+    .auth-label{
+      font-size: 13px;
+      font-weight: 700;
+      color:#3f352f;
+      margin-top: 4px;
+    }
+
+    .auth-input{
+      width: 100%;
+      padding: 11px 13px;
+      border-radius: 12px;
+      border: 1px solid #e7ded6;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .auth-primary{
+      margin-top: 8px;
+      width: 100%;
+      padding: 12px 14px;
+      border: none;
+      border-radius: 12px;
+      background: #b8916a;
+      color: #fff;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .auth-primary:hover{ background:#c7a17a; }
+
+    .auth-foot{
+      text-align:center;
+      font-size: 13px;
+      color:#8c8076;
+      margin-top: 6px;
+    }
+
+    .auth-link{
+      border:none;
+      background:transparent;
+      cursor:pointer;
+      color:#b8916a;
+      font-weight: 800;
+    }
+
+    .auth-msg{
+      text-align:center;
+      font-size: 13px;
+      color:#5b4f47;
+      min-height: 18px;
+      margin-top: 6px;
+    }
+
+    .hidden{ display:none; }
+  </style>
 </head>
 
 <body>
 
-<header class="navbar">
-<div class="logo">
-<img src="images/paws1.png">
-APTUS VET
-</div>
+  <header class="navbar">
+    <div class="logo">
+      <img src="images/paws1.png" alt="Paw logo" />
+      APTUS VET
+    </div>
 
-<nav class="nav-menu">
-<a href="index.html">Home</a>
-<a href="clinic.html">Clinic</a>
-<a href="grooming.html">Grooming</a>
-<a href="shop.html">Shop</a>
-<a href="emergency.html">Emergency</a>
+    <!-- ✅ kept your links, only changed Account into dropdown -->
+    <nav class="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="clinic.html">Clinic</a>
+      <a href="grooming.html">Grooming</a>
+      <a href="shop.html">Shop</a>
+      <a href="emergency.html">Emergency</a>
 
-<div class="nav-item-dropdown" id="accountDropdown">
-<button class="nav-account">Account <span class="caret">▾</span></button>
-<div class="dropdown-content">
-<a href="#" onclick="openLogin();return false;">Login / Signup</a>
-<a href="mypets.html">My Pets</a>
-<a href="appointments.html">Appointments</a>
-<a href="orders.html">Orders</a>
-</div>
-</div>
+      <div class="nav-item-dropdown" id="accountDropdown">
+        <button class="nav-account" type="button" aria-haspopup="true" aria-expanded="false">
+          Account <span class="caret">▾</span>
+        </button>
 
-</nav>
-</header>
+        <div class="dropdown-content" role="menu" aria-label="Account menu">
+          <a href="#" role="menuitem" onclick="openLogin(); return false;">Login / Signup</a>
+          <a href="mypets.html" role="menuitem">My Pets</a>
+          <a href="appointments.html" role="menuitem">Appointments</a>
+          <a href="orders.html" role="menuitem">Orders</a>
+        </div>
+      </div>
+    </nav>
+  </header>
 
-<section class="shop-section">
-<div class="container">
+  <section id="shop" class="shop-section">
+    <div class="container">
 
-<div class="shop-header">
-<h2>Shop Products</h2>
-<input id="searchInput" placeholder="Search products...">
-</div>
+      <div class="shop-header">
+        <h2>Shop Products</h2>
+        <!-- ✅ SEARCH BAR STILL HERE -->
+        <input id="searchInput" type="text" placeholder="Search products..." />
+      </div>
 
-<div class="categories" id="categoryButtons">
-<button class="active" data-category="all">All</button>
-<button data-category="food">Food</button>
-<button data-category="supplements">Supplements</button>
-<button data-category="medicines">Medicines</button>
-<button data-category="grooming">Grooming</button>
-<button data-category="accessories">Accessories</button>
-</div>
+      <div class="categories" id="categoryButtons">
+        <button class="active" data-category="all">All</button>
+        <button data-category="food">Food</button>
+        <button data-category="supplements">Supplements</button>
+        <button data-category="medicines">Medicines</button>
+        <button data-category="grooming">Grooming</button>
+        <button data-category="accessories">Accessories</button>
+      </div>
 
-<div class="products" id="productGrid">
+      <div class="products" id="productGrid">
 
-   <div class="product-card" data-category="supplements">
+        <div class="product-card" data-category="supplements">
           <img src="images/dogmulti.jpg" alt="Dog Multivitamins" class="product-image" />
           <h3>Dog Multivitamins</h3>
           <p>Supports overall health and immunity.</p>
@@ -510,57 +759,340 @@ APTUS VET
           <div class="price">₱540.00</div>
           <button class="add-btn">Add to Cart</button>
         </div>
+
       </div>
 
       <div class="no-results" id="noResults">
         No products matched your search.
       </div>
+
     </div>
 
     <footer class="shop-footer">
       © 2026 Aptus Veterinary Clinic. All rights reserved.
-    </footer> 
+    </footer>
+  </section>
 
-<div id="noResults" class="no-results">No products matched your search.</div>
+  <!-- ✅ AUTH MODAL HTML -->
+  <div id="authOverlay" class="auth-overlay" aria-hidden="true">
+    <div class="auth-modal" role="dialog" aria-modal="true" aria-label="Account">
+      <button class="auth-close" id="authClose" type="button" aria-label="Close">✕</button>
 
-</div>
-</section>
+      <div class="auth-head">
+        <h2>Account</h2>
+        <p>Login or create an account to continue.</p>
+      </div>
 
-<!-- AUTH MODAL -->
-<div id="authOverlay" class="auth-overlay">
-<div class="auth-modal">
-<button onclick="closeAuth()" style="position:absolute;right:12px;top:10px;border:none;background:none;font-size:18px;">✕</button>
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tabLogin" type="button">Login</button>
+        <button class="auth-tab" id="tabSignup" type="button">Sign Up</button>
+      </div>
 
-<h2>Login</h2>
-<form id="loginForm">
-<input id="loginEmail" class="auth-input" required placeholder="Email">
-<input id="loginPass" class="auth-input" type="password" required placeholder="Password">
-<button class="auth-primary">Login</button>
-</form>
+      <!-- LOGIN -->
+      <form id="loginForm" class="auth-form">
+        <label class="auth-label" for="loginEmail">Email</label>
+        <input id="loginEmail" class="auth-input" type="email" required placeholder="you@example.com">
 
-<hr style="margin:14px 0">
+        <label class="auth-label" for="loginPass">Password</label>
+        <input id="loginPass" class="auth-input" type="password" required placeholder="••••••••">
 
-<h2>Create Account</h2>
-<form id="signupForm">
-<input id="signName" class="auth-input" required placeholder="Name">
-<input id="signEmail" class="auth-input" required placeholder="Email">
-<input id="signPass" class="auth-input" required placeholder="Password">
-<button class="auth-primary">Sign Up</button>
-</form>
+        <button class="auth-primary" id="loginBtn" type="submit">Login</button>
 
-</div>
-</div>
+        <p class="auth-foot">
+          No account? <button class="auth-link" id="toSignup" type="button">Create one</button>
+        </p>
 
-<script>
-/* dropdown */
-const dd=document.getElementById("accountDropdown");
-dd.querySelector("button").onclick=()=>dd.classList.toggle("open");
-document.addEventListener("click",e=>{if(!dd.contains(e.target))dd.classList.remove("open");});
+        <p class="auth-msg" id="loginMsg"></p>
+      </form>
 
-/* modal */
-function openLogin(){authOverlay.classList.add("active");}
-function closeAuth(){authOverlay.classList.remove("active");}
-</script>
+      <!-- SIGNUP -->
+      <form id="signupForm" class="auth-form hidden">
+        <label class="auth-label" for="signName">Name</label>
+        <input id="signName" class="auth-input" type="text" required placeholder="Your name">
+
+        <label class="auth-label" for="signEmail">Email</label>
+        <input id="signEmail" class="auth-input" type="email" required placeholder="you@example.com">
+
+        <label class="auth-label" for="signPass">Password</label>
+        <input id="signPass" class="auth-input" type="password" required placeholder="Create a password">
+
+        <button class="auth-primary" id="signupBtn" type="submit">Sign Up</button>
+
+        <p class="auth-foot">
+          Have an account? <button class="auth-link" id="toLogin" type="button">Login</button>
+        </p>
+
+        <p class="auth-msg" id="signMsg"></p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    /* =========================
+       YOUR SEARCH/FILTER/QTY/SORTING (UNCHANGED LOGIC)
+    ========================= */
+    const searchInput = document.getElementById("searchInput");
+    const categoryButtons = document.getElementById("categoryButtons");
+    const productCards = Array.from(document.querySelectorAll(".product-card"));
+    const noResults = document.getElementById("noResults");
+
+    let activeCategory = "all";
+
+    function normalize(text) {
+      return (text || "").toLowerCase().trim();
+    }
+
+    function injectQuantityUI() {
+      productCards.forEach((card) => {
+        const existing = card.querySelector(".qty-row");
+        if (existing) return;
+
+        const qtyRow = document.createElement("div");
+        qtyRow.className = "qty-row";
+        qtyRow.innerHTML = `
+          <span>Qty:</span>
+          <div class="qty-controls">
+            <button class="qty-btn" data-action="minus" type="button">−</button>
+            <input class="qty-input" type="number" min="1" value="1" />
+            <button class="qty-btn" data-action="plus" type="button">+</button>
+          </div>
+        `;
+
+        const priceEl = card.querySelector(".price");
+        const addBtn = card.querySelector(".add-btn");
+
+        if (priceEl && addBtn) {
+          card.insertBefore(qtyRow, addBtn);
+        } else {
+          card.appendChild(qtyRow);
+        }
+      });
+    }
+
+    function getCardText(card) {
+      const title = card.querySelector("h3")?.innerText || "";
+      const desc = card.querySelector("p")?.innerText || "";
+      return normalize(title + " " + desc);
+    }
+
+    function matchesCategory(card) {
+      if (activeCategory === "all") return true;
+      return card.dataset.category === activeCategory;
+    }
+
+    function matchesSearch(card) {
+      const q = normalize(searchInput.value);
+      if (!q) return true;
+      return getCardText(card).includes(q);
+    }
+
+    function applyFilters() {
+      let visibleCount = 0;
+
+      productCards.forEach((card) => {
+        const show = matchesCategory(card) && matchesSearch(card);
+        card.style.display = show ? "flex" : "none";
+        if (show) visibleCount += 1;
+      });
+
+      noResults.style.display = visibleCount === 0 ? "block" : "none";
+    }
+
+    categoryButtons.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-category]");
+      if (!btn) return;
+
+      activeCategory = btn.dataset.category;
+
+      categoryButtons
+        .querySelectorAll("button")
+        .forEach((b) => b.classList.remove("active"));
+
+      btn.classList.add("active");
+      applyFilters();
+    });
+
+    searchInput.addEventListener("input", () => {
+      applyFilters();
+    });
+
+    document.addEventListener("click", (e) => {
+      const qtyBtn = e.target.closest(".qty-btn");
+      if (!qtyBtn) return;
+
+      const card = e.target.closest(".product-card");
+      if (!card) return;
+
+      const input = card.querySelector(".qty-input");
+      if (!input) return;
+
+      const current = parseInt(input.value || "1", 10);
+      const action = qtyBtn.dataset.action;
+
+      if (action === "minus") {
+        input.value = Math.max(1, current - 1);
+      }
+
+      if (action === "plus") {
+        input.value = current + 1;
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      const addBtn = e.target.closest(".add-btn");
+      if (!addBtn) return;
+
+      const card = e.target.closest(".product-card");
+      if (!card) return;
+
+      const name = card.querySelector("h3")?.innerText || "Item";
+      const qty = parseInt(card.querySelector(".qty-input")?.value || "1", 10);
+
+      alert(`Added to cart: ${name}\nQuantity: ${qty}`);
+    });
+
+    injectQuantityUI();
+    applyFilters();
+
+
+    /* =========================
+       ACCOUNT DROPDOWN (NEW)
+    ========================= */
+    const accountDropdown = document.getElementById("accountDropdown");
+    const accountBtn = accountDropdown?.querySelector(".nav-account");
+
+    if (accountBtn) {
+      accountBtn.addEventListener("click", () => {
+        accountDropdown.classList.toggle("open");
+        const expanded = accountDropdown.classList.contains("open");
+        accountBtn.setAttribute("aria-expanded", expanded ? "true" : "false");
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!accountDropdown.contains(e.target)) {
+          accountDropdown.classList.remove("open");
+          accountBtn.setAttribute("aria-expanded", "false");
+        }
+      });
+    }
+
+
+    /* =========================
+       AUTH MODAL (NEW)
+    ========================= */
+    const overlay = document.getElementById("authOverlay");
+    const authClose = document.getElementById("authClose");
+
+    const tabLogin = document.getElementById("tabLogin");
+    const tabSignup = document.getElementById("tabSignup");
+
+    const loginForm = document.getElementById("loginForm");
+    const signupForm = document.getElementById("signupForm");
+
+    const toSignup = document.getElementById("toSignup");
+    const toLogin = document.getElementById("toLogin");
+
+    const loginMsg = document.getElementById("loginMsg");
+    const signMsg = document.getElementById("signMsg");
+
+    function showLogin() {
+      tabLogin.classList.add("active");
+      tabSignup.classList.remove("active");
+      loginForm.classList.remove("hidden");
+      signupForm.classList.add("hidden");
+      loginMsg.textContent = "";
+      signMsg.textContent = "";
+    }
+
+    function showSignup() {
+      tabSignup.classList.add("active");
+      tabLogin.classList.remove("active");
+      signupForm.classList.remove("hidden");
+      loginForm.classList.add("hidden");
+      loginMsg.textContent = "";
+      signMsg.textContent = "";
+    }
+
+    // ✅ required by your dropdown link
+    window.openLogin = function () {
+      overlay.classList.add("active");
+      overlay.setAttribute("aria-hidden", "false");
+      showLogin();
+    };
+
+    window.openSignup = function () {
+      overlay.classList.add("active");
+      overlay.setAttribute("aria-hidden", "false");
+      showSignup();
+    };
+
+    function closeAuth() {
+      overlay.classList.remove("active");
+      overlay.setAttribute("aria-hidden", "true");
+    }
+
+    authClose.addEventListener("click", closeAuth);
+
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) closeAuth();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeAuth();
+    });
+
+    tabLogin.addEventListener("click", showLogin);
+    tabSignup.addEventListener("click", showSignup);
+    toSignup.addEventListener("click", showSignup);
+    toLogin.addEventListener("click", showLogin);
+
+    // signup
+    signupForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("signName").value.trim();
+      const email = document.getElementById("signEmail").value.trim();
+      const pass = document.getElementById("signPass").value.trim();
+
+      if (!name || !email || !pass) {
+        signMsg.textContent = "Fill all fields.";
+        return;
+      }
+
+      let users = JSON.parse(localStorage.getItem("aptusUsers")) || [];
+
+      if (users.find(u => u.email === email)) {
+        signMsg.textContent = "Email already exists.";
+        return;
+      }
+
+      users.push({ name, email, pass });
+      localStorage.setItem("aptusUsers", JSON.stringify(users));
+
+      signMsg.textContent = "Account created! Please login.";
+      setTimeout(showLogin, 500);
+    });
+
+    // login
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("loginEmail").value.trim();
+      const pass = document.getElementById("loginPass").value.trim();
+
+      let users = JSON.parse(localStorage.getItem("aptusUsers")) || [];
+      const user = users.find(u => u.email === email && u.pass === pass);
+
+      if (!user) {
+        loginMsg.textContent = "Invalid login.";
+        return;
+      }
+
+      localStorage.setItem("aptusCurrentUser", JSON.stringify(user));
+      loginMsg.textContent = "Login success!";
+      setTimeout(closeAuth, 600);
+    });
+  </script>
 
 </body>
 </html>
