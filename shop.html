@@ -1,46 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Aptus Veterinary Clinic" />
-  <title>Aptus Vet Clinic</title>
+  <title>Aptus Vet Clinic | Shop</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css" />
   <script src="script.js" defer></script>
-</head>
 
-<body>
-
-  <!-- ================= NAVBAR ================= -->
-  <header class="navbar">
-    <div class="logo">APTUS VET</div>
-
-    <nav class="nav-menu">
-      <a href="#">Clinic</a>
-      <a href="#">Grooming</a>
-      <a href="shop.html">Shop</a>
-      <a href="#">Emergency</a>
-
-      <!-- ACCOUNT DROPDOWN -->
-      <div class="nav-item-dropdown" id="accountDropdown">
-        <button class="nav-account" type="button" aria-haspopup="true" aria-expanded="false">
-          Account <span class="caret">▾</span>
-        </button>
-
-        <div class="dropdown-content" role="menu" aria-label="Account menu">
-          <a href="#" role="menuitem" onclick="openLogin(); return false;">Login / Signup</a>
-          <a href="mypets.html" role="menuitem">My Pets</a>
-          <a href="appointments.html" role="menuitem">Appointments</a>
-          <a href="orders.html" role="menuitem">Orders</a>
-        </div>
-      </div>
-    </nav>
-  </header>
-  
+  <!-- ✅ ONLY if these styles are NOT yet in style.css -->
+  <style>
     /* ✅ NAV MENU (so dropdown aligns nicely) */
     .nav-menu{
       display:flex;
@@ -317,13 +290,14 @@
 </head>
 
 <body>
+
+  <!-- ✅ SAME HEADER AS INDEX -->
   <header class="navbar">
     <div class="logo">
       <img src="images/paws1.png" alt="Paw logo" />
       APTUS VET
     </div>
 
-    <!-- ✅ same links, but Account becomes dropdown -->
     <nav class="nav-menu">
       <a href="index.html">Home</a>
       <a href="clinic.html">Clinic</a>
@@ -337,7 +311,6 @@
         </button>
 
         <div class="dropdown-content" role="menu" aria-label="Account menu">
-          <!-- ✅ this calls openLogin() which is defined in auth.js -->
           <a href="#" role="menuitem" onclick="openLogin(); return false;">Login / Signup</a>
           <a href="mypets.html" role="menuitem">My Pets</a>
           <a href="appointments.html" role="menuitem">Appointments</a>
@@ -365,7 +338,7 @@
 
       <div class="products" id="productGrid">
 
-        <!-- ✅ your products kept exactly -->
+        <!-- ✅ YOUR PRODUCTS (kept as-is) -->
         <div class="product-card" data-category="supplements">
           <img src="images/dogmulti.jpg" alt="Dog Multivitamins" class="product-image" />
           <h3>Dog Multivitamins</h3>
@@ -739,7 +712,8 @@
     applyFilters();
   </script>
 
-  <!-- ✅ THIS IS THE IMPORTANT PART: makes login modal work on shop -->
+  <!-- ✅ IMPORTANT: this must exist for openLogin() -->
   <script src="auth.js" defer></script>
+
 </body>
 </html>
