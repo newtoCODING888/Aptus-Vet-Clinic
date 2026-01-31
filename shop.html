@@ -1,54 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Aptus Veterinary Clinic - Shop" />
-  <title>Aptus Vet Clinic | Shop</title>
+  <meta name="description" content="Aptus Veterinary Clinic" />
+  <title>Aptus Vet Clinic</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
 
-    body {
-      font-family: "Montserrat", sans-serif;
-      background-color: #f7f2ee;
-      color: #333;
-    }
+<body>
 
-    /* NAVBAR */
-    .navbar {
-      width: 100%;
-      padding: 18px 50px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #ffffff;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      border-bottom: 1px solid #eee7e2;
-    }
+  <!-- ================= NAVBAR ================= -->
+  <header class="navbar">
+    <div class="logo">APTUS VET</div>
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: "Playfair Display", serif;
-      font-size: 26px;
-      font-weight: 600;
-      color: #2c5c54;
-    }
+    <nav class="nav-menu">
+      <a href="#">Clinic</a>
+      <a href="#">Grooming</a>
+      <a href="shop.html">Shop</a>
+      <a href="#">Emergency</a>
 
-    .logo img {
-      width: 38px;
-      height: 38px;
-      object-fit: contain;
-    }
+      <!-- ACCOUNT DROPDOWN -->
+      <div class="nav-item-dropdown" id="accountDropdown">
+        <button class="nav-account" type="button" aria-haspopup="true" aria-expanded="false">
+          Account <span class="caret">▾</span>
+        </button>
 
+        <div class="dropdown-content" role="menu" aria-label="Account menu">
+          <a href="#" role="menuitem" onclick="openLogin(); return false;">Login / Signup</a>
+          <a href="mypets.html" role="menuitem">My Pets</a>
+          <a href="appointments.html" role="menuitem">Appointments</a>
+          <a href="orders.html" role="menuitem">Orders</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+  
     /* ✅ NAV MENU (so dropdown aligns nicely) */
     .nav-menu{
       display:flex;
